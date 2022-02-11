@@ -1,3 +1,27 @@
-header {
-    background-color: blue; 
+.navFlex {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    li {
+        list-style: none;
+        input {
+            width: 94%;
+        }
+        button {
+            background-color: transparent;
+            border: none;
+        }
+        button[type=submit] {
+            position: relative;
+
+        }
+        .starIcon {
+            color: gold;
+            font-size: 1.2rem;
+        }
+    }
+    .inputItem {
+        width: 50%;
+    }
 }

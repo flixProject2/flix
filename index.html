@@ -10,49 +10,62 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li>
-                    <h1>Flix</h1>
-                </li>
-                <li>
-                    <label for="movieSearch"></label>
-                    <input type="search" id="movieSearch" name="movieSearch" aria-label="Search for movies">
-                    <button type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <i class="fa-solid fa-star"></i>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        ENG / FR
-                    </button>
-                </li>
-            </ul>
-        </nav>
+        <div class="wrapper">
+            <nav>
+                <ul class="navFlex">
+                    <li>
+                        <h1>Flix</h1>
+                    </li>
+                    <li class="inputItem">
+                        <label for="movieSearch"></label>
+                        <input type="search" id="movieSearch" name="movieSearch" aria-label="Search for movies">
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="starIcon">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            ENG / FR
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <aside>
-            <ul>
-                <li>Popular</li>
-                <li>Discover</li>
-                <li>Genres</li>
-            </ul>
-        </aside>
-        <section>
-            <h2>Trending</h2>
-            <div class="movieFlex">
-                <div class="movieContainer">
+        <div class="wrapper mainFlex">
+            <aside>
+                <ul class="asideFlex">
+                    <li><span>Popular</span></li>
+                    <li><span>Discover</span></li>
+                    <li><span>Genres</span></li>
+                </ul>
+            </aside>
+            <section>
+                <div class="searchMovie">
                     <div class="imgContainer"></div>
                     <div class="textContainer"></div>
                 </div>
+            </section>
+            <section>
+                <h2>Trending</h2>
+                <div class="movieFlex">
+                    <div class="movieContainer">
+                        <div class="imgContainer"></div>
+                        <div class="textContainer"></div>
+                    </div>
+                </div>
+            </section>
+            <div class="watchList">
+                
             </div>
-        </section>
+        </div>
     </main>
     <footer>
         <p>Powered by <a>MovieDB</a></p>

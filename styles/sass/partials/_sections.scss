@@ -1,0 +1,21 @@
+main {
+    height: 80vh;
+}
+
+.mainFlex {
+    display: flex;
+    flex-direction: row;
+}
+
+aside {
+    width: 15%;
+    .asideFlex {
+        display: flex; 
+        flex-direction: column;
+        border-right: 1px solid black;
+        li {
+            list-style: none;
+            margin-bottom: 60px;
+        }
+    }
+}

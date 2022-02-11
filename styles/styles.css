@@ -226,10 +226,100 @@ html {
   overflow: hidden;
 }
 
-header {
-  background-color: blue;
+html {
+  font-size: 125%;
+}
+
+ul,
+li,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 0 0 0 22px;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.navFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.navFlex li {
+  list-style: none;
+}
+.navFlex li input {
+  width: 94%;
+}
+.navFlex li button {
+  background-color: transparent;
+  border: none;
+}
+.navFlex li button[type=submit] {
+  position: relative;
+}
+.navFlex li .starIcon {
+  color: gold;
+  font-size: 1.2rem;
+}
+.navFlex .inputItem {
+  width: 50%;
+}
+
+main {
+  height: 80vh;
+}
+
+.mainFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+aside {
+  width: 15%;
+}
+aside .asideFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-right: 1px solid black;
+}
+aside .asideFlex li {
+  list-style: none;
+  margin-bottom: 60px;
 }
 
 footer {
-  background-color: red;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+footer p:nth-child(2) {
+  margin: 20px 0;
 }
