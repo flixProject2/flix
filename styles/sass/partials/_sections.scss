@@ -12,6 +12,7 @@ aside {
     .asideFlex {
         display: flex; 
         flex-direction: column;
+        margin-top: 3rem;
         border-right: 1px solid black;
         li {
             list-style: none;
