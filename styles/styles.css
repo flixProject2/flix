@@ -275,9 +275,26 @@ h2 {
 .navFlex li button[type=submit] {
   position: relative;
 }
-.navFlex li .starIcon {
+.navFlex li .fa-star {
   color: gold;
   font-size: 1.2rem;
+}
+.navFlex li ul.watchlistSlide {
+  background: black;
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  top: 5rem;
+  right: -30%;
+  z-index: 10;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.navFlex li input[type=checkbox]:checked + ul.watchlistSlide {
+  right: 0;
+}
+.navFlex li input[type=checkbox] {
+  display: none;
 }
 .navFlex .inputItem {
   width: 50%;
