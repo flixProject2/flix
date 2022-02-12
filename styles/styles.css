@@ -374,6 +374,8 @@ aside .asideFlex li {
 .movieFlex .movieContainer {
   margin: 0px 40px;
   width: calc((100% / 3) - 80px);
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

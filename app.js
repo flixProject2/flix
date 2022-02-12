@@ -80,7 +80,8 @@ app.displayTrending = (dataFromTrendingApi) => {
         summaryElement.textContent = `Summary`;
 
         //Add movie overview to p element
-        paragraphElement.textContent = movie.overview;
+        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
+
 
         //Append Movie Poster and Title to their respective containers
         trendingTextContainer.appendChild(headerElement);
