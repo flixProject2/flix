@@ -1,7 +1,3 @@
-main {
-    height: 80vh;
-}
-
 .mainFlex {
     display: flex;
     flex-direction: row;
@@ -16,6 +12,36 @@ aside {
         li {
             list-style: none;
             margin-bottom: 60px;
+        }
+    }
+}
+
+.movieFlex {
+    display: flex;
+    flex-direction: row;
+    .movieContainer {
+        margin: 0px 40px;
+        width: calc((100% / 3) - 80px);
+        display: flex;
+        flex-direction: column-reverse;
+        box-sizing: border-box;
+        justify-content: flex-end;
+        border-radius: 15px;
+        
+        .trendingImgContainer {
+            width: 100%;
+            img {
+                width: 100%;
+            } 
+        }
+        .trendingTextContainer {
+            width: 100%;
+            h3 {
+                font-size: 1rem;
+            }
+            h4 {
+                margin-bottom: 10px
+            }
         }
     }
 }

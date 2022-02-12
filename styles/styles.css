@@ -283,10 +283,6 @@ h2 {
   width: 50%;
 }
 
-main {
-  height: 80vh;
-}
-
 .mainFlex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -313,6 +309,48 @@ aside .asideFlex {
 aside .asideFlex li {
   list-style: none;
   margin-bottom: 60px;
+}
+
+.movieFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.movieFlex .movieContainer {
+  margin: 0px 40px;
+  width: calc((100% / 3) - 80px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  border-radius: 15px;
+}
+.movieFlex .movieContainer .trendingImgContainer {
+  width: 100%;
+}
+.movieFlex .movieContainer .trendingImgContainer img {
+  width: 100%;
+}
+.movieFlex .movieContainer .trendingTextContainer {
+  width: 100%;
+}
+.movieFlex .movieContainer .trendingTextContainer h3 {
+  font-size: 1rem;
+}
+.movieFlex .movieContainer .trendingTextContainer h4 {
+  margin-bottom: 10px;
 }
 
 footer {
