@@ -47,26 +47,50 @@ aside {
             }
         }
     }
-    .popularContainer {
+}
+
+.discoverFlex {
+    display: flex; 
+    flex-direction: column;
+    .discoverFlexContainer {
+        margin: 0px 40px;
+        width: 100%;
+        flex-wrap: wrap;
         display: flex;
         flex-direction: row-reverse;
-        width: calc((100% / 2) - 80px);
-        margin: 0px 40px;
-        
-        .popularImageContainer {
-            width: 100%;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        border-radius: 15px;
+        .discoverImgContainer {
+            width: 30%;
             img {
                 width: 100%;
-            } 
+            }
         }
-        .popularTextContainer {
+        .discoverTextContainer {
+            width: 70%;
+        }
+    }
+}
+.popularContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    width: calc((100% / 2) - 80px);
+    margin: 0px 40px;
+        
+    .popularImageContainer {
+        width: 100%;
+        img {
             width: 100%;
-            h3 {
-                font-size: 1rem;
-            }
-            h4 {
-                margin-bottom: 10px
-            }
+        } 
+    }
+    .popularTextContainer {
+        width: 100%;
+        h3 {
+            font-size: 1rem;
+        }
+        h4 {
+            margin-bottom: 10px; 
         }
     }
 }
