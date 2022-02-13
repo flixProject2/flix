@@ -2,13 +2,14 @@ const app = {};
 
 
 app.apiKey = '438f9921b5287c90f91cf32070a635f1';
-app.apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKey}`;
+app.apiURL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${app.apiKey}`;
+app.apiPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKey}`;
+
 
 app.init = () => {
     app.getTrending();
+    app.getPopular();
 }
-
-
 
 app.getTrending = () => {
     //use the URL constructor to create our endpoint and specify the parameters we want to include
@@ -51,7 +52,7 @@ app.displayTrending = (dataFromTrendingApi) => {
         
         //Create img container 
         const trendingImgContainer = document.createElement('div');
-        trendingImgContainer.classList.add('trendingImgContainer')
+        trendingImgContainer.classList.add('trendingImgContainer');
 
 
         console.log(movie)
@@ -95,6 +96,96 @@ app.displayTrending = (dataFromTrendingApi) => {
 
         //Append movie container to Movie Flex
         movieFlex.appendChild(movieContainer);
+    })
+}
+
+app.getPopular = () => {
+    // use URL consteuctor to target popular movies as endpoint
+    const url = new URL(app.apiPopular);
+    fetch(url)
+        .then(function (responsePopular) {
+            return responsePopular.json();
+        })
+        .then((jsonPopular) => {
+            app.displayPopular(jsonPopular)
+        })
+};
+
+app.displayPopular = (dataFromPopularApi) => {
+    // target where to append
+    const movieFlex = document.querySelector('.movieFlex');
+
+    // data check
+    console.log(dataFromPopularApi);
+
+    // get first three movies from array
+    const popularFirstThree = dataFromPopularApi.results.slice(0, 3);
+
+    movieFlex.innerHTML = "";
+
+    // target Popular section and add event listener
+    const popularLink = document.querySelector('.popularLink');
+
+    popularLink.addEventListener('click', function () {
+        app.displayPopular();
+        console.log('click');
+    }) 
+
+    // loop through array and append popular movie info to DOM
+    popularFirstThree.forEach((movie) => {
+        // popular movie container
+        const popularContainer = document.createElement('div');
+        popularContainer.classList.add('popularContainer');
+
+        // popular movie text container
+        const popularTextContainer = document.createElement('div');
+        popularTextContainer.classList.add('popularTextContainer');
+
+        // popular movie image container
+        const popularImageContainer = document.createElement('div');
+        popularImageContainer.classList.add('popularImageContainer');
+
+        // data check for first three popular movies
+        console.log(movie);
+
+        // save movie data in variables
+        const popularImg = document.createElement('img');
+        const popularHeader = document.createElement('h3');
+        const popularRating = document.createElement('p');
+        const popularSummary = document.createElement('h4');
+        const popularParagraph = document.createElement('p');
+
+        // add movie image
+        popularImg.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+
+        // add movie title
+        popularHeader.textContent = movie.title;
+
+        // add movie release date and rating
+        popularRating.textContent = `${movie.release_date.substring(0, 4)} | Rating: ${movie.vote_average}`;
+
+        // add summary header
+        popularSummary.textContent = 'Summary';
+
+        // add movie description
+        popularParagraph.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
+
+        // append movie info to respective containers
+
+        popularTextContainer.appendChild(popularHeader);
+        popularTextContainer.appendChild(popularRating);
+        popularTextContainer.appendChild(popularSummary);
+        popularTextContainer.appendChild(popularParagraph);
+        popularImageContainer.appendChild(popularImg);
+
+
+        // append to movie container
+        popularContainer.appendChild(popularTextContainer);
+        popularContainer.appendChild(popularImageContainer);
+
+
+        // append containers to movie flex
+        movieFlex.appendChild(popularContainer);
     })
 }
 
