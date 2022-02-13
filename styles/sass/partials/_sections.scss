@@ -20,6 +20,7 @@ aside {
 .movieFlex {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     .movieContainer {
         margin: 0px 40px;
         width: calc((100% / 3) - 80px);
@@ -37,6 +38,28 @@ aside {
             } 
         }
         .trendingTextContainer {
+            width: 100%;
+            h3 {
+                font-size: 1rem;
+            }
+            h4 {
+                margin-bottom: 10px
+            }
+        }
+    }
+    .popularContainer {
+        display: flex;
+        flex-direction: row-reverse;
+        width: calc((100% / 2) - 80px);
+        margin: 0px 40px;
+        
+        .popularImageContainer {
+            width: 100%;
+            img {
+                width: 100%;
+            } 
+        }
+        .popularTextContainer {
             width: 100%;
             h3 {
                 font-size: 1rem;
