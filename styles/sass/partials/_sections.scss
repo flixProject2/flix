@@ -47,3 +47,33 @@ aside {
         }
     }
 }
+
+.discoverFlex {
+    display: flex; 
+    flex-direction: column;
+    .discoverFlexContainer {
+        margin: 0px 40px;
+        width: 100%;
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: row-reverse;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        border-radius: 15px;
+        .discoverImgContainer {
+            width: 30%;
+            img {
+                width: 100%;
+            }
+        }
+        .discoverTextContainer {
+            width: 70%;
+            h3 {
+                font-size: 1rem;
+            }
+            h4 {
+                margin-bottom: 10px; 
+            }
+        }
+    }
+}
