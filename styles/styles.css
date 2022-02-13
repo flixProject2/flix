@@ -370,6 +370,8 @@ aside .asideFlex li {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .movieFlex .movieContainer {
   margin: 0px 40px;
@@ -443,10 +445,31 @@ aside .asideFlex li {
 .discoverFlex .discoverFlexContainer .discoverTextContainer {
   width: 70%;
 }
-.discoverFlex .discoverFlexContainer .discoverTextContainer h3 {
+
+.popularContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  width: calc((100% / 2) - 80px);
+  margin: 0px 40px;
+}
+.popularContainer .popularImageContainer {
+  width: 100%;
+}
+.popularContainer .popularImageContainer img {
+  width: 100%;
+}
+.popularContainer .popularTextContainer {
+  width: 100%;
+}
+.popularContainer .popularTextContainer h3 {
   font-size: 1rem;
 }
-.discoverFlex .discoverFlexContainer .discoverTextContainer h4 {
+.popularContainer .popularTextContainer h4 {
   margin-bottom: 10px;
 }
 
