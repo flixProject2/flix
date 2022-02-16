@@ -94,3 +94,27 @@ aside {
         }
     }
 }
+
+.searchFlex {
+    display: flex; 
+    flex-direction: column;
+    .searchMovieContainer {
+        margin: 0px 40px;
+        width: 100%;
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: row-reverse;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        border-radius: 15px;
+        .searchImgContainer {
+            width: 30%;
+            img {
+                width: 100%;
+            }
+        }
+        .searchTextContainer {
+            width: 70%;
+        }
+    }
+}

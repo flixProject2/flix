@@ -6,7 +6,12 @@ app.apiURL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${app.api
 app.apiPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKey}`;
 app.discoverApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&`;
 
+app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}&language=en-US&page=1&include_adult=false&query=lighthouse`;
+
 const discoverLink = document.querySelector('.discoverLink');
+
+const formElement = document.querySelector('form');
+const searchingFlex = document.querySelector('.searchFlex');
 
 app.init = () => {
     app.getTrending();
@@ -14,8 +19,18 @@ app.init = () => {
         const clearFlex = document.querySelector('.movieFlex');
         clearFlex.innerHTML = '';
         app.getDiscover();
-        app.displayDiscover();
-    });
+    }, {once: true});
+    formElement.addEventListener('submit', (e) => {
+        e.preventDefault();
+        //Log search input
+        const searchElement = document.querySelector('#movieSearch');
+        const searchValue = searchElement.value;
+        console.log(searchValue);
+        //Clear section
+        sectionElement = document.querySelector('.movieFlex');
+        sectionElement.innerHTML = '';
+        app.getSearch();
+    }, {once: true});
 };
 
 app.getTrending = () => {
@@ -126,7 +141,7 @@ app.displayDiscover = (dataFromDiscoverApi) => {
     
     //Loop through each movie and append it to the DOM
     discoverFirstFive.forEach( (movie) => {
-        
+        console.log(movie);
         //Create movie container 
         const movieContainer = document.createElement('div');
         //Set class to movie container
@@ -224,6 +239,8 @@ app.displayPopular = (dataFromPopularApi) => {
 
     // loop through array and append popular movie info to DOM
     popularFirstThree.forEach((movie) => {
+
+        console.log(movie);
         // popular movie container
         const popularContainer = document.createElement('div');
         popularContainer.classList.add('popularContainer');
@@ -279,5 +296,94 @@ app.displayPopular = (dataFromPopularApi) => {
         movieFlex.appendChild(popularContainer);
     })
 }
+
+//Search Bar Feature
+
+app.getSearch = () => {
+    const searchURL = new URL(app.apiSearch);
+    fetch(searchURL)
+    .then((response) => {
+        return response.json();
+    })
+    .then((jsonResponse) => {
+        app.displaySearch(jsonResponse)
+    })
+}
+
+app.displaySearch = (dataFromSearchApi) => {
+    //Select the div where we will be appending the movie cards.
+
+    console.log(dataFromSearchApi);
+
+    const searchMovies = dataFromSearchApi.results.slice(0,5);
+
+    console.log(searchMovies);
+
+    searchMovies.forEach((search) => {
+        console.log(search);
+
+        //Create movie container 
+        const searchMovieContainer = document.createElement('div');
+        //Set class to movie container
+        searchMovieContainer.classList.add('searchMovieContainer');
+
+        //Create text container 
+        const searchTextContainer = document.createElement('div');
+        //set class to text container 
+        searchTextContainer.classList.add('searchTextContainer');
+
+        //Create img container 
+        const searchImgContainer = document.createElement('div');
+        searchImgContainer.classList.add('searchImgContainer')
+
+
+        //Create img element
+        const imgElement = document.createElement('img');
+        //Create movie header to store movie title in
+        const headerElement = document.createElement('h3');
+        //Create h4 to store in text Container
+        const summaryElement = document.createElement('h4');
+        //Create p tag to store in textContainer under header
+        const paragraphHeader = document.createElement('p');
+        //Create p tag to store in textContainer 
+        const paragraphElement = document.createElement('p');
+
+
+        //add src to img element
+        imgElement.src = `https://image.tmdb.org/t/p/original/${search.poster_path}`;
+
+        //add movie title to Header Element
+        headerElement.textContent = search.title
+
+        //add content to p tag 
+        paragraphHeader.textContent = `${search.release_date} | Rating: ${search.vote_average}`;
+
+        //Add text content to the summary h4 element
+        summaryElement.textContent = `Summary`;
+
+        //Add movie overview to p element
+        paragraphElement.textContent = `${search.overview}`;
+
+
+        //Append Movie Poster and Title to their respective containers
+        searchTextContainer.appendChild(headerElement);
+        searchTextContainer.appendChild(paragraphHeader);
+        searchTextContainer.appendChild(summaryElement);
+        searchTextContainer.appendChild(paragraphElement);
+        searchImgContainer.appendChild(imgElement);
+
+        //Append Movie Poster and Title Containers to their own container
+        searchMovieContainer.appendChild(searchTextContainer);
+        searchMovieContainer.appendChild(searchImgContainer);
+
+        //Append movie container to Search Flex
+        searchingFlex.appendChild(searchMovieContainer);
+
+    });
+
+};
+
+
+
 
 app.init();
