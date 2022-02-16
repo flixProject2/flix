@@ -9,6 +9,7 @@ app.discoverApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${app.
 app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}&language=en-US&page=1&include_adult=false&query=lighthouse`;
 
 const discoverLink = document.querySelector('.discoverLink');
+const popularLink = document.querySelector('.popularLink');
 
 const formElement = document.querySelector('form');
 const searchingFlex = document.querySelector('.searchFlex');
@@ -18,6 +19,8 @@ app.init = () => {
     discoverLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex');
         clearFlex.innerHTML = '';
+        const clearPopular = document.querySelector('.popularFlex');
+        clearPopular.innerHTML = '';
         app.getDiscover();
     }, {once: true});
     formElement.addEventListener('submit', (e) => {
@@ -30,6 +33,15 @@ app.init = () => {
         sectionElement = document.querySelector('.movieFlex');
         sectionElement.innerHTML = '';
         app.getSearch();
+        app.displayDiscover();
+    }, {once: true});
+    popularLink.addEventListener('click', function () {
+        const clearFlex = document.querySelector('.movieFlex')
+        clearFlex.innerHTML = '';
+        const clearDiscover = document.querySelector('.discoverFlex')
+        clearDiscover.innerHTML = '';
+        app.getPopular();
+        app.displayPopular();
     }, {once: true});
 };
 
@@ -119,7 +131,6 @@ app.displayTrending = (dataFromTrendingApi) => {
 }
 
 
-
 app.getDiscover = () => {
     const discoverURL = new URL(app.discoverApiUrl);
     fetch(discoverURL)
@@ -204,7 +215,6 @@ app.displayDiscover = (dataFromDiscoverApi) => {
 }
 
 
-
 app.getPopular = () => {
     // use URL consteuctor to target popular movies as endpoint
     const url = new URL(app.apiPopular);
@@ -218,24 +228,14 @@ app.getPopular = () => {
 };
 
 app.displayPopular = (dataFromPopularApi) => {
-    // target where to append
-    const movieFlex = document.querySelector('.movieFlex');
+    // target div to append movie card
+    const popularFlex = document.querySelector('.popularFlex');
 
     // data check
     console.log(dataFromPopularApi);
 
     // get first three movies from array
-    const popularFirstThree = dataFromPopularApi.results.slice(0, 3);
-
-    movieFlex.innerHTML = "";
-
-    // target Popular section and add event listener
-    const popularLink = document.querySelector('.popularLink');
-
-    popularLink.addEventListener('click', function () {
-        app.displayPopular();
-        console.log('click');
-    }) 
+    const popularFirstThree = dataFromPopularApi.results.slice(5, 10);
 
     // loop through array and append popular movie info to DOM
     popularFirstThree.forEach((movie) => {
@@ -243,7 +243,7 @@ app.displayPopular = (dataFromPopularApi) => {
         console.log(movie);
         // popular movie container
         const popularContainer = document.createElement('div');
-        popularContainer.classList.add('popularContainer');
+        popularContainer.classList.add('popularFlexContainer');
 
         // popular movie text container
         const popularTextContainer = document.createElement('div');
@@ -293,7 +293,7 @@ app.displayPopular = (dataFromPopularApi) => {
 
 
         // append containers to movie flex
-        movieFlex.appendChild(popularContainer);
+        popularFlex.appendChild(popularContainer);
     })
 }
 
