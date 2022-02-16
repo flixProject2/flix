@@ -527,7 +527,8 @@ aside .asideFlex li {
 .searchFlex .searchMovieContainer .searchTextContainer {
   width: 70%;
 }
-.searchFlex .genresFlex {
+
+.genresFlex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
