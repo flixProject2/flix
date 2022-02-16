@@ -527,6 +527,16 @@ aside .asideFlex li {
 .searchFlex .searchMovieContainer .searchTextContainer {
   width: 70%;
 }
+.searchFlex .genresFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 
 footer {
   background-color: black;

@@ -125,4 +125,9 @@ aside {
             width: 70%;
         }
     }
+.genresFlex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 }
