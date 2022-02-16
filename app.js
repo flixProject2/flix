@@ -5,6 +5,8 @@ app.apiKey = '438f9921b5287c90f91cf32070a635f1';
 app.apiURL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${app.apiKey}`;
 app.apiPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKey}`;
 app.discoverApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&`;
+app.apiGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${app.apiKey}&language=en-US`;
+app.apiTopRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${app.apiKey}&language=en-US&page=1`;
 
 app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}&language=en-US&page=1&include_adult=false&query=lighthouse`;
 
@@ -16,6 +18,7 @@ const searchingFlex = document.querySelector('.searchFlex');
 
 app.init = () => {
     app.getTrending();
+    app.getGenres();
     discoverLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex');
         clearFlex.innerHTML = '';
@@ -85,7 +88,8 @@ app.displayTrending = (dataFromTrendingApi) => {
         trendingImgContainer.classList.add('trendingImgContainer');
 
 
-        console.log(movie)
+        // console.log(movie)
+
         //Create img element
         const imgElement = document.createElement('img');
         //Create movie header to store movie title in
@@ -219,16 +223,16 @@ app.getPopular = () => {
     // use URL consteuctor to target popular movies as endpoint
     const url = new URL(app.apiPopular);
     fetch(url)
-        .then(function (responsePopular) {
-            return responsePopular.json();
+        .then(function (apiResponse) {
+            return apiResponse.json();
         })
-        .then((jsonPopular) => {
-            app.displayPopular(jsonPopular)
+        .then((jsonResponse) => {
+            app.displayPopular(jsonResponse)
         })
 };
 
 app.displayPopular = (dataFromPopularApi) => {
-    // target div to append movie card
+    // target div to append movie card to
     const popularFlex = document.querySelector('.popularFlex');
 
     // data check
@@ -385,5 +389,64 @@ app.displaySearch = (dataFromSearchApi) => {
 
 
 
+app.getGenres = () => {
+    // use URL consteuctor to target popular movies as endpoint
+    const url = new URL(app.apiGenres);
+    fetch(url)
+        .then(function(apiResponse) {
+            return apiResponse.json();
+        })
+        .then((jsonResponse) => {
+            app.displayGenres(jsonResponse.genres)
+        })
+};
+
+app.displayGenres = (dataFromGenresApi) => {
+    // target div to append movie card to
+    const genresFlex = document.querySelector('.genresFlex');
+
+    // data check to ensure data is being returned in the array
+    const genresList = dataFromGenresApi;
+    // console.log(genresList);
+
+    // filter array to select specific genres to get from returned data
+    const genresArray = genresList.filter((genres) => {
+        return genres.id < 40;
+    });
+
+    // data check
+    // console.log(genresArray);
+
+
+    // Loop through the genre array
+    genresArray.forEach(function(genres) {
+
+        // genres list container
+        const genresContainer = document.createElement('div');
+        genresContainer.classList.add('genresFlexContainer');
+
+        // genres text container
+        const genresTextContainer = document.createElement('div');
+        genresTextContainer.classList.add('genresTextContainer');
+
+        // save genres data in variable
+        const genresHeader = document.createElement('h2');
+
+        // add genres name
+        genresHeader.textContent = genres.name;
+
+        // append genres information to respective container
+        genresTextContainer.appendChild(genresHeader);
+
+        // append to genres list container
+        genresContainer.appendChild(genresTextContainer);
+
+        // append containers to genresFlex
+        genresFlex.appendChild(genresContainer);
+
+        // data check for genres
+        // console.log(genres);
+    })
+}
 
 app.init();
