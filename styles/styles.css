@@ -490,6 +490,44 @@ aside .asideFlex li {
   margin-bottom: 10px;
 }
 
+.searchFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.searchFlex .searchMovieContainer {
+  margin: 0px 40px;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  border-radius: 15px;
+}
+.searchFlex .searchMovieContainer .searchImgContainer {
+  width: 30%;
+}
+.searchFlex .searchMovieContainer .searchImgContainer img {
+  width: 100%;
+}
+.searchFlex .searchMovieContainer .searchTextContainer {
+  width: 70%;
+}
+
 footer {
   background-color: black;
   color: white;

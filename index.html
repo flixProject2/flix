@@ -17,11 +17,13 @@
                         <h1>Flix</h1>
                     </li>
                     <li class="inputItem">
-                        <label for="movieSearch"></label>
-                        <input type="search" id="movieSearch" name="movieSearch" aria-label="Search for movies">
-                        <button type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                        <form action="#">
+                            <label for="movieSearch"></label>
+                            <input type="search" id="movieSearch" name="movieSearch" aria-label="Search for movies">
+                            <button type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
                     </li>
                     <li>
                         <label for="slideOut"><i class="fa-solid fa-star" class="starIcon"></i></label>
@@ -50,17 +52,12 @@
                     <li><span>Genres</span></li>
                 </ul>
             </aside>
-            <section>
-                <div class="searchMovie">
-                    <div class="imgContainer"></div>
-                    <div class="textContainer"></div>
-                </div>
-            </section>
-            <section>
+            <section class="mainSection">
                 <h2>Trending</h2>
                 <div class="movieFlex"></div>
                 <div class="popularFlex"></div>
                 <div class="discoverFlex"></div>
+                <div class="searchFlex"></div>
             </section>
         </div>
     </main>
