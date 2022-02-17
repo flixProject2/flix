@@ -27,6 +27,7 @@ app.init = () => {
         clearGenres.innerHTML = '';
         const discoverHeading = document.getElementById('mainHeader')
         discoverHeading.textContent = 'Discover';
+        window.location.reload(true);
         app.getDiscover();
     }, {once: true});
     formElement.addEventListener('submit', (e) => {
@@ -52,6 +53,7 @@ app.init = () => {
         popularHeading.textContent = 'Popular';
         app.getPopular();
         app.displayPopular();
+        window.location.reload(true);
     }, {once: true});
     genresLink.addEventListener('click', function() {
         const clearFlex = document.querySelector('.movieFlex')
@@ -62,6 +64,7 @@ app.init = () => {
         clearPopular.innerHTML = '';
         const genresHeading = document.getElementById('mainHeader')
         genresHeading.textContent = 'Genres';
+        window.location.reload(true);
         app.getGenres();
         app.displayGenres();
     }, { once: true });

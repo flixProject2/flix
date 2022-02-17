@@ -235,6 +235,7 @@ h1 {
   font-size: 4rem;
   letter-spacing: 1px;
   margin: 1rem 0;
+  text-shadow: 3px 3px 3px #171717;
 }
 
 h2 {
@@ -286,6 +287,11 @@ p {
 
 h2 {
   margin: 43px 0 0 37px;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
 }
 
 .wrapper {
@@ -405,7 +411,7 @@ aside .asideFlex li span {
       flex-wrap: wrap;
 }
 .movieFlex .movieContainer {
-  margin: 0px 40px 40px;
+  margin: 25px 40px 40px;
   width: calc((100% / 3) - 80px);
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -422,19 +428,16 @@ aside .asideFlex li span {
       -ms-flex-pack: end;
           justify-content: flex-end;
   border-radius: 15px;
+  background-color: #171717;
 }
 .movieFlex .movieContainer .trendingImgContainer {
   width: 100%;
 }
-.movieFlex .movieContainer .trendingImgContainer img {
-  width: 100%;
-}
 .movieFlex .movieContainer .trendingTextContainer {
   width: 100%;
+  min-height: 20rem;
   margin-top: -7px;
   padding: 15px;
-  height: 60vh;
-  background-color: #171717;
 }
 .movieFlex .movieContainer .trendingTextContainer h3, .movieFlex .movieContainer .trendingTextContainer h4 {
   font-size: 1rem;
@@ -453,8 +456,8 @@ aside .asideFlex li span {
           flex-direction: column;
 }
 .discoverFlex .discoverFlexContainer {
-  margin: 0px 40px;
-  width: 100%;
+  margin: 25px 40px;
+  width: 90%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   display: -webkit-box;
@@ -470,15 +473,14 @@ aside .asideFlex li span {
       -ms-flex-pack: start;
           justify-content: flex-start;
   border-radius: 15px;
+  background-color: #171717;
 }
 .discoverFlex .discoverFlexContainer .discoverImgContainer {
-  width: 30%;
-}
-.discoverFlex .discoverFlexContainer .discoverImgContainer img {
-  width: 100%;
+  width: 20%;
 }
 .discoverFlex .discoverFlexContainer .discoverTextContainer {
-  width: 70%;
+  width: 80%;
+  padding: 15px;
 }
 
 .popularFlex {
@@ -491,8 +493,8 @@ aside .asideFlex li span {
           flex-direction: column;
 }
 .popularFlex .popularFlexContainer {
-  margin: 0 40px;
-  width: 100%;
+  margin: 25px 40px;
+  width: 90%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   display: -webkit-box;
@@ -508,15 +510,14 @@ aside .asideFlex li span {
       -ms-flex-pack: start;
           justify-content: flex-start;
   border-radius: 15px;
+  background-color: black;
 }
 .popularFlex .popularFlexContainer .popularImageContainer {
-  width: 30%;
-}
-.popularFlex .popularFlexContainer .popularImageContainer img {
-  width: 100%;
+  width: 20%;
 }
 .popularFlex .popularFlexContainer .popularTextContainer {
-  width: 70%;
+  width: 80%;
+  padding: 15px;
 }
 .popularFlex .popularFlexContainer .popularTextContainer h3 {
   font-size: 1rem;
@@ -555,9 +556,6 @@ aside .asideFlex li span {
 }
 .searchFlex .searchMovieContainer .searchImgContainer {
   width: 30%;
-}
-.searchFlex .searchMovieContainer .searchImgContainer img {
-  width: 100%;
 }
 .searchFlex .searchMovieContainer .searchTextContainer {
   width: 70%;
