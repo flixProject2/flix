@@ -7,11 +7,11 @@ app.apiPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKe
 app.discoverApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&`;
 app.apiGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${app.apiKey}&language=en-US`;
 app.apiTopRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${app.apiKey}&language=en-US&page=1`;
-app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}&language=en-US&page=1&include_adult=false&query=lighthouse`;
+
+app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}&language=en-US&page=1&include_adult=false&`;
 
 const discoverLink = document.querySelector('.discoverLink');
 const popularLink = document.querySelector('.popularLink');
-const genresLink = document.querySelector('.genresLink');
 
 const formElement = document.querySelector('form');
 const searchingFlex = document.querySelector('.searchFlex');
@@ -39,8 +39,13 @@ app.init = () => {
         //Clear section
         sectionElement = document.querySelector('.movieFlex');
         sectionElement.innerHTML = '';
-        app.getSearch();
-        app.displayDiscover();
+        const clearDiscover = document.querySelector('.discoverFlex')
+        clearDiscover.innerHTML = '';
+        const clearGenres = document.querySelector('.genresFlex')
+        clearGenres.innerHTML = '';
+        const clearPopular = document.querySelector('.popularFlex');
+        clearPopular.innerHTML = '';
+        app.getSearch(searchValue);
     }, {once: true});
     popularLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex')
@@ -69,8 +74,6 @@ app.init = () => {
         app.displayGenres();
     }, { once: true });
 };
-
-// ***** Trending Section *****
 
 app.getTrending = () => {
     //use the URL constructor to create our endpoint and specify the parameters we want to include
@@ -158,7 +161,6 @@ app.displayTrending = (dataFromTrendingApi) => {
     })
 }
 
-// ***** Discover Section *****
 
 app.getDiscover = () => {
     const discoverURL = new URL(app.discoverApiUrl);
@@ -243,7 +245,6 @@ app.displayDiscover = (dataFromDiscoverApi) => {
     })
 }
 
-// ***** Popular Section *****
 
 app.getPopular = () => {
     // use URL consteuctor to target popular movies as endpoint
@@ -391,8 +392,13 @@ app.displayGenres = (dataFromGenresApi) => {
 
 //Search Bar Feature
 
-app.getSearch = () => {
+app.getSearch = (userQuery) => {
     const searchURL = new URL(app.apiSearch);
+
+    searchURL.search = new URLSearchParams({
+        api_key: app.apiKey, 
+        query: userQuery,
+    })
     fetch(searchURL)
     .then((response) => {
         return response.json();
@@ -474,8 +480,5 @@ app.displaySearch = (dataFromSearchApi) => {
     });
 
 };
-
-
-
 
 app.init();

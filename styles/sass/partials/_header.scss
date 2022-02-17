@@ -12,16 +12,26 @@ header {
             }
             input {
                 width: 94%;
+                background-color: #f5f5f5;
+                border: none;
+                outline: none;
+                border-radius: 1rem;
+                height: 2rem;
+                padding: 0 2rem 0 1rem;
             }
             button {
-                color: $title;
+                color: $black;
                 background-color: transparent;
                 border: none;
+                margin-left: -2.4rem;
+            }
+            button:hover {
+            cursor: pointer;
             }
             button[type=submit] {
                 position: relative;
                 i {
-                    color: $title;
+                    color: $black;
                 }
             }
             .fa-star {
