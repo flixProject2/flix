@@ -18,7 +18,6 @@ const searchingFlex = document.querySelector('.searchFlex');
 
 app.init = () => {
     app.getTrending();
-    app.getGenres();
     discoverLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex');
         clearFlex.innerHTML = '';
@@ -26,6 +25,8 @@ app.init = () => {
         clearPopular.innerHTML = '';
         const clearGenres = document.querySelector('.genresFlex')
         clearGenres.innerHTML = '';
+        const discoverHeading = document.getElementById('mainHeader')
+        discoverHeading.textContent = 'Discover';
         app.getDiscover();
     }, {once: true});
     formElement.addEventListener('submit', (e) => {
@@ -47,6 +48,8 @@ app.init = () => {
         clearDiscover.innerHTML = '';
         const clearGenres = document.querySelector('.genresFlex')
         clearGenres.innerHTML = '';
+        const popularHeading = document.getElementById('mainHeader')
+        popularHeading.textContent = 'Popular';
         app.getPopular();
         app.displayPopular();
     }, {once: true});
@@ -57,9 +60,11 @@ app.init = () => {
         clearDiscover.innerHTML = '';
         const clearPopular = document.querySelector('.popularFlex');
         clearPopular.innerHTML = '';
+        const genresHeading = document.getElementById('mainHeader')
+        genresHeading.textContent = 'Genres';
         app.getGenres();
         app.displayGenres();
-    }, {once: true});
+    }, { once: true });
 };
 
 // ***** Trending Section *****
@@ -381,10 +386,6 @@ app.displayGenres = (dataFromGenresApi) => {
     })
 }
 
-
-
-
-
 //Search Bar Feature
 
 app.getSearch = () => {
@@ -470,6 +471,7 @@ app.displaySearch = (dataFromSearchApi) => {
     });
 
 };
+
 
 
 

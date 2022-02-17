@@ -1,42 +1,52 @@
-.navFlex {
-    display: flex; 
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    li {
-        list-style: none;
-        input {
-            width: 94%;
+header {
+    background-color: $background;
+    .navFlex {
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        li {
+            list-style: none;
+            h1 {
+                color: $title;
+            }
+            input {
+                width: 94%;
+            }
+            button {
+                color: $title;
+                background-color: transparent;
+                border: none;
+            }
+            button[type=submit] {
+                position: relative;
+                i {
+                    color: $title;
+                }
+            }
+            .fa-star {
+                color: gold;
+                font-size: 1.2rem;
+            }
+            ul.watchlistSlide {
+                background: black;
+                height: 100%;
+                width: 25%;
+                position: fixed;
+                top: 5rem;
+                right: -30%;
+                z-index: 10;
+                transition: all 0.5s;
+            }
+            input[type="checkbox"]:checked + ul.watchlistSlide {
+                right: 0;
+            }
+            input[type="checkbox"] {
+                display: none;
+            }
         }
-        button {
-            background-color: transparent;
-            border: none;
+        .inputItem {
+            width: 50%;
         }
-        button[type=submit] {
-            position: relative;
-        }
-        .fa-star {
-            color: gold;
-            font-size: 1.2rem;
-        }
-        ul.watchlistSlide {
-            background: black;
-            height: 100%;
-            width: 25%;
-            position: fixed;
-            top: 5rem;
-            right: -30%;
-            z-index: 10;
-            transition: all 0.5s;
-        }
-        input[type="checkbox"]:checked + ul.watchlistSlide {
-            right: 0;
-        }
-        input[type="checkbox"] {
-            display: none;
-        }
-    }
-    .inputItem {
-        width: 50%;
     }
 }
