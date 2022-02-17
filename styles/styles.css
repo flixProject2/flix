@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Titillium+Web:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Titillium+Web:wght@900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Norican&display=swap");
 html {
   line-height: 1.15;
@@ -242,6 +242,19 @@ h2 {
   font-weight: 900;
   text-transform: uppercase;
   font-size: 5rem;
+  color: #FFFFFF;
+}
+
+h3, h4 {
+  font-family: "Roboto", sans-serif;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #E8E8E8;
 }
 
 .asideFlex li {
@@ -249,11 +262,12 @@ h2 {
   font-weight: 900;
   text-transform: uppercase;
   font-size: 2rem;
+  color: #FFFFFF;
 }
 
 footer p {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   letter-spacing: -0.5px;
   line-height: 25px;
   color: lightgray;
@@ -271,7 +285,7 @@ p {
 }
 
 h2 {
-  margin: 43px 0 0 45px;
+  margin: 43px 0 0 37px;
 }
 
 .wrapper {
@@ -280,7 +294,10 @@ h2 {
   margin: 0 auto;
 }
 
-.navFlex {
+header {
+  background-color: #BF0505;
+}
+header .navFlex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -295,10 +312,13 @@ h2 {
       -ms-flex-align: center;
           align-items: center;
 }
-.navFlex li {
+header .navFlex li {
   list-style: none;
 }
-.navFlex li input {
+header .navFlex li h1 {
+  color: #FFFFFF;
+}
+header .navFlex li input {
   width: 94%;
   background-color: #f5f5f5;
   border: none;
@@ -307,22 +327,26 @@ h2 {
   height: 2rem;
   padding: 0 2rem 0 1rem;
 }
-.navFlex li button {
+header .navFlex li button {
+  color: #FFFFFF;
   background-color: transparent;
   border: none;
   margin-left: -2.4rem;
 }
-.navFlex li button[type=submit] {
-  position: relative;
-}
-.navFlex li button:hover {
+header .navFlex li button:hover {
   cursor: pointer;
 }
-.navFlex li .fa-star {
+header .navFlex li button[type=submit] {
+  position: relative;
+}
+header .navFlex li button[type=submit] i {
+  color: #FFFFFF;
+}
+header .navFlex li .fa-star {
   color: gold;
   font-size: 1.2rem;
 }
-.navFlex li ul.watchlistSlide {
+header .navFlex li ul.watchlistSlide {
   background: black;
   height: 100%;
   width: 25%;
@@ -333,14 +357,18 @@ h2 {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-.navFlex li input[type=checkbox]:checked + ul.watchlistSlide {
+header .navFlex li input[type=checkbox]:checked + ul.watchlistSlide {
   right: 0;
 }
-.navFlex li input[type=checkbox] {
+header .navFlex li input[type=checkbox] {
   display: none;
 }
-.navFlex .inputItem {
+header .navFlex .inputItem {
   width: 50%;
+}
+
+main {
+  background-color: #BF0505;
 }
 
 .mainFlex {
@@ -371,6 +399,9 @@ aside .asideFlex li {
   list-style: none;
   margin-bottom: 60px;
 }
+aside .asideFlex li span {
+  font-size: 1.5rem;
+}
 
 .movieFlex {
   display: -webkit-box;
@@ -384,7 +415,7 @@ aside .asideFlex li {
       flex-wrap: wrap;
 }
 .movieFlex .movieContainer {
-  margin: 0px 40px;
+  margin: 0px 40px 40px;
   width: calc((100% / 3) - 80px);
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -410,8 +441,12 @@ aside .asideFlex li {
 }
 .movieFlex .movieContainer .trendingTextContainer {
   width: 100%;
+  margin-top: -7px;
+  padding: 15px;
+  height: 60vh;
+  background-color: #171717;
 }
-.movieFlex .movieContainer .trendingTextContainer h3 {
+.movieFlex .movieContainer .trendingTextContainer h3, .movieFlex .movieContainer .trendingTextContainer h4 {
   font-size: 1rem;
 }
 .movieFlex .movieContainer .trendingTextContainer h4 {
@@ -544,9 +579,13 @@ aside .asideFlex li {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+}
+.genresFlex .genresFlexContainer {
+  width: 33.3%;
+}
+.genresFlex .genresFlexContainer .genresTextContainer h2 {
+  font-size: 3rem;
+  margin: 40px 38px;
 }
 
 footer {

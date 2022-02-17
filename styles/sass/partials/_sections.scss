@@ -1,3 +1,7 @@
+main {
+    background-color: $background;
+}
+
 .mainFlex {
     display: flex;
     flex-direction: row;
@@ -13,6 +17,9 @@ aside {
         li {
             list-style: none;
             margin-bottom: 60px;
+            span {
+                font-size: 1.5rem;
+            }
         }
     }
 }
@@ -22,7 +29,7 @@ aside {
     flex-direction: row;
     flex-wrap: wrap;
     .movieContainer {
-        margin: 0px 40px;
+        margin: 0px 40px 40px;
         width: calc((100% / 3) - 80px);
         flex-wrap: wrap;
         display: flex;
@@ -39,7 +46,11 @@ aside {
         }
         .trendingTextContainer {
             width: 100%;
-            h3 {
+            margin-top: -7px;
+            padding: 15px;
+            height: 60vh;
+            background-color: $black;
+            h3, h4 {
                 font-size: 1rem;
             }
             h4 {
@@ -130,5 +141,13 @@ aside {
 .genresFlex {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    .genresFlexContainer {
+        width: 33.3%;
+        .genresTextContainer {
+            h2 {
+                font-size: 3rem;
+                margin: 40px 38px;
+            }
+        }
+    }
 }

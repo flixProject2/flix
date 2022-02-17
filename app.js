@@ -18,12 +18,15 @@ const searchingFlex = document.querySelector('.searchFlex');
 
 app.init = () => {
     app.getTrending();
-    app.getGenres();
     discoverLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex');
         clearFlex.innerHTML = '';
         const clearPopular = document.querySelector('.popularFlex');
         clearPopular.innerHTML = '';
+        const clearGenres = document.querySelector('.genresFlex')
+        clearGenres.innerHTML = '';
+        const discoverHeading = document.getElementById('mainHeader')
+        discoverHeading.textContent = 'Discover';
         app.getDiscover();
     }, {once: true});
     formElement.addEventListener('submit', (e) => {
@@ -42,12 +45,25 @@ app.init = () => {
         clearFlex.innerHTML = '';
         const clearDiscover = document.querySelector('.discoverFlex')
         clearDiscover.innerHTML = '';
+        const clearGenres = document.querySelector('.genresFlex')
+        clearGenres.innerHTML = '';
+        const popularHeading = document.getElementById('mainHeader')
+        popularHeading.textContent = 'Popular';
         app.getPopular();
         app.displayPopular();
     }, {once: true});
-    languageSwitch.addEventListener('click', () => {
-        document.documentElement.setAttribute('lang', 'es');
-    })
+    genresLink.addEventListener('click', function() {
+        const clearFlex = document.querySelector('.movieFlex')
+        clearFlex.innerHTML = '';
+        const clearDiscover = document.querySelector('.discoverFlex')
+        clearDiscover.innerHTML = '';
+        const clearPopular = document.querySelector('.popularFlex');
+        clearPopular.innerHTML = '';
+        const genresHeading = document.getElementById('mainHeader')
+        genresHeading.textContent = 'Genres';
+        app.getGenres();
+        app.displayGenres();
+    }, { once: true });
 };
 
 app.getTrending = () => {
@@ -303,6 +319,68 @@ app.displayPopular = (dataFromPopularApi) => {
     })
 }
 
+// ***** Genres Section *****
+
+app.getGenres = () => {
+    // use URL consteuctor to target popular movies as endpoint
+    const url = new URL(app.apiGenres);
+    fetch(url)
+        .then(function (apiResponse) {
+            return apiResponse.json();
+        })
+        .then((jsonResponse) => {
+            app.displayGenres(jsonResponse.genres)
+        })
+};
+
+app.displayGenres = (dataFromGenresApi) => {
+    // target div to append movie card to
+    const genresFlex = document.querySelector('.genresFlex');
+
+    // data check to ensure data is being returned in the array
+    const genresList = dataFromGenresApi;
+    // console.log(genresList);
+
+    // filter array to select specific genres to get from returned data
+    const genresArray = genresList.filter((genres) => {
+        return genres.id < 40;
+    });
+
+    // data check
+    // console.log(genresArray);
+
+
+    // Loop through the genre array
+    genresArray.forEach(function (genres) {
+
+        // genres list container
+        const genresContainer = document.createElement('div');
+        genresContainer.classList.add('genresFlexContainer');
+
+        // genres text container
+        const genresTextContainer = document.createElement('div');
+        genresTextContainer.classList.add('genresTextContainer');
+
+        // save genres data in variable
+        const genresHeader = document.createElement('h2');
+
+        // add genres name
+        genresHeader.textContent = genres.name;
+
+        // append genres information to respective container
+        genresTextContainer.appendChild(genresHeader);
+
+        // append to genres list container
+        genresContainer.appendChild(genresTextContainer);
+
+        // append containers to genresFlex
+        genresFlex.appendChild(genresContainer);
+
+        // data check for genres
+        // console.log(genres);
+    })
+}
+
 //Search Bar Feature
 
 app.getSearch = (userQuery) => {
@@ -393,72 +471,5 @@ app.displaySearch = (dataFromSearchApi) => {
     });
 
 };
-
-
-
-app.getGenres = () => {
-    // use URL consteuctor to target popular movies as endpoint
-    const url = new URL(app.apiGenres);
-    fetch(url)
-        .then(function(apiResponse) {
-            return apiResponse.json();
-        })
-        .then((jsonResponse) => {
-            app.displayGenres(jsonResponse.genres)
-        })
-};
-
-app.displayGenres = (dataFromGenresApi) => {
-    // target div to append movie card to
-    const genresFlex = document.querySelector('.genresFlex');
-
-    // data check to ensure data is being returned in the array
-    const genresList = dataFromGenresApi;
-    // console.log(genresList);
-
-    // filter array to select specific genres to get from returned data
-    const genresArray = genresList.filter((genres) => {
-        return genres.id < 40;
-    });
-
-    // data check
-    // console.log(genresArray);
-
-
-    // Loop through the genre array
-    genresArray.forEach(function(genres) {
-
-        // genres list container
-        const genresContainer = document.createElement('div');
-        genresContainer.classList.add('genresFlexContainer');
-
-        // genres text container
-        const genresTextContainer = document.createElement('div');
-        genresTextContainer.classList.add('genresTextContainer');
-
-        // save genres data in variable
-        const genresHeader = document.createElement('h2');
-
-        // add genres name
-        genresHeader.textContent = genres.name;
-
-        // append genres information to respective container
-        genresTextContainer.appendChild(genresHeader);
-
-        // append to genres list container
-        genresContainer.appendChild(genresTextContainer);
-
-        // append containers to genresFlex
-        genresFlex.appendChild(genresContainer);
-
-        // data check for genres
-        // console.log(genres);
-    })
-}
-
-const languageSwitch = document.querySelector('.languageToggle')
-languageSwitch.addEventListener('click', () => {
-    document.documentElement.setAttribute('lang', 'es');
-})
 
 app.init();

@@ -1,52 +1,62 @@
-.navFlex {
-    display: flex; 
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    li {
-        list-style: none;
-        input {
-            width: 94%;
-            background-color: #f5f5f5;
-            border: none;
-            outline: none;
-            border-radius: 1rem;
-            height: 2rem;
-            padding: 0 2rem 0 1rem
-        }
-        button {
-            background-color: transparent;
-            border: none;
-            margin-left: -2.4rem;
-        }
-        button[type=submit] {
-            position: relative;
-        }
-        button:hover{
+header {
+    background-color: $background;
+    .navFlex {
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        li {
+            list-style: none;
+            h1 {
+                color: $title;
+            }
+            input {
+                width: 94%;
+                background-color: #f5f5f5;
+                border: none;
+                outline: none;
+                border-radius: 1rem;
+                height: 2rem;
+                padding: 0 2rem 0 1rem;
+            }
+            button {
+                color: $title;
+                background-color: transparent;
+                border: none;
+                margin-left: -2.4rem;
+            }
+            button:hover {
             cursor: pointer;
+            }
+            button[type=submit] {
+                position: relative;
+                i {
+                    color: $title;
+                }
+            }
+            .fa-star {
+                color: gold;
+                font-size: 1.2rem;
+            }
+            ul.watchlistSlide {
+                background: black;
+                height: 100%;
+                width: 25%;
+                position: fixed;
+                top: 5rem;
+                right: -30%;
+                z-index: 10;
+                transition: all 0.5s;
+            }
+            input[type="checkbox"]:checked + ul.watchlistSlide {
+                right: 0;
+            }
+            input[type="checkbox"] {
+                display: none;
+            }
         }
-        .fa-star {
-            color: gold;
-            font-size: 1.2rem;
+        .inputItem {
+            width: 50%;
         }
-        ul.watchlistSlide {
-            background: black;
-            height: 100%;
-            width: 25%;
-            position: fixed;
-            top: 5rem;
-            right: -30%;
-            z-index: 10;
-            transition: all 0.5s;
-        }
-        input[type="checkbox"]:checked + ul.watchlistSlide {
-            right: 0;
-        }
-        input[type="checkbox"] {
-            display: none;
-        }
-    }
-    .inputItem {
-        width: 50%;
     }
 }
