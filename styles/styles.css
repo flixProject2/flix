@@ -328,7 +328,7 @@ header .navFlex li input {
   padding: 0 2rem 0 1rem;
 }
 header .navFlex li button {
-  color: #FFFFFF;
+  color: #171717;
   background-color: transparent;
   border: none;
   margin-left: -2.4rem;
@@ -340,7 +340,7 @@ header .navFlex li button[type=submit] {
   position: relative;
 }
 header .navFlex li button[type=submit] i {
-  color: #FFFFFF;
+  color: #171717;
 }
 header .navFlex li .fa-star {
   color: gold;

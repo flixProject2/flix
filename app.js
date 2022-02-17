@@ -38,6 +38,12 @@ app.init = () => {
         //Clear section
         sectionElement = document.querySelector('.movieFlex');
         sectionElement.innerHTML = '';
+        const clearDiscover = document.querySelector('.discoverFlex')
+        clearDiscover.innerHTML = '';
+        const clearGenres = document.querySelector('.genresFlex')
+        clearGenres.innerHTML = '';
+        const clearPopular = document.querySelector('.popularFlex');
+        clearPopular.innerHTML = '';
         app.getSearch(searchValue);
     }, {once: true});
     popularLink.addEventListener('click', function () {

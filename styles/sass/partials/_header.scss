@@ -20,7 +20,7 @@ header {
                 padding: 0 2rem 0 1rem;
             }
             button {
-                color: $title;
+                color: $black;
                 background-color: transparent;
                 border: none;
                 margin-left: -2.4rem;
@@ -31,7 +31,7 @@ header {
             button[type=submit] {
                 position: relative;
                 i {
-                    color: $title;
+                    color: $black;
                 }
             }
             .fa-star {
