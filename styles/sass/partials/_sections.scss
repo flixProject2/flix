@@ -29,7 +29,7 @@ aside {
     flex-direction: row;
     flex-wrap: wrap;
     .movieContainer {
-        margin: 0px 40px 40px;
+        margin: 25px 40px 40px;
         width: calc((100% / 3) - 80px);
         flex-wrap: wrap;
         display: flex;
@@ -37,19 +37,15 @@ aside {
         box-sizing: border-box;
         justify-content: flex-end;
         border-radius: 15px;
-        
+        background-color: $black;
         .trendingImgContainer {
             width: 100%;
-            img {
-                width: 100%;
-            } 
         }
         .trendingTextContainer {
             width: 100%;
+            min-height: 20rem;
             margin-top: -7px;
             padding: 15px;
-            height: 60vh;
-            background-color: $black;
             h3, h4 {
                 font-size: 1rem;
             }
@@ -64,22 +60,21 @@ aside {
     display: flex; 
     flex-direction: column;
     .discoverFlexContainer {
-        margin: 0px 40px;
-        width: 100%;
+        margin: 25px 40px;
+        width: 90%;
         flex-wrap: wrap;
         display: flex;
         flex-direction: row-reverse;
         box-sizing: border-box;
         justify-content: flex-start;
         border-radius: 15px;
+        background-color: $black;
         .discoverImgContainer {
-            width: 30%;
-            img {
-                width: 100%;
-            }
+            width: 20%;
         }
         .discoverTextContainer {
-            width: 70%;
+            width: 80%;
+            padding: 15px;
         }
     }
 }
@@ -88,22 +83,21 @@ aside {
     display: flex;
     flex-direction: column;
     .popularFlexContainer {
-        margin: 0 40px;
-        width: 100%;
+        margin: 25px 40px;
+        width: 90%;
         flex-wrap: wrap;
         display: flex;
         flex-direction: row-reverse;
         box-sizing: border-box;
         justify-content: flex-start;
         border-radius: 15px;
+        background-color: black;
         .popularImageContainer {
-            width: 30%;
-            img {
-                width: 100%;
-            } 
+            width: 20%;
         }
         .popularTextContainer {
-            width: 70%;
+            width: 80%;
+            padding: 15px;
             h3 {
                 font-size: 1rem;
             }
@@ -128,9 +122,6 @@ aside {
         border-radius: 15px;
         .searchImgContainer {
             width: 30%;
-            img {
-                width: 100%;
-            }
         }
         .searchTextContainer {
             width: 70%;
