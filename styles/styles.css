@@ -300,13 +300,23 @@ h2 {
 }
 .navFlex li input {
   width: 94%;
+  background-color: #f5f5f5;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  height: 2rem;
+  padding: 0 2rem 0 1rem;
 }
 .navFlex li button {
   background-color: transparent;
   border: none;
+  margin-left: -2.4rem;
 }
 .navFlex li button[type=submit] {
   position: relative;
+}
+.navFlex li button:hover {
+  cursor: pointer;
 }
 .navFlex li .fa-star {
   color: gold;

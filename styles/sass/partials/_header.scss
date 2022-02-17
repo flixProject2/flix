@@ -7,13 +7,23 @@
         list-style: none;
         input {
             width: 94%;
+            background-color: #f5f5f5;
+            border: none;
+            outline: none;
+            border-radius: 1rem;
+            height: 2rem;
+            padding: 0 2rem 0 1rem
         }
         button {
             background-color: transparent;
             border: none;
+            margin-left: -2.4rem;
         }
         button[type=submit] {
             position: relative;
+        }
+        button:hover{
+            cursor: pointer;
         }
         .fa-star {
             color: gold;
