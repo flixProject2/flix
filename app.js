@@ -12,6 +12,7 @@ app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}
 
 const discoverLink = document.querySelector('.discoverLink');
 const popularLink = document.querySelector('.popularLink');
+const genresLink = document.querySelector('.genresLink');
 
 const formElement = document.querySelector('form');
 const searchingFlex = document.querySelector('.searchFlex');
@@ -21,15 +22,16 @@ app.init = () => {
     discoverLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex');
         clearFlex.innerHTML = '';
+        const clearDiscover = document.querySelector('.discoverFlex')
+        clearDiscover.innerHTML = '';
         const clearPopular = document.querySelector('.popularFlex');
         clearPopular.innerHTML = '';
         const clearGenres = document.querySelector('.genresFlex')
         clearGenres.innerHTML = '';
         const discoverHeading = document.getElementById('mainHeader')
         discoverHeading.textContent = 'Discover';
-        window.location.reload(true);
         app.getDiscover();
-    }, {once: true});
+    });
     formElement.addEventListener('submit', (e) => {
         e.preventDefault();
         //Log search input
@@ -46,20 +48,20 @@ app.init = () => {
         const clearPopular = document.querySelector('.popularFlex');
         clearPopular.innerHTML = '';
         app.getSearch(searchValue);
-    }, {once: true});
+    });
     popularLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
         const clearDiscover = document.querySelector('.discoverFlex')
         clearDiscover.innerHTML = '';
+        const clearPopular = document.querySelector('.popularFlex');
+        clearPopular.innerHTML = '';
         const clearGenres = document.querySelector('.genresFlex')
         clearGenres.innerHTML = '';
         const popularHeading = document.getElementById('mainHeader')
         popularHeading.textContent = 'Popular';
         app.getPopular();
-        app.displayPopular();
-        window.location.reload(true);
-    }, {once: true});
+    });
     genresLink.addEventListener('click', function() {
         const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
@@ -67,12 +69,12 @@ app.init = () => {
         clearDiscover.innerHTML = '';
         const clearPopular = document.querySelector('.popularFlex');
         clearPopular.innerHTML = '';
+        const clearGenres = document.querySelector('.genresFlex')
+        clearGenres.innerHTML = '';
         const genresHeading = document.getElementById('mainHeader')
         genresHeading.textContent = 'Genres';
-        window.location.reload(true);
         app.getGenres();
-        app.displayGenres();
-    }, { once: true });
+    });
 };
 
 app.getTrending = () => {
@@ -178,7 +180,7 @@ app.displayDiscover = (dataFromDiscoverApi) => {
     const discoverFlex = document.querySelector('.discoverFlex');
     
     //Take 5 movies from the current array of 20
-    const discoverFirstFive = dataFromDiscoverApi.results.slice(0,5);
+    const discoverFirstFive = dataFromDiscoverApi.results.slice(15, 20);
     console.log(discoverFirstFive);
     
     //Loop through each movie and append it to the DOM
@@ -241,10 +243,8 @@ app.displayDiscover = (dataFromDiscoverApi) => {
         
         //Append movie container to Discover Flex
         discoverFlex.appendChild(movieContainer);
-        
     })
 }
-
 
 app.getPopular = () => {
     // use URL consteuctor to target popular movies as endpoint
@@ -266,7 +266,7 @@ app.displayPopular = (dataFromPopularApi) => {
     console.log(dataFromPopularApi);
 
     // get first three movies from array
-    const popularFirstThree = dataFromPopularApi.results.slice(5, 10);
+    const popularFirstThree = dataFromPopularApi.results.slice(10, 15);
 
     // loop through array and append popular movie info to DOM
     popularFirstThree.forEach((movie) => {
@@ -348,7 +348,7 @@ app.displayGenres = (dataFromGenresApi) => {
 
     // data check to ensure data is being returned in the array
     const genresList = dataFromGenresApi;
-    // console.log(genresList);
+    console.log(genresList);
 
     // filter array to select specific genres to get from returned data
     const genresArray = genresList.filter((genres) => {
@@ -356,7 +356,7 @@ app.displayGenres = (dataFromGenresApi) => {
     });
 
     // data check
-    // console.log(genresArray);
+    console.log(genresArray);
 
 
     // Loop through the genre array
