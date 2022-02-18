@@ -56,7 +56,7 @@ aside {
     }
 }
 
-.discoverFlex {
+.columnFlex {
     display: flex; 
     flex-direction: column;
     .discoverFlexContainer {
@@ -79,7 +79,7 @@ aside {
     }
 }
 
-.popularFlex {
+.columnFlex {
     display: flex;
     flex-direction: column;
     .popularFlexContainer {
