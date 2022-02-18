@@ -5,7 +5,7 @@ app.apiKey = '438f9921b5287c90f91cf32070a635f1';
 app.apiURL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${app.apiKey}`;
 app.apiPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKey}`;
 app.discoverApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&`;
-app.apiGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${app.apiKey}&language=en-US`;
+app.apiGenres = `https://api.themoviedb.org/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
 app.apiTopRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${app.apiKey}&language=en-US&page=1`;
 app.apiUpcoming = ` https://api.themoviedb.org/3/movie/upcoming?api_key=${app.apiKey}&language=en-US&page=1`;
 
@@ -16,25 +16,21 @@ const popularLink = document.querySelector('.popularLink');
 const genresLink = document.querySelector('.genresLink');
 
 const formElement = document.querySelector('form');
-const searchingFlex = document.querySelector('.searchFlex');
+const columnFlex = document.querySelector('.columnFlex');
 
-const genresLink = document.querySelector('.genresFlex');
+// const genresLink = document.querySelector('.genresFlex');
 
-const discoverFlex = document.querySelector('.discoverFlex');
-
-const clearFlex = document.querySelector('.movieFlex');
+// const clearFlex = document.querySelector('.movieFlex');
 
 
 app.init = () => {
     app.getTrending();
     discoverLink.addEventListener('click', function () {
+        // clearFlex.innerHTML = '';
+        const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
-        const clearDiscover = document.querySelector('.discoverFlex')
-        clearDiscover.innerHTML = '';
-        const clearPopular = document.querySelector('.popularFlex');
-        clearPopular.innerHTML = '';
-        const clearGenres = document.querySelector('.genresFlex');
-        clearGenres.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
         const discoverHeading = document.getElementById('mainHeader');
         discoverHeading.textContent = 'Discover';
         app.getDiscover();
@@ -48,12 +44,8 @@ app.init = () => {
         //Clear section
         sectionElement = document.querySelector('.movieFlex');
         sectionElement.innerHTML = '';
-        const clearDiscover = document.querySelector('.discoverFlex')
-        clearDiscover.innerHTML = '';
-        const clearGenres = document.querySelector('.genresFlex')
-        clearGenres.innerHTML = '';
-        const clearPopular = document.querySelector('.popularFlex');
-        clearPopular.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
         searchHeading = document.getElementById('mainHeader');
         searchHeading.textContent = `Results for ${searchValue}`;
         app.getSearch(searchValue);
@@ -61,12 +53,8 @@ app.init = () => {
     popularLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
-        const clearDiscover = document.querySelector('.discoverFlex')
-        clearDiscover.innerHTML = '';
-        const clearPopular = document.querySelector('.popularFlex');
-        clearPopular.innerHTML = '';
-        const clearGenres = document.querySelector('.genresFlex')
-        clearGenres.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
         const popularHeading = document.getElementById('mainHeader')
         popularHeading.textContent = 'Popular';
         app.getPopular();
@@ -74,15 +62,11 @@ app.init = () => {
     genresLink.addEventListener('click', function() {
         const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
-        const clearDiscover = document.querySelector('.discoverFlex')
-        clearDiscover.innerHTML = '';
-        const clearPopular = document.querySelector('.popularFlex');
-        clearPopular.innerHTML = '';
-        const clearGenres = document.querySelector('.genresFlex')
-        clearGenres.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
         const genresHeading = document.getElementById('mainHeader')
         genresHeading.textContent = 'Genres';
-        app.getGenres();
+        app.setUpEventListener();
     });
 };
 
@@ -250,7 +234,7 @@ app.displayDiscover = (dataFromDiscoverApi) => {
         movieContainer.appendChild(discoverImgContainer);
         
         //Append movie container to Discover Flex
-        discoverFlex.appendChild(movieContainer);
+        columnFlex.appendChild(movieContainer);
     })
 }
 
@@ -268,7 +252,7 @@ app.getPopular = () => {
 
 app.displayPopular = (dataFromPopularApi) => {
     // target div to append movie card to
-    const popularFlex = document.querySelector('.popularFlex');
+    // const popularFlex = document.querySelector('.columnFlex');
 
     // data check
     console.log(dataFromPopularApi);
@@ -332,21 +316,39 @@ app.displayPopular = (dataFromPopularApi) => {
 
 
         // append containers to movie flex
-        popularFlex.appendChild(popularContainer);
+        columnFlex.appendChild(popularContainer);
     })
 }
 
 // ***** Genres Section *****
 
-app.getGenres = () => {
+// const genreTypes = [
+//     { name: "Action", id: 28 },
+//     { name: "Adventure", id: 12 },
+//     { name: "Animation", id: 16 },
+//     { name: "Comedy", id: 35 },
+//     { name: "Drama", id: 18 },
+//     { name: "Fantasy", id: 14 },
+//     { name: "History", id: 36 },
+//     { name: "Horror", id: 27 },
+//     { name: "Western", id: 37 }
+// ]
+
+app.getGenres = (genreId) => {
     // use URL consteuctor to target popular movies as endpoint
     const url = new URL(app.apiGenres);
+
+    url.search = new URLSearchParams({
+        api_key: app.apiKey,
+        with_genres: genreId,
+    })
     fetch(url)
         .then(function (apiResponse) {
             return apiResponse.json();
         })
         .then((jsonResponse) => {
-            app.displayGenres(jsonResponse.genres)
+            app.displayGenres(jsonResponse.results);
+            console.log(jsonResponse);
         })
 };
 
@@ -358,17 +360,9 @@ app.displayGenres = (dataFromGenresApi) => {
     const genresList = dataFromGenresApi;
     console.log(genresList);
 
-    // filter array to select specific genres to get from returned data
-    const genresArray = genresList.filter((genres) => {
-        return genres.id < 40;
-    });
-
-    // data check
-    console.log(genresArray);
-
 
     // Loop through the genre array
-    genresArray.forEach(function (genres) {
+    genresList.forEach(function(genres) {
 
         // genres list container
         const genresContainer = document.createElement('div');
@@ -394,8 +388,8 @@ app.displayGenres = (dataFromGenresApi) => {
         genresFlex.appendChild(genresContainer);
 
         // data check for genres
-        // console.log(genres);
-    })
+        console.log(genres);
+    });
 }
 
 //Search Bar Feature
@@ -483,7 +477,7 @@ app.displaySearch = (dataFromSearchApi) => {
         searchMovieContainer.appendChild(searchImgContainer);
 
         //Append movie container to Search Flex
-        searchingFlex.appendChild(searchMovieContainer);
+        columnFlex.appendChild(searchMovieContainer);
 
     });
 
@@ -566,7 +560,7 @@ app.displayUpcoming = (dataFromUpcomingMovies) => {
         movieContainer.appendChild(discoverImgContainer);
 
         //Append movie container to Discover Flex
-        discoverFlex.appendChild(movieContainer);
+        columnFlex.appendChild(movieContainer);
     });
 };
 
@@ -647,41 +641,54 @@ app.displayTopRated = (dataFromUpcomingMovies) => {
         movieContainer.appendChild(discoverImgContainer);
 
         //Append movie container to Discover Flex
-        discoverFlex.appendChild(movieContainer);
+        columnFlex.appendChild(movieContainer);
     });
 };
 
 //Watchlist feature
 
-const asideNav = document.querySelector('.asideFlex')
+// const asideNav = document.querySelector('.asideFlex')
 
-asideNav.addEventListener('click', (e) => {
-    console.log(e);
-    if(e.target.textContent == 'Popular') {
-        clearFlex.innerHTML = '';
-        window.location.reload(true);
-        app.getPopular();
-        app.displayPopular();
-    } else if(e.target.textContent == 'Discover') {
-        clearFlex.innerHTML = '';
-        console.log('You clicked Discover');
-    } else if(e.target.textContent == 'Upcoming') {
-        clearFlex.innerHTML = '';
-        discoverHeading.textContent = 'Discover';
-        app.getDiscover();
-        console.log('You clicked Upcoming');
-    } else if(e.target.textContent == 'Top Rated') {
-        clearFlex.innerHTML = '';
+// asideNav.addEventListener('click', (e) => {
+//     console.log(e);
+//     if(e.target.textContent == 'Popular') {
+//         clearFlex.innerHTML = '';
+//         window.location.reload(true);
+//         app.getPopular();
+//         app.displayPopular();
+//     } else if(e.target.textContent == 'Discover') {
+//         clearFlex.innerHTML = '';
+//         console.log('You clicked Discover');
+//     } else if(e.target.textContent == 'Upcoming') {
+//         clearFlex.innerHTML = '';
+//         discoverHeading.textContent = 'Discover';
+//         app.getDiscover();
+//         console.log('You clicked Upcoming');
+//     } else if(e.target.textContent == 'Top Rated') {
+//         clearFlex.innerHTML = '';
         
-        console.log('You clicked Top Rated');
-    } else if(e.target.textContent == 'Genres') {
-        clearFlex.innerHTML = '';
-        window.location.reload(true);
-        app.getGenres();
-        app.displayGenres();
-        console.log('You clicked Genres');
-    }
-})
+//         console.log('You clicked Top Rated');
+//     } else if(e.target.textContent == 'Genres') {
+//         clearFlex.innerHTML = '';
+//         window.location.reload(true);
+//         app.getGenres();
+//         app.displayGenres();
+//         console.log('You clicked Genres');
+//     }
+// })
+
+app.setUpEventListener = function() {
+    const selectGenre = document.querySelector('#movieGenre');
+
+    selectGenre.addEventListener('change', function() {
+
+    const selectedGenre = this.value;
+    console.log(selectedGenre);
+
+    app.getGenres(selectedGenre);
+    })
+}
+
 
 
 app.init()
