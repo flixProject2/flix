@@ -7,6 +7,7 @@ app.apiPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKe
 app.discoverApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&`;
 app.apiGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${app.apiKey}&language=en-US`;
 app.apiTopRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${app.apiKey}&language=en-US&page=1`;
+app.apiUpcoming = ` https://api.themoviedb.org/3/movie/upcoming?api_key=${app.apiKey}&language=en-US&page=1`;
 
 app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}&language=en-US&page=1&include_adult=false&`;
 
@@ -17,18 +18,24 @@ const genresLink = document.querySelector('.genresLink');
 const formElement = document.querySelector('form');
 const searchingFlex = document.querySelector('.searchFlex');
 
+const genresLink = document.querySelector('.genresFlex');
+
+const discoverFlex = document.querySelector('.discoverFlex');
+
+const clearFlex = document.querySelector('.movieFlex');
+
+
 app.init = () => {
     app.getTrending();
     discoverLink.addEventListener('click', function () {
-        const clearFlex = document.querySelector('.movieFlex');
         clearFlex.innerHTML = '';
         const clearDiscover = document.querySelector('.discoverFlex')
         clearDiscover.innerHTML = '';
         const clearPopular = document.querySelector('.popularFlex');
         clearPopular.innerHTML = '';
-        const clearGenres = document.querySelector('.genresFlex')
+        const clearGenres = document.querySelector('.genresFlex');
         clearGenres.innerHTML = '';
-        const discoverHeading = document.getElementById('mainHeader')
+        const discoverHeading = document.getElementById('mainHeader');
         discoverHeading.textContent = 'Discover';
         app.getDiscover();
     });
@@ -47,6 +54,8 @@ app.init = () => {
         clearGenres.innerHTML = '';
         const clearPopular = document.querySelector('.popularFlex');
         clearPopular.innerHTML = '';
+        searchHeading = document.getElementById('mainHeader');
+        searchHeading.textContent = `Results for ${searchValue}`;
         app.getSearch(searchValue);
     });
     popularLink.addEventListener('click', function () {
@@ -177,7 +186,6 @@ app.getDiscover = () => {
 
 app.displayDiscover = (dataFromDiscoverApi) => {
     //Select the div where we will be appending the movie cards.
-    const discoverFlex = document.querySelector('.discoverFlex');
     
     //Take 5 movies from the current array of 20
     const discoverFirstFive = dataFromDiscoverApi.results.slice(15, 20);
@@ -481,4 +489,199 @@ app.displaySearch = (dataFromSearchApi) => {
 
 };
 
-app.init();
+//Upcoming Movies Section
+
+app.getUpcoming = () => {
+    const upcomingUrl = new URL(app.apiUpcoming)
+    fetch(upcomingUrl)
+    .then((response) => {
+        return response.json();
+    })
+    .then((responseJson) => {
+        app.displayUpcoming(responseJson);
+    })
+}
+
+app.displayUpcoming = (dataFromUpcomingMovies) => {
+    const upcomingMovies = dataFromUpcomingMovies.results.slice(0, 5);
+
+    console.log(upcomingMovies);
+
+    //Loop through each movie and append it to the DOM
+    upcomingMovies.forEach((movie) => {
+        console.log(movie);
+        //Create movie container 
+        const movieContainer = document.createElement('div');
+        //Set class to movie container
+        movieContainer.classList.add('discoverFlexContainer');
+
+        //Create text container 
+        const discoverTextContainer = document.createElement('div');
+        //set class to text container 
+        discoverTextContainer.classList.add('discoverTextContainer');
+
+        //Create img container 
+        const discoverImgContainer = document.createElement('div');
+        discoverImgContainer.classList.add('discoverImgContainer')
+
+
+        console.log(movie)
+        //Create img element
+        const imgElement = document.createElement('img');
+        //Create movie header to store movie title in
+        const headerElement = document.createElement('h3');
+        //Create h4 to store in text Container
+        const summaryElement = document.createElement('h4');
+        //Create p tag to store in textContainer under header
+        const paragraphHeader = document.createElement('p');
+        //Create p tag to store in textContainer 
+        const paragraphElement = document.createElement('p');
+
+
+        //add src to img element
+        imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+
+        //add movie title to Header Element
+        headerElement.textContent = movie.title
+
+        //add content to p tag 
+        paragraphHeader.textContent = `${movie.release_date} | Rating: ${movie.vote_average}`;
+
+        //Add text content to the summary h4 element
+        summaryElement.textContent = `Summary`;
+
+        //Add movie overview to p element
+        paragraphElement.textContent = `${movie.overview}`;
+
+
+        //Append Movie Poster and Title to their respective containers
+        discoverTextContainer.appendChild(headerElement);
+        discoverTextContainer.appendChild(paragraphHeader);
+        discoverTextContainer.appendChild(summaryElement);
+        discoverTextContainer.appendChild(paragraphElement);
+        discoverImgContainer.appendChild(imgElement);
+
+        //Append Movie Poster and Title Containers to their own container
+        movieContainer.appendChild(discoverTextContainer);
+        movieContainer.appendChild(discoverImgContainer);
+
+        //Append movie container to Discover Flex
+        discoverFlex.appendChild(movieContainer);
+    });
+};
+
+//Get Top Rated
+
+app.getTopRated = () => {
+    const topRatedUrl = new URL(app.apiTopRated)
+    fetch(topRatedUrl)
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseJson) => {
+            app.displayTopRated(responseJson);
+        })
+}
+
+app.displayTopRated = (dataFromUpcomingMovies) => {
+    const displayRated = dataFromUpcomingMovies.results.slice(0, 5);
+
+    console.log(upcomingMovies);
+
+    //Loop through each movie and append it to the DOM
+    displayRated.forEach((movie) => {
+        console.log(movie);
+        //Create movie container 
+        const movieContainer = document.createElement('div');
+        //Set class to movie container
+        movieContainer.classList.add('discoverFlexContainer');
+
+        //Create text container 
+        const discoverTextContainer = document.createElement('div');
+        //set class to text container 
+        discoverTextContainer.classList.add('discoverTextContainer');
+
+        //Create img container 
+        const discoverImgContainer = document.createElement('div');
+        discoverImgContainer.classList.add('discoverImgContainer')
+
+
+        console.log(movie)
+        //Create img element
+        const imgElement = document.createElement('img');
+        //Create movie header to store movie title in
+        const headerElement = document.createElement('h3');
+        //Create h4 to store in text Container
+        const summaryElement = document.createElement('h4');
+        //Create p tag to store in textContainer under header
+        const paragraphHeader = document.createElement('p');
+        //Create p tag to store in textContainer 
+        const paragraphElement = document.createElement('p');
+
+
+        //add src to img element
+        imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+
+        //add movie title to Header Element
+        headerElement.textContent = movie.title
+
+        //add content to p tag 
+        paragraphHeader.textContent = `${movie.release_date} | Rating: ${movie.vote_average}`;
+
+        //Add text content to the summary h4 element
+        summaryElement.textContent = `Summary`;
+
+        //Add movie overview to p element
+        paragraphElement.textContent = `${movie.overview}`;
+
+
+        //Append Movie Poster and Title to their respective containers
+        discoverTextContainer.appendChild(headerElement);
+        discoverTextContainer.appendChild(paragraphHeader);
+        discoverTextContainer.appendChild(summaryElement);
+        discoverTextContainer.appendChild(paragraphElement);
+        discoverImgContainer.appendChild(imgElement);
+
+        //Append Movie Poster and Title Containers to their own container
+        movieContainer.appendChild(discoverTextContainer);
+        movieContainer.appendChild(discoverImgContainer);
+
+        //Append movie container to Discover Flex
+        discoverFlex.appendChild(movieContainer);
+    });
+};
+
+//Watchlist feature
+
+const asideNav = document.querySelector('.asideFlex')
+
+asideNav.addEventListener('click', (e) => {
+    console.log(e);
+    if(e.target.textContent == 'Popular') {
+        clearFlex.innerHTML = '';
+        window.location.reload(true);
+        app.getPopular();
+        app.displayPopular();
+    } else if(e.target.textContent == 'Discover') {
+        clearFlex.innerHTML = '';
+        console.log('You clicked Discover');
+    } else if(e.target.textContent == 'Upcoming') {
+        clearFlex.innerHTML = '';
+        discoverHeading.textContent = 'Discover';
+        app.getDiscover();
+        console.log('You clicked Upcoming');
+    } else if(e.target.textContent == 'Top Rated') {
+        clearFlex.innerHTML = '';
+        
+        console.log('You clicked Top Rated');
+    } else if(e.target.textContent == 'Genres') {
+        clearFlex.innerHTML = '';
+        window.location.reload(true);
+        app.getGenres();
+        app.displayGenres();
+        console.log('You clicked Genres');
+    }
+})
+
+
+app.init()
