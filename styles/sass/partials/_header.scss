@@ -8,7 +8,10 @@ header {
         li {
             list-style: none;
             h1 {
+                a {
+                text-decoration: none;
                 color: $title;
+              }
             }
             input {
                 width: 94%;
