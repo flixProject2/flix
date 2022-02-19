@@ -39,7 +39,10 @@ p,
     font-weight: 900;
     text-transform: uppercase;
     font-size: 2rem;
-    color: $title;
+      a {
+        text-decoration: none;
+        color: $title;
+      }
   }
 }
 

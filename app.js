@@ -354,8 +354,8 @@ app.displayGenres = (dataFromGenresApi) => {
         //Append elements to respective containers
         genresTextContainer.appendChild(genresHeader);
         genresTextContainer.appendChild(genresRating);
-        genresTextContainer.appendChild(genresParagraph);
         genresTextContainer.appendChild(genresSummary);
+        genresTextContainer.appendChild(genresParagraph);
         genresImageContainer.appendChild(genresImg);
 
         //Append containers to movie container

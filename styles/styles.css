@@ -264,6 +264,9 @@ p,
   font-weight: 900;
   text-transform: uppercase;
   font-size: 2rem;
+}
+.asideFlex li a {
+  text-decoration: none;
   color: #FFFFFF;
 }
 
