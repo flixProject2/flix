@@ -259,27 +259,6 @@ p,
   color: #E8E8E8;
 }
 
-.genreDropDown {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.genreDropDown label {
-  text-shadow: 2px 2px 2px black;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-.genreDropDown select {
-  background: white;
-  border: transparent;
-  border-radius: 15px;
-  padding: 3px 5px 0 5px;
-  margin-left: 5px;
-}
-
 .asideFlex li {
   font-family: "Titillium Web", sans-serif;
   font-weight: 900;
@@ -438,6 +417,31 @@ aside .asideFlex li {
 aside .asideFlex li span {
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+.genreDropDown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.genreDropDown label {
+  text-shadow: 2px 2px 2px black;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.genreDropDown select {
+  background: white;
+  border: transparent;
+  border-radius: 15px;
+  padding: 0 5px 0;
+  margin-left: 5px;
+  font-family: "Roboto", sans-serif;
+}
+.genreDropDown option {
+  font-family: "Roboto", sans-serif;
 }
 
 .movieFlex {

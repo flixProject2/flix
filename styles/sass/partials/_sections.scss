@@ -28,6 +28,27 @@ aside {
     }
 }
 
+.genreDropDown {
+  display: flex;
+  align-items: center;
+  label {
+    text-shadow: 2px 2px 2px black;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  select {
+    background: white;
+    border: transparent;
+    border-radius: 15px;
+    padding: 0 5px 0;
+    margin-left:5px;
+    font-family: $bodyFont;
+  }
+  option {
+      font-family: $bodyFont;
+  }
+}
+
 .movieFlex {
     display: flex;
     flex-direction: row;
