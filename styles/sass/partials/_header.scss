@@ -38,18 +38,22 @@ header {
                 }
             }
             .fa-star {
-                color: gold;
+                color: $gold;
                 font-size: 1.2rem;
             }
+            .fa-star:hover {
+                cursor: pointer;
+            }
             ul.watchlistSlide {
-                background: black;
-                height: 100%;
+                background: $black;
+                height: 80%;
                 width: 25%;
                 position: fixed;
                 top: 5rem;
                 right: -30%;
                 z-index: 10;
                 transition: all 0.5s;
+                border-radius: 15px 0 0 15px;
             }
             input[type="checkbox"]:checked + ul.watchlistSlide {
                 right: 0;
