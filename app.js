@@ -14,6 +14,9 @@ app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}
 const discoverLink = document.querySelector('.discoverLink');
 const popularLink = document.querySelector('.popularLink');
 const genresLink = document.querySelector('.genresLink');
+const genresMenu = document.querySelector('.genreDropDown')
+const hideDropDown = document.querySelector('.genreDropDown')
+
 
 const formElement = document.querySelector('form');
 const columnFlex = document.querySelector('.columnFlex');
@@ -25,6 +28,8 @@ const columnFlex = document.querySelector('.columnFlex');
 
 app.init = () => {
     app.getTrending();
+    hideDropDown.style.display = "none";
+
     discoverLink.addEventListener('click', function () {
         // clearFlex.innerHTML = '';
         const clearFlex = document.querySelector('.movieFlex')
@@ -33,8 +38,10 @@ app.init = () => {
         clearColumnFlex.innerHTML = '';
         const discoverHeading = document.getElementById('mainHeader');
         discoverHeading.textContent = 'Discover';
+        hideDropDown.style.display = "none";
         app.getDiscover();
     });
+
     formElement.addEventListener('submit', (e) => {
         e.preventDefault();
         //Log search input
@@ -48,8 +55,10 @@ app.init = () => {
         clearColumnFlex.innerHTML = '';
         searchHeading = document.getElementById('mainHeader');
         searchHeading.textContent = `Results for ${searchValue}`;
+        hideDropDown.style.display = "none";
         app.getSearch(searchValue);
     });
+
     popularLink.addEventListener('click', function () {
         const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
@@ -57,8 +66,10 @@ app.init = () => {
         clearColumnFlex.innerHTML = '';
         const popularHeading = document.getElementById('mainHeader')
         popularHeading.textContent = 'Popular';
+        hideDropDown.style.display = "none";
         app.getPopular();
     });
+
     genresLink.addEventListener('click', function() {
         const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
@@ -66,8 +77,24 @@ app.init = () => {
         clearColumnFlex.innerHTML = '';
         const genresHeading = document.getElementById('mainHeader')
         genresHeading.textContent = 'Genres';
+        document.getElementById('movieGenre').selectedIndex = [0];
+        hideDropDown.style.display = "inline";
         app.setUpEventListener();
+        app.getGenres();
     });
+
+    genresMenu.addEventListener('change', function() {
+        const clearFlex = document.querySelector('.movieFlex')
+        clearFlex.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
+    });
+
+    
+    
+    
+    
+    
 };
 
 app.getTrending = () => {
@@ -322,18 +349,6 @@ app.displayPopular = (dataFromPopularApi) => {
 
 // ***** Genres Section *****
 
-// const genreTypes = [
-//     { name: "Action", id: 28 },
-//     { name: "Adventure", id: 12 },
-//     { name: "Animation", id: 16 },
-//     { name: "Comedy", id: 35 },
-//     { name: "Drama", id: 18 },
-//     { name: "Fantasy", id: 14 },
-//     { name: "History", id: 36 },
-//     { name: "Horror", id: 27 },
-//     { name: "Western", id: 37 }
-// ]
-
 app.getGenres = (genreId) => {
     // use URL consteuctor to target popular movies as endpoint
     const url = new URL(app.apiGenres);
@@ -348,23 +363,24 @@ app.getGenres = (genreId) => {
         })
         .then((jsonResponse) => {
             app.displayGenres(jsonResponse.results);
-            console.log(jsonResponse);
+            // console.log(jsonResponse);
         })
 };
 
 app.displayGenres = (dataFromGenresApi) => {
     // target div to append movie card to
-    const genresFlex = document.querySelector('.genresFlex');
+    // const genresFlex = document.querySelector('.columnFlex');
 
     // data check to ensure data is being returned in the array
-    const genresList = dataFromGenresApi;
+    const genresList = dataFromGenresApi.slice(12, 17);
     console.log(genresList);
 
-
+    
     // Loop through the genre array
-    genresList.forEach(function(genres) {
+    genresList.forEach(function(movie) {
 
-        // genres list container
+
+        // genres movie container
         const genresContainer = document.createElement('div');
         genresContainer.classList.add('genresFlexContainer');
 
@@ -372,23 +388,48 @@ app.displayGenres = (dataFromGenresApi) => {
         const genresTextContainer = document.createElement('div');
         genresTextContainer.classList.add('genresTextContainer');
 
-        // save genres data in variable
-        const genresHeader = document.createElement('h2');
+        // genres image container
+        const genresImageContainer = document.createElement('div');
+        genresImageContainer.classList.add('genresImageContainer');
+
+        // save data from API in variables
+        const genresImg = document.createElement('img');
+        const genresHeader = document.createElement('h3');
+        const genresRating = document.createElement('p');
+        const genresSummary = document.createElement('h4');
+        const genresParagraph = document.createElement('p');
+
+        // add movie image
+        genresImg.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 
         // add genres name
-        genresHeader.textContent = genres.name;
+        genresHeader.textContent = movie.title;
+
+        // add movie release date and rating
+        genresRating.textContent = `${movie.release_date.substring(0, 4)} | Rating: ${movie.vote_average}`;
+
+        // add summary header
+        genresSummary.textContent = 'Summary';
+
+        // add movie description
+        genresParagraph.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
 
         // append genres information to respective container
         genresTextContainer.appendChild(genresHeader);
+        genresTextContainer.appendChild(genresRating);
+        genresTextContainer.appendChild(genresParagraph);
+        genresTextContainer.appendChild(genresSummary);
+        genresImageContainer.appendChild(genresImg);
 
         // append to genres list container
         genresContainer.appendChild(genresTextContainer);
+        genresContainer.appendChild(genresImageContainer);
 
         // append containers to genresFlex
-        genresFlex.appendChild(genresContainer);
+        columnFlex.appendChild(genresContainer);
 
         // data check for genres
-        console.log(genres);
+        console.log(movie);
     });
 }
 

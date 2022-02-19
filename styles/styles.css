@@ -377,6 +377,9 @@ header .navFlex .inputItem {
 main {
   background-color: #BF0505;
 }
+main form {
+  margin-left: 38px;
+}
 
 .mainFlex {
   display: -webkit-box;
@@ -444,6 +447,9 @@ aside .asideFlex li span {
 .movieFlex .movieContainer .trendingImgContainer {
   width: 100%;
 }
+.movieFlex .movieContainer .trendingImgContainer img {
+  border-radius: 15px 15px 0 0;
+}
 .movieFlex .movieContainer .trendingTextContainer {
   width: 100%;
   min-height: 20rem;
@@ -466,7 +472,9 @@ aside .asideFlex li span {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.columnFlex .discoverFlexContainer {
+.columnFlex .discoverFlexContainer,
+.columnFlex .popularFlexContainer,
+.columnFlex .genresFlexContainer {
   margin: 25px 40px;
   width: 90%;
   -ms-flex-wrap: wrap;
@@ -486,55 +494,39 @@ aside .asideFlex li span {
   border-radius: 15px;
   background-color: #171717;
 }
-.columnFlex .discoverFlexContainer .discoverImgContainer {
+.columnFlex .discoverFlexContainer .discoverImgContainer,
+.columnFlex .discoverFlexContainer .popularImageContainer,
+.columnFlex .discoverFlexContainer .genresImageContainer,
+.columnFlex .popularFlexContainer .discoverImgContainer,
+.columnFlex .popularFlexContainer .popularImageContainer,
+.columnFlex .popularFlexContainer .genresImageContainer,
+.columnFlex .genresFlexContainer .discoverImgContainer,
+.columnFlex .genresFlexContainer .popularImageContainer,
+.columnFlex .genresFlexContainer .genresImageContainer {
   width: 20%;
 }
-.columnFlex .discoverFlexContainer .discoverTextContainer {
+.columnFlex .discoverFlexContainer .discoverImgContainer img,
+.columnFlex .discoverFlexContainer .popularImageContainer img,
+.columnFlex .discoverFlexContainer .genresImageContainer img,
+.columnFlex .popularFlexContainer .discoverImgContainer img,
+.columnFlex .popularFlexContainer .popularImageContainer img,
+.columnFlex .popularFlexContainer .genresImageContainer img,
+.columnFlex .genresFlexContainer .discoverImgContainer img,
+.columnFlex .genresFlexContainer .popularImageContainer img,
+.columnFlex .genresFlexContainer .genresImageContainer img {
+  border-radius: 15px 0 0 15px;
+}
+.columnFlex .discoverFlexContainer .discoverTextContainer,
+.columnFlex .discoverFlexContainer .popularTextContainer,
+.columnFlex .discoverFlexContainer .genresTextContainer,
+.columnFlex .popularFlexContainer .discoverTextContainer,
+.columnFlex .popularFlexContainer .popularTextContainer,
+.columnFlex .popularFlexContainer .genresTextContainer,
+.columnFlex .genresFlexContainer .discoverTextContainer,
+.columnFlex .genresFlexContainer .popularTextContainer,
+.columnFlex .genresFlexContainer .genresTextContainer {
   width: 80%;
   padding: 15px;
-}
-
-.columnFlex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.columnFlex .popularFlexContainer {
-  margin: 25px 40px;
-  width: 90%;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  border-radius: 15px;
-  background-color: black;
-}
-.columnFlex .popularFlexContainer .popularImageContainer {
-  width: 20%;
-}
-.columnFlex .popularFlexContainer .popularTextContainer {
-  width: 80%;
-  padding: 15px;
-}
-.columnFlex .popularFlexContainer .popularTextContainer h3 {
-  font-size: 1rem;
-}
-.columnFlex .popularFlexContainer .popularTextContainer h4 {
-  margin-bottom: 10px;
 }
 
 .searchFlex {
@@ -578,21 +570,6 @@ aside .asideFlex li span {
 }
 .searchFlex .searchMovieContainer .searchTextContainer h4 {
   margin-bottom: 10px;
-}
-
-.genresFlex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-.genresFlex .genresFlexContainer {
-  width: 33.3%;
-}
-.genresFlex .genresFlexContainer .genresTextContainer h2 {
-  font-size: 3rem;
-  margin: 40px 38px;
 }
 
 footer {

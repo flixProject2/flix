@@ -1,5 +1,8 @@
 main {
     background-color: $background;
+    form {
+        margin-left: 38px;
+    }
 }
 
 .mainFlex {
@@ -40,6 +43,9 @@ aside {
         background-color: $black;
         .trendingImgContainer {
             width: 100%;
+            img {
+                border-radius: 15px 15px 0 0 ;
+            }
         }
         .trendingTextContainer {
             width: 100%;
@@ -59,7 +65,9 @@ aside {
 .columnFlex {
     display: flex; 
     flex-direction: column;
-    .discoverFlexContainer {
+    .discoverFlexContainer,
+    .popularFlexContainer,
+    .genresFlexContainer {
         margin: 25px 40px;
         width: 90%;
         flex-wrap: wrap;
@@ -69,41 +77,19 @@ aside {
         justify-content: flex-start;
         border-radius: 15px;
         background-color: $black;
-        .discoverImgContainer {
+        .discoverImgContainer,
+        .popularImageContainer,
+        .genresImageContainer {
             width: 20%;
+            img {
+                border-radius: 15px 0 0 15px;
+            }
         }
-        .discoverTextContainer {
+        .discoverTextContainer,
+        .popularTextContainer,
+        .genresTextContainer {
             width: 80%;
             padding: 15px;
-        }
-    }
-}
-
-.columnFlex {
-    display: flex;
-    flex-direction: column;
-    .popularFlexContainer {
-        margin: 25px 40px;
-        width: 90%;
-        flex-wrap: wrap;
-        display: flex;
-        flex-direction: row-reverse;
-        box-sizing: border-box;
-        justify-content: flex-start;
-        border-radius: 15px;
-        background-color: black;
-        .popularImageContainer {
-            width: 20%;
-        }
-        .popularTextContainer {
-            width: 80%;
-            padding: 15px;
-            h3 {
-                font-size: 1rem;
-            }
-            h4 {
-                margin-bottom: 10px; 
-            }
         }
     }
 }
@@ -132,20 +118,6 @@ aside {
             }
             h4 {
                 margin-bottom: 10px;
-            }
-        }
-    }
-}
-
-.genresFlex {
-    display: flex;
-    flex-wrap: wrap;
-    .genresFlexContainer {
-        width: 33.3%;
-        .genresTextContainer {
-            h2 {
-                font-size: 3rem;
-                margin: 40px 38px;
             }
         }
     }
