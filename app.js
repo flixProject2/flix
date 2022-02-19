@@ -1,6 +1,6 @@
 const app = {};
 
-
+// ***** API CALLS *****
 app.apiKey = '438f9921b5287c90f91cf32070a635f1';
 app.apiURL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${app.apiKey}`;
 app.apiPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${app.apiKey}`;
@@ -8,34 +8,28 @@ app.discoverApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${app.
 app.apiGenres = `https://api.themoviedb.org/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
 app.apiTopRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${app.apiKey}&language=en-US&page=1`;
 app.apiUpcoming = ` https://api.themoviedb.org/3/movie/upcoming?api_key=${app.apiKey}&language=en-US&page=1`;
-
 app.apiSearch = `https://api.themoviedb.org/3/search/movie?api_key=${app.apiKey}&language=en-US&page=1&include_adult=false&`;
 
+
+// ***** Global Variables *****
 const discoverLink = document.querySelector('.discoverLink');
 const popularLink = document.querySelector('.popularLink');
 const genresLink = document.querySelector('.genresLink');
 const genresMenu = document.querySelector('.genreDropDown')
 const hideDropDown = document.querySelector('.genreDropDown')
-
-
 const formElement = document.querySelector('form');
 const columnFlex = document.querySelector('.columnFlex');
+const clearFlex = document.querySelector('.movieFlex');
 
-// const genresLink = document.querySelector('.genresFlex');
-
-// const clearFlex = document.querySelector('.movieFlex');
-
-
+// ***** INIT to kickoff application *****
 app.init = () => {
     app.getTrending();
+
     hideDropDown.style.display = "none";
 
     discoverLink.addEventListener('click', function () {
-        // clearFlex.innerHTML = '';
-        const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
-        const clearColumnFlex = document.querySelector('.columnFlex')
-        clearColumnFlex.innerHTML = '';
+        columnFlex.innerHTML = '';
         const discoverHeading = document.getElementById('mainHeader');
         discoverHeading.textContent = 'Discover';
         hideDropDown.style.display = "none";
@@ -51,8 +45,7 @@ app.init = () => {
         //Clear section
         sectionElement = document.querySelector('.movieFlex');
         sectionElement.innerHTML = '';
-        const clearColumnFlex = document.querySelector('.columnFlex')
-        clearColumnFlex.innerHTML = '';
+        columnFlex.innerHTML = '';
         searchHeading = document.getElementById('mainHeader');
         searchHeading.textContent = `Results for ${searchValue}`;
         hideDropDown.style.display = "none";
@@ -60,10 +53,8 @@ app.init = () => {
     });
 
     popularLink.addEventListener('click', function () {
-        const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
-        const clearColumnFlex = document.querySelector('.columnFlex')
-        clearColumnFlex.innerHTML = '';
+        columnFlex.innerHTML = '';
         const popularHeading = document.getElementById('mainHeader')
         popularHeading.textContent = 'Popular';
         hideDropDown.style.display = "none";
@@ -88,15 +79,12 @@ app.init = () => {
         clearFlex.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
         clearColumnFlex.innerHTML = '';
-    });
-
-    
-    
-    
-    
-    
+    }); 
 };
 
+// ***** Trending Section *****
+
+// Get data from API for Trending Section
 app.getTrending = () => {
     //use the URL constructor to create our endpoint and specify the parameters we want to include
     const url = new URL(app.apiURL);
@@ -107,15 +95,18 @@ app.getTrending = () => {
     .then((jsonResponse) => {
         app.displayTrending(jsonResponse)
     })
-    
 };
 
+// Create function to display Trending data 
 app.displayTrending = (dataFromTrendingApi) => {
+
     //Target where we want to append each movie
     const movieFlex = document.querySelector('.movieFlex');
-    console.log(dataFromTrendingApi);
+    // console.log(dataFromTrendingApi);
+
     //Get first three movies in the array
     const trendingFirstThree = dataFromTrendingApi.results.slice(0, 3);
+
     //Loop through each movie and append info to the DOM
     trendingFirstThree.forEach( (movie) => {
         
@@ -126,18 +117,14 @@ app.displayTrending = (dataFromTrendingApi) => {
         
         //Create text container 
         const trendingTextContainer = document.createElement('div');
-        //set class to text container 
+        //Set class to text container 
         trendingTextContainer.classList.add('trendingTextContainer');
         
         //Create img container 
         const trendingImgContainer = document.createElement('div');
         trendingImgContainer.classList.add('trendingImgContainer')
         
-        
-        trendingImgContainer.classList.add('trendingImgContainer');
-
-
-        // console.log(movie)
+        // trendingImgContainer.classList.add('trendingImgContainer');
 
         //Create img element
         const imgElement = document.createElement('img');
@@ -151,21 +138,20 @@ app.displayTrending = (dataFromTrendingApi) => {
         const paragraphElement = document.createElement('p');
         
         
-        //add src to img element
+        //Add src to img element
         imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
         
-        //add movie title to Header Element
+        //Add movie title to Header Element
         headerElement.textContent = movie.title
         
-        //add content to p tag 
+        //Add content to p tag 
         paragraphHeader.textContent = `${movie.release_date.substring(0,4)} | Rating: ${movie.vote_average}`;
         
         //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
         
         //Add movie overview to p element
-        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
-        
+        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}`;
         
         //Append Movie Poster and Title to their respective containers
         trendingTextContainer.appendChild(headerElement);
@@ -183,7 +169,9 @@ app.displayTrending = (dataFromTrendingApi) => {
     })
 }
 
+// ***** Discover Section *****
 
+// Get data from API for Discover Section
 app.getDiscover = () => {
     const discoverURL = new URL(app.discoverApiUrl);
     fetch(discoverURL)
@@ -195,76 +183,60 @@ app.getDiscover = () => {
     })
 }
 
+// Create function to display Discover data
 app.displayDiscover = (dataFromDiscoverApi) => {
-    //Select the div where we will be appending the movie cards.
     
-    //Take 5 movies from the current array of 20
+    // Get movies from array
     const discoverFirstFive = dataFromDiscoverApi.results.slice(15, 20);
-    console.log(discoverFirstFive);
+    // console.log(discoverFirstFive);
     
-    //Loop through each movie and append it to the DOM
+    // Loop through array
     discoverFirstFive.forEach( (movie) => {
         console.log(movie);
-        //Create movie container 
+
+        // Create containers
         const movieContainer = document.createElement('div');
-        //Set class to movie container
         movieContainer.classList.add('discoverFlexContainer');
         
-        //Create text container 
         const discoverTextContainer = document.createElement('div');
-        //set class to text container 
         discoverTextContainer.classList.add('discoverTextContainer');
         
-        //Create img container 
         const discoverImgContainer = document.createElement('div');
         discoverImgContainer.classList.add('discoverImgContainer')
         
-        
-        console.log(movie)
-        //Create img element
+        // Create elements
         const imgElement = document.createElement('img');
-        //Create movie header to store movie title in
         const headerElement = document.createElement('h3');
-        //Create h4 to store in text Container
         const summaryElement = document.createElement('h4');
-        //Create p tag to store in textContainer under header
         const paragraphHeader = document.createElement('p');
-        //Create p tag to store in textContainer 
         const paragraphElement = document.createElement('p');
         
-        
-        //add src to img element
+        // Add data to elements
         imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-        
-        //add movie title to Header Element
         headerElement.textContent = movie.title
-        
-        //add content to p tag 
         paragraphHeader.textContent = `${movie.release_date} | Rating: ${movie.vote_average}`;
-        
-        //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
-        
-        //Add movie overview to p element
         paragraphElement.textContent = `${movie.overview}`;
         
-        
-        //Append Movie Poster and Title to their respective containers
+        //Append elements to respective containers
         discoverTextContainer.appendChild(headerElement);
         discoverTextContainer.appendChild(paragraphHeader);
         discoverTextContainer.appendChild(summaryElement);
         discoverTextContainer.appendChild(paragraphElement);
         discoverImgContainer.appendChild(imgElement);
         
-        //Append Movie Poster and Title Containers to their own container
+        //Append containers to movie container
         movieContainer.appendChild(discoverTextContainer);
         movieContainer.appendChild(discoverImgContainer);
         
-        //Append movie container to Discover Flex
+        //Append movie container to div to display on page
         columnFlex.appendChild(movieContainer);
     })
 }
 
+// ***** Popular Section *****
+
+// Get data from API for Popular Section
 app.getPopular = () => {
     // use URL consteuctor to target popular movies as endpoint
     const url = new URL(app.apiPopular);
@@ -277,80 +249,60 @@ app.getPopular = () => {
         })
 };
 
+// Create function to display Popular data
 app.displayPopular = (dataFromPopularApi) => {
-    // target div to append movie card to
-    // const popularFlex = document.querySelector('.columnFlex');
 
-    // data check
-    console.log(dataFromPopularApi);
-
-    // get first three movies from array
+    // Get movies from array
     const popularFirstThree = dataFromPopularApi.results.slice(10, 15);
 
-    // loop through array and append popular movie info to DOM
+    // Loop through array
     popularFirstThree.forEach((movie) => {
 
-        console.log(movie);
-        // popular movie container
+        // Create containers
         const popularContainer = document.createElement('div');
         popularContainer.classList.add('popularFlexContainer');
 
-        // popular movie text container
         const popularTextContainer = document.createElement('div');
         popularTextContainer.classList.add('popularTextContainer');
 
-        // popular movie image container
         const popularImageContainer = document.createElement('div');
         popularImageContainer.classList.add('popularImageContainer');
 
-        // data check for first three popular movies
-        console.log(movie);
-
-        // save movie data in variables
+        // Create elements
         const popularImg = document.createElement('img');
         const popularHeader = document.createElement('h3');
         const popularRating = document.createElement('p');
         const popularSummary = document.createElement('h4');
         const popularParagraph = document.createElement('p');
 
-        // add movie image
+        // Add data to elements
         popularImg.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-
-        // add movie title
         popularHeader.textContent = movie.title;
-
-        // add movie release date and rating
         popularRating.textContent = `${movie.release_date.substring(0, 4)} | Rating: ${movie.vote_average}`;
-
-        // add summary header
         popularSummary.textContent = 'Summary';
+        popularParagraph.textContent = `${movie.overview.split('.', 2).join('. ')}`;
 
-        // add movie description
-        popularParagraph.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
-
-        // append movie info to respective containers
-
+        //Append elements to respective containers
         popularTextContainer.appendChild(popularHeader);
         popularTextContainer.appendChild(popularRating);
         popularTextContainer.appendChild(popularSummary);
         popularTextContainer.appendChild(popularParagraph);
         popularImageContainer.appendChild(popularImg);
 
-
-        // append to movie container
+        //Append containers to movie container
         popularContainer.appendChild(popularTextContainer);
         popularContainer.appendChild(popularImageContainer);
 
-
-        // append containers to movie flex
+        //Append movie container to div to display on page
         columnFlex.appendChild(popularContainer);
     })
 }
 
 // ***** Genres Section *****
 
+// Get data from API for Genres Section
 app.getGenres = (genreId) => {
-    // use URL consteuctor to target popular movies as endpoint
+    // use URL constructor to target popular movies as endpoint
     const url = new URL(app.apiGenres);
 
     url.search = new URLSearchParams({
@@ -363,78 +315,61 @@ app.getGenres = (genreId) => {
         })
         .then((jsonResponse) => {
             app.displayGenres(jsonResponse.results);
-            // console.log(jsonResponse);
         })
 };
 
+// Create function to display Genres data
 app.displayGenres = (dataFromGenresApi) => {
-    // target div to append movie card to
-    // const genresFlex = document.querySelector('.columnFlex');
 
-    // data check to ensure data is being returned in the array
+    // Get movies from array
     const genresList = dataFromGenresApi.slice(12, 17);
-    console.log(genresList);
-
     
-    // Loop through the genre array
+    // Loop through the array
     genresList.forEach(function(movie) {
 
-
-        // genres movie container
+        // Create containers
         const genresContainer = document.createElement('div');
         genresContainer.classList.add('genresFlexContainer');
 
-        // genres text container
         const genresTextContainer = document.createElement('div');
         genresTextContainer.classList.add('genresTextContainer');
 
-        // genres image container
         const genresImageContainer = document.createElement('div');
         genresImageContainer.classList.add('genresImageContainer');
 
-        // save data from API in variables
+        // Create elements
         const genresImg = document.createElement('img');
         const genresHeader = document.createElement('h3');
         const genresRating = document.createElement('p');
         const genresSummary = document.createElement('h4');
         const genresParagraph = document.createElement('p');
 
-        // add movie image
+        // Add data to elements
         genresImg.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-
-        // add genres name
         genresHeader.textContent = movie.title;
-
-        // add movie release date and rating
         genresRating.textContent = `${movie.release_date.substring(0, 4)} | Rating: ${movie.vote_average}`;
-
-        // add summary header
         genresSummary.textContent = 'Summary';
+        genresParagraph.textContent = `${movie.overview.split('.', 2).join('. ')}`;
 
-        // add movie description
-        genresParagraph.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
-
-        // append genres information to respective container
+        //Append elements to respective containers
         genresTextContainer.appendChild(genresHeader);
         genresTextContainer.appendChild(genresRating);
         genresTextContainer.appendChild(genresParagraph);
         genresTextContainer.appendChild(genresSummary);
         genresImageContainer.appendChild(genresImg);
 
-        // append to genres list container
+        //Append containers to movie container
         genresContainer.appendChild(genresTextContainer);
         genresContainer.appendChild(genresImageContainer);
 
-        // append containers to genresFlex
+        //Append movie container to div to display on page
         columnFlex.appendChild(genresContainer);
-
-        // data check for genres
-        console.log(movie);
     });
 }
 
-//Search Bar Feature
+// ***** Search Bar Feature *****
 
+// Get data from API for Search Bar
 app.getSearch = (userQuery) => {
     const searchURL = new URL(app.apiSearch);
 
@@ -451,81 +386,63 @@ app.getSearch = (userQuery) => {
     })
 }
 
+// Create function to display Search data
 app.displaySearch = (dataFromSearchApi) => {
-    //Select the div where we will be appending the movie cards.
+    // console.log(dataFromSearchApi);
 
-    console.log(dataFromSearchApi);
-
+    // Get movies from array
     const searchMovies = dataFromSearchApi.results.slice(0,5);
+    // console.log(searchMovies);
 
-    console.log(searchMovies);
-
+    // Loop through array
     searchMovies.forEach((search) => {
-        console.log(search);
+        // console.log(search);
 
-        //Create movie container 
+        //Create containers
         const searchMovieContainer = document.createElement('div');
-        //Set class to movie container
         searchMovieContainer.classList.add('searchMovieContainer');
 
-        //Create text container 
         const searchTextContainer = document.createElement('div');
-        //set class to text container 
         searchTextContainer.classList.add('searchTextContainer');
 
-        //Create img container 
         const searchImgContainer = document.createElement('div');
         searchImgContainer.classList.add('searchImgContainer')
 
 
-        //Create img element
+        //Create elements
         const imgElement = document.createElement('img');
-        //Create movie header to store movie title in
         const headerElement = document.createElement('h3');
-        //Create h4 to store in text Container
         const summaryElement = document.createElement('h4');
-        //Create p tag to store in textContainer under header
         const paragraphHeader = document.createElement('p');
-        //Create p tag to store in textContainer 
         const paragraphElement = document.createElement('p');
 
 
-        //add src to img element
+        // Add data to elements
         imgElement.src = `https://image.tmdb.org/t/p/original/${search.poster_path}`;
-
-        //add movie title to Header Element
         headerElement.textContent = search.title
-
-        //add content to p tag 
         paragraphHeader.textContent = `${search.release_date} | Rating: ${search.vote_average}`;
-
-        //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
-
-        //Add movie overview to p element
         paragraphElement.textContent = `${search.overview}`;
 
-
-        //Append Movie Poster and Title to their respective containers
+        //Append elements to respective containers
         searchTextContainer.appendChild(headerElement);
         searchTextContainer.appendChild(paragraphHeader);
         searchTextContainer.appendChild(summaryElement);
         searchTextContainer.appendChild(paragraphElement);
         searchImgContainer.appendChild(imgElement);
 
-        //Append Movie Poster and Title Containers to their own container
+        //Append containers to movie container
         searchMovieContainer.appendChild(searchTextContainer);
         searchMovieContainer.appendChild(searchImgContainer);
 
-        //Append movie container to Search Flex
+        //Append movie container to div to display on page
         columnFlex.appendChild(searchMovieContainer);
-
     });
-
 };
 
-//Upcoming Movies Section
+// ***** Upcoming Movies Section *****
 
+// // Get data from API for Upcoming section
 app.getUpcoming = () => {
     const upcomingUrl = new URL(app.apiUpcoming)
     fetch(upcomingUrl)
@@ -537,76 +454,63 @@ app.getUpcoming = () => {
     })
 }
 
+// Create function to display Upcoming data
 app.displayUpcoming = (dataFromUpcomingMovies) => {
+
+    // Get movies from array
     const upcomingMovies = dataFromUpcomingMovies.results.slice(0, 5);
 
-    console.log(upcomingMovies);
+    // console.log(upcomingMovies);
 
     //Loop through each movie and append it to the DOM
     upcomingMovies.forEach((movie) => {
-        console.log(movie);
-        //Create movie container 
+        // console.log(movie);
+
+        //Create containers
         const movieContainer = document.createElement('div');
-        //Set class to movie container
         movieContainer.classList.add('discoverFlexContainer');
 
-        //Create text container 
         const discoverTextContainer = document.createElement('div');
-        //set class to text container 
         discoverTextContainer.classList.add('discoverTextContainer');
 
-        //Create img container 
         const discoverImgContainer = document.createElement('div');
         discoverImgContainer.classList.add('discoverImgContainer')
 
+        // console.log(movie)
 
-        console.log(movie)
-        //Create img element
+        // Creat elements
         const imgElement = document.createElement('img');
-        //Create movie header to store movie title in
         const headerElement = document.createElement('h3');
-        //Create h4 to store in text Container
         const summaryElement = document.createElement('h4');
-        //Create p tag to store in textContainer under header
         const paragraphHeader = document.createElement('p');
-        //Create p tag to store in textContainer 
         const paragraphElement = document.createElement('p');
 
-
-        //add src to img element
+        // Add data to elements
         imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-
-        //add movie title to Header Element
         headerElement.textContent = movie.title
-
-        //add content to p tag 
         paragraphHeader.textContent = `${movie.release_date} | Rating: ${movie.vote_average}`;
-
-        //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
-
-        //Add movie overview to p element
         paragraphElement.textContent = `${movie.overview}`;
 
-
-        //Append Movie Poster and Title to their respective containers
+        //Append elements to respective containers
         discoverTextContainer.appendChild(headerElement);
         discoverTextContainer.appendChild(paragraphHeader);
         discoverTextContainer.appendChild(summaryElement);
         discoverTextContainer.appendChild(paragraphElement);
         discoverImgContainer.appendChild(imgElement);
 
-        //Append Movie Poster and Title Containers to their own container
+        //Append containers to movie container
         movieContainer.appendChild(discoverTextContainer);
         movieContainer.appendChild(discoverImgContainer);
 
-        //Append movie container to Discover Flex
+        //Append movie container to div to display on page
         columnFlex.appendChild(movieContainer);
     });
 };
 
-//Get Top Rated
+// ***** Get Top Rated *****
 
+// // Get data from API for Top Rated section
 app.getTopRated = () => {
     const topRatedUrl = new URL(app.apiTopRated)
     fetch(topRatedUrl)
@@ -618,70 +522,57 @@ app.getTopRated = () => {
         })
 }
 
+// Create function to display Top Rated data
 app.displayTopRated = (dataFromUpcomingMovies) => {
+
+    // Get movies from array
     const displayRated = dataFromUpcomingMovies.results.slice(0, 5);
 
-    console.log(upcomingMovies);
+    // console.log(upcomingMovies);
 
-    //Loop through each movie and append it to the DOM
+    // Loop through array
     displayRated.forEach((movie) => {
-        console.log(movie);
-        //Create movie container 
+        // console.log(movie);
+
+        //Create containers
         const movieContainer = document.createElement('div');
-        //Set class to movie container
         movieContainer.classList.add('discoverFlexContainer');
 
-        //Create text container 
         const discoverTextContainer = document.createElement('div');
-        //set class to text container 
         discoverTextContainer.classList.add('discoverTextContainer');
 
-        //Create img container 
         const discoverImgContainer = document.createElement('div');
         discoverImgContainer.classList.add('discoverImgContainer')
 
+        // console.log(movie);
 
-        console.log(movie)
-        //Create img element
+        // Create elements
         const imgElement = document.createElement('img');
-        //Create movie header to store movie title in
         const headerElement = document.createElement('h3');
-        //Create h4 to store in text Container
         const summaryElement = document.createElement('h4');
-        //Create p tag to store in textContainer under header
         const paragraphHeader = document.createElement('p');
-        //Create p tag to store in textContainer 
         const paragraphElement = document.createElement('p');
 
 
-        //add src to img element
+        // Add data to elements
         imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-
-        //add movie title to Header Element
         headerElement.textContent = movie.title
-
-        //add content to p tag 
         paragraphHeader.textContent = `${movie.release_date} | Rating: ${movie.vote_average}`;
-
-        //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
-
-        //Add movie overview to p element
         paragraphElement.textContent = `${movie.overview}`;
 
-
-        //Append Movie Poster and Title to their respective containers
+        //Append elements to respective containers
         discoverTextContainer.appendChild(headerElement);
         discoverTextContainer.appendChild(paragraphHeader);
         discoverTextContainer.appendChild(summaryElement);
         discoverTextContainer.appendChild(paragraphElement);
         discoverImgContainer.appendChild(imgElement);
 
-        //Append Movie Poster and Title Containers to their own container
+        //Append containers to movie container
         movieContainer.appendChild(discoverTextContainer);
         movieContainer.appendChild(discoverImgContainer);
 
-        //Append movie container to Discover Flex
+        //Append movie container to div to display on page
         columnFlex.appendChild(movieContainer);
     });
 };
@@ -729,7 +620,5 @@ app.setUpEventListener = function() {
     app.getGenres(selectedGenre);
     })
 }
-
-
 
 app.init()

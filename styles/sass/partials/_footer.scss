@@ -1,8 +1,25 @@
 footer {
-    background-color: black;
-    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.5rem;
+    background-color: $black;
+    color: $title;
     text-align: center;
-    p:nth-child(2) {
-        margin: 20px 0;
-    }
+        p:nth-child(1),
+        p:nth-child(3)
+        {
+            font-size: 0.75rem;
+        }
+        p:nth-child(2) {
+            margin: 20px 0;
+                a:nth-child(1),
+                a:nth-child(2)
+                {
+                    color: $gold;
+                }
+        }
+        a {
+            color: $background;
+        }
 }

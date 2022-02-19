@@ -26,10 +26,28 @@ h3, h4 {
     text-transform: uppercase;
 }
 
-p {
+p,
+.genreDropDown {
   font-family: $bodyFont;
   font-weight: 300;
   color: $text;
+}
+
+.genreDropDown {
+  display: flex;
+  align-items: center;
+  label {
+    text-shadow: 2px 2px 2px black;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  select {
+    background: white;
+    border: transparent;
+    border-radius: 15px;
+    padding: 3px 5px 0 5px;
+    margin-left:5px;
+  }
 }
 
 .asideFlex {
