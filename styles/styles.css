@@ -635,3 +635,176 @@ footer p:nth-child(2) a:nth-child(2) {
 footer a {
   color: #BF0505;
 }
+
+@media (max-width: 940px) {
+  .mainHeader {
+    font-size: 3rem;
+  }
+
+  .columnFlex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .columnFlex .discoverFlexContainer,
+.columnFlex .popularFlexContainer,
+.columnFlex .genresFlexContainer,
+.columnFlex .searchMovieContainer {
+    margin: 25px 40px;
+    width: 90%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-radius: 15px;
+    background-color: #171717;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  }
+  .columnFlex .discoverFlexContainer .discoverImgContainer,
+.columnFlex .discoverFlexContainer .popularImageContainer,
+.columnFlex .discoverFlexContainer .genresImageContainer,
+.columnFlex .discoverFlexContainer .searchImgContainer,
+.columnFlex .popularFlexContainer .discoverImgContainer,
+.columnFlex .popularFlexContainer .popularImageContainer,
+.columnFlex .popularFlexContainer .genresImageContainer,
+.columnFlex .popularFlexContainer .searchImgContainer,
+.columnFlex .genresFlexContainer .discoverImgContainer,
+.columnFlex .genresFlexContainer .popularImageContainer,
+.columnFlex .genresFlexContainer .genresImageContainer,
+.columnFlex .genresFlexContainer .searchImgContainer,
+.columnFlex .searchMovieContainer .discoverImgContainer,
+.columnFlex .searchMovieContainer .popularImageContainer,
+.columnFlex .searchMovieContainer .genresImageContainer,
+.columnFlex .searchMovieContainer .searchImgContainer {
+    width: 100%;
+    height: 70%;
+  }
+  .columnFlex .discoverFlexContainer .discoverImgContainer img,
+.columnFlex .discoverFlexContainer .popularImageContainer img,
+.columnFlex .discoverFlexContainer .genresImageContainer img,
+.columnFlex .discoverFlexContainer .searchImgContainer img,
+.columnFlex .popularFlexContainer .discoverImgContainer img,
+.columnFlex .popularFlexContainer .popularImageContainer img,
+.columnFlex .popularFlexContainer .genresImageContainer img,
+.columnFlex .popularFlexContainer .searchImgContainer img,
+.columnFlex .genresFlexContainer .discoverImgContainer img,
+.columnFlex .genresFlexContainer .popularImageContainer img,
+.columnFlex .genresFlexContainer .genresImageContainer img,
+.columnFlex .genresFlexContainer .searchImgContainer img,
+.columnFlex .searchMovieContainer .discoverImgContainer img,
+.columnFlex .searchMovieContainer .popularImageContainer img,
+.columnFlex .searchMovieContainer .genresImageContainer img,
+.columnFlex .searchMovieContainer .searchImgContainer img {
+    border-radius: 15px 15px 0 0px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 340px;
+    width: 100%;
+    -o-object-position: center;
+       object-position: center;
+  }
+  .columnFlex .discoverFlexContainer .discoverTextContainer,
+.columnFlex .discoverFlexContainer .popularTextContainer,
+.columnFlex .discoverFlexContainer .genresTextContainer,
+.columnFlex .discoverFlexContainer .searchTextContainer,
+.columnFlex .popularFlexContainer .discoverTextContainer,
+.columnFlex .popularFlexContainer .popularTextContainer,
+.columnFlex .popularFlexContainer .genresTextContainer,
+.columnFlex .popularFlexContainer .searchTextContainer,
+.columnFlex .genresFlexContainer .discoverTextContainer,
+.columnFlex .genresFlexContainer .popularTextContainer,
+.columnFlex .genresFlexContainer .genresTextContainer,
+.columnFlex .genresFlexContainer .searchTextContainer,
+.columnFlex .searchMovieContainer .discoverTextContainer,
+.columnFlex .searchMovieContainer .popularTextContainer,
+.columnFlex .searchMovieContainer .genresTextContainer,
+.columnFlex .searchMovieContainer .searchTextContainer {
+    width: 80%;
+    padding: 15px;
+    height: 30%;
+    position: relative;
+  }
+  .columnFlex .discoverFlexContainer .discoverTextContainer h3,
+.columnFlex .discoverFlexContainer .popularTextContainer h3,
+.columnFlex .discoverFlexContainer .genresTextContainer h3,
+.columnFlex .discoverFlexContainer .searchTextContainer h3,
+.columnFlex .popularFlexContainer .discoverTextContainer h3,
+.columnFlex .popularFlexContainer .popularTextContainer h3,
+.columnFlex .popularFlexContainer .genresTextContainer h3,
+.columnFlex .popularFlexContainer .searchTextContainer h3,
+.columnFlex .genresFlexContainer .discoverTextContainer h3,
+.columnFlex .genresFlexContainer .popularTextContainer h3,
+.columnFlex .genresFlexContainer .genresTextContainer h3,
+.columnFlex .genresFlexContainer .searchTextContainer h3,
+.columnFlex .searchMovieContainer .discoverTextContainer h3,
+.columnFlex .searchMovieContainer .popularTextContainer h3,
+.columnFlex .searchMovieContainer .genresTextContainer h3,
+.columnFlex .searchMovieContainer .searchTextContainer h3 {
+    margin-top: 0;
+  }
+  .columnFlex .discoverFlexContainer .discoverTextContainer h4,
+.columnFlex .discoverFlexContainer .popularTextContainer h4,
+.columnFlex .discoverFlexContainer .genresTextContainer h4,
+.columnFlex .discoverFlexContainer .searchTextContainer h4,
+.columnFlex .popularFlexContainer .discoverTextContainer h4,
+.columnFlex .popularFlexContainer .popularTextContainer h4,
+.columnFlex .popularFlexContainer .genresTextContainer h4,
+.columnFlex .popularFlexContainer .searchTextContainer h4,
+.columnFlex .genresFlexContainer .discoverTextContainer h4,
+.columnFlex .genresFlexContainer .popularTextContainer h4,
+.columnFlex .genresFlexContainer .genresTextContainer h4,
+.columnFlex .genresFlexContainer .searchTextContainer h4,
+.columnFlex .searchMovieContainer .discoverTextContainer h4,
+.columnFlex .searchMovieContainer .popularTextContainer h4,
+.columnFlex .searchMovieContainer .genresTextContainer h4,
+.columnFlex .searchMovieContainer .searchTextContainer h4 {
+    margin-bottom: 5px;
+  }
+  .columnFlex .discoverFlexContainer .discoverTextContainer p,
+.columnFlex .discoverFlexContainer .popularTextContainer p,
+.columnFlex .discoverFlexContainer .genresTextContainer p,
+.columnFlex .discoverFlexContainer .searchTextContainer p,
+.columnFlex .popularFlexContainer .discoverTextContainer p,
+.columnFlex .popularFlexContainer .popularTextContainer p,
+.columnFlex .popularFlexContainer .genresTextContainer p,
+.columnFlex .popularFlexContainer .searchTextContainer p,
+.columnFlex .genresFlexContainer .discoverTextContainer p,
+.columnFlex .genresFlexContainer .popularTextContainer p,
+.columnFlex .genresFlexContainer .genresTextContainer p,
+.columnFlex .genresFlexContainer .searchTextContainer p,
+.columnFlex .searchMovieContainer .discoverTextContainer p,
+.columnFlex .searchMovieContainer .popularTextContainer p,
+.columnFlex .searchMovieContainer .genresTextContainer p,
+.columnFlex .searchMovieContainer .searchTextContainer p {
+    font-size: 0.8rem;
+    color: #808080;
+  }
+
+  .grow {
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .grow:hover {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
