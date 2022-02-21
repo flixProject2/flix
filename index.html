@@ -11,14 +11,14 @@
 <body>
     <header>
         <div class="wrapper">
-            <nav>
+            <nav class="desktopNav">
                 <ul class="navFlex">
                     <li>
                         <h1><a href="index.html"> Flix</a></h1>
                     </li>
                     <li class="inputItem">
                         <form action="#">
-                            <label for="movieSearch"></label>
+                            <label sr-only for="movieSearch"></label>
                             <input type="search" id="movieSearch" name="movieSearch" aria-label="Search for movies" class="searchBar" placeholder="Search a movie...">
                             <button type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -27,7 +27,7 @@
                     </li>
                     <li>
                         <label for="slideOut" class="slideIcon"><i class="fa-solid fa-star" class="starIcon"></i></label>
-                        <input type="checkbox" id="slideOut" name="slideOut" />
+                        <input type="checkbox" id="slideOut" name="slideOut"/>
 
                         <ul class="watchlistSlide">
                             
@@ -40,6 +40,19 @@
                     </li>
                 </ul>
             </nav>
+
+            <nav class="mobileNav">
+                <label for="mobileToggle"><i class="fa fa-bars"></i></label>
+                <input type="checkbox" id="mobileToggle" name="mobileToggle"/>
+
+                <ul class="mobileMenu">
+                    <li><a href="#">Discover</a></span></li>
+                    <li><a href="#">Popular</a></span></li>
+                    <li><a href="#">Upcoming</a></span></li>
+                    <li><a href="#">Genres</a></span></li>
+                    <li><a href="#">Top Rated</a></span></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -47,11 +60,11 @@
         <div class="wrapper mainFlex">
             <aside>
                 <ul class="asideFlex">
-                    <li><span class="discoverLink"><a href="#">Discover</a></span></li>
-                    <li><span class="popularLink"><a href="#">Popular</a></span></li>
-                    <li><span class="upcomingLink"><a href="#">Upcoming</a></span></li>
-                    <li><span class="genresLink"><a href="#">Genres</a></span></li>
-                    <li><span class="topRatedLink"><a href="#">Top Rated</a></span></li>
+                    <li><a href="#">Discover</a></span></li>
+                    <li><a href="#">Popular</a></span></li>
+                    <li><a href="#">Upcoming</a></span></li>
+                    <li><a href="#">Genres</a></span></li>
+                    <li><a href="#">Top Rated</a></span></li>
                 </ul>
             </aside>
             <section class="mainSection">

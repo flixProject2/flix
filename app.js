@@ -17,6 +17,7 @@ const hideDropDown = document.querySelector('.genreDropDown')
 const formElement = document.querySelector('form');
 const columnFlex = document.querySelector('.columnFlex');
 
+
 // ***** INIT to kickoff application *****
 app.init = () => {
     app.getTrending();
@@ -64,7 +65,7 @@ app.init = () => {
             const genresHeading = document.getElementById('mainHeader')
             genresHeading.textContent = 'Genres';
             document.getElementById('movieGenre').selectedIndex = [0];
-            hideDropDown.style.display = "inline";
+            hideDropDown.style.display = "flex";
             app.setUpEventListener();
             app.getGenres();
         }
@@ -92,13 +93,13 @@ app.getTrending = () => {
     //use the URL constructor to create our endpoint and specify the parameters we want to include
     const url = new URL(app.apiURL);
     fetch(url)
-    .then(function (apiResponse) {
-        return apiResponse.json();
-    })
-    .then((jsonResponse) => {
-        app.displayTrending(jsonResponse)
-    })
-    
+        .then(function (apiResponse) {
+            return apiResponse.json();
+        })
+        .then((jsonResponse) => {
+            app.displayTrending(jsonResponse)
+        })
+
 };
 // Create function to display Trending data 
 app.displayTrending = (dataFromTrendingApi) => {
@@ -128,18 +129,18 @@ app.displayTrending = (dataFromTrendingApi) => {
     //Get first three movies in the array
     const trendingFirstThree = dataFromTrendingApi.results.slice(0, 3);
     //Loop through each movie and append info to the DOM
-    trendingFirstThree.forEach( (movie) => {
-        
+    trendingFirstThree.forEach((movie) => {
+
         //Create movie container 
         const movieContainer = document.createElement('div');
         //Set class to movie container
-        movieContainer.classList.add('movieContainer');
-        
+        movieContainer.classList.add('movieContainer', 'grow');
+
         //Create text container 
         const trendingTextContainer = document.createElement('div');
         //set class to text container 
         trendingTextContainer.classList.add('trendingTextContainer');
-        
+
         //Create img container 
         const trendingImgContainer = document.createElement('div');
         trendingImgContainer.classList.add('trendingImgContainer')
@@ -159,16 +160,16 @@ app.displayTrending = (dataFromTrendingApi) => {
                
         //add src to img element
         imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-        
+
         //add movie title to Header Element
         headerElement.textContent = movie.title
-        
+
         //add content to p tag 
-        paragraphHeader.textContent = `${movie.release_date.substring(0,4)} | Rating: ${movie.vote_average}`;
-        
+        paragraphHeader.textContent = `${movie.release_date.substring(0, 4)} | Rating: ${movie.vote_average}`;
+
         //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
-        
+
         //Add movie overview to p element
         paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
                
@@ -178,11 +179,11 @@ app.displayTrending = (dataFromTrendingApi) => {
         trendingTextContainer.appendChild(summaryElement);
         trendingTextContainer.appendChild(paragraphElement);
         trendingImgContainer.appendChild(imgElement);
-        
+
         //Append Movie Poster and Title Containers to their own container
         movieContainer.appendChild(trendingTextContainer);
         movieContainer.appendChild(trendingImgContainer);
-        
+
         //Append movie container to Movie Flex
         movieFlex.appendChild(movieContainer);
     })
@@ -207,16 +208,16 @@ app.displayMovie = (dataFromDiscoverApi) => {
         const movieContainer = document.createElement('div');
         //Set class to movie container
         movieContainer.classList.add('discoverFlexContainer', 'grow');
-        
+
         //Create text container 
         const discoverTextContainer = document.createElement('div');
         //set class to text container 
         discoverTextContainer.classList.add('discoverTextContainer');
-        
+
         //Create img container 
         const discoverImgContainer = document.createElement('div');
         discoverImgContainer.classList.add('discoverImgContainer')
-        
+
         //Create img element
         const imgElement = document.createElement('img');
         //Create movie header to store movie title in
@@ -233,16 +234,16 @@ app.displayMovie = (dataFromDiscoverApi) => {
         
         //add src to img element
         imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-        
+
         //add movie title to Header Element
         headerElement.textContent = movie.title
-        
+
         //add content to p tag 
         paragraphHeader.textContent = `${movie.release_date.substring(0, 4)} | ⭐️ ${movie.vote_average}`;
         
         //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
-        
+
         //Add movie overview to p element
         paragraphElement.textContent = `${movie.overview}`;
 
@@ -261,18 +262,18 @@ app.displayMovie = (dataFromDiscoverApi) => {
         discoverTextContainer.appendChild(paragraphElement);
         discoverTextContainer.appendChild(anchorElement);
         discoverImgContainer.appendChild(imgElement);
-        
+
         //Append Movie Poster and Title Containers to their own container
         movieContainer.appendChild(discoverTextContainer);
         movieContainer.appendChild(discoverImgContainer);
-        
+
         //Append movie container to Discover Flex
         columnFlex.appendChild(movieContainer);
     });
 };
 // ***** Popular Section *****
 // Get data from API for Popular Section
-        app.getPopular = () => {
+app.getPopular = () => {
     // use URL consteuctor to target popular movies as endpoint
     const url = new URL(app.apiPopular);
     fetch(url)
@@ -305,7 +306,7 @@ app.getGenres = (genreId) => {
 app.getSearch = (userQuery) => {
     const searchURL = new URL(app.apiSearch);
     searchURL.search = new URLSearchParams({
-        api_key: app.apiKey, 
+        api_key: app.apiKey,
         query: userQuery,
     })
     fetch(searchURL)
@@ -321,12 +322,12 @@ app.getSearch = (userQuery) => {
 app.getUpcoming = () => {
     const upcomingUrl = new URL(app.apiUpcoming)
     fetch(upcomingUrl)
-    .then((response) => {
-        return response.json();
-    })
-    .then((responseJson) => {
-        app.displayUpcoming(responseJson);
-    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseJson) => {
+            app.displayUpcoming(responseJson);
+        })
 }
 
 app.displayUpcoming = (dataFromUpcomingMovies) => {
@@ -405,7 +406,7 @@ app.getTopRated = () => {
 app.setUpEventListener = function() {
     const selectGenre = document.querySelector('#movieGenre');
 
-    selectGenre.addEventListener('change', function() {
+    selectGenre.addEventListener('change', function () {
         const clearFlex = document.querySelector('.movieFlex')
         clearFlex.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
@@ -415,5 +416,4 @@ app.setUpEventListener = function() {
         app.getGenres(selectedGenre);
     })
 }
-
 app.init();
