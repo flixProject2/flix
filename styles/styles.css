@@ -382,6 +382,72 @@ header .navFlex .inputItem {
   width: 50%;
 }
 
+.mobileNav {
+  display: none;
+}
+
+label[for=mobileToggle] {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+.fa-bars {
+  font-size: 2rem;
+}
+
+input[type=checkbox]:checked + ul.mobileMenu {
+  left: 0;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+ul.mobileMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #171717;
+  border-radius: 0 15px 15px 0;
+  overflow: hidden;
+  height: 80%;
+  width: 25%;
+  position: fixed;
+  top: 5rem;
+  left: -30%;
+  z-index: 10;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+ul.mobileMenu li {
+  margin: 10px;
+}
+ul.mobileMenu a {
+  display: inline-block;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 20px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+ul.mobileMenu a:hover, ul.mobileMenu a:focus {
+  background-color: #BF0505;
+}
+
 main {
   background-color: #BF0505;
 }
@@ -431,17 +497,26 @@ aside .asideFlex li span {
           align-items: center;
 }
 .genreDropDown label {
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 2px 2px 2px #171717;
   text-transform: uppercase;
   font-weight: 400;
 }
 .genreDropDown select {
-  background: white;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 20%;
   border: transparent;
   border-radius: 15px;
-  padding: 0 5px 0;
+  padding: 2px 5px;
   margin-left: 5px;
   font-family: "Roboto", sans-serif;
+  text-align: center;
+  background: #FFFFFF;
+  background-image: url(../images/film-solid.svg);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: 95% center;
 }
 .genreDropDown option {
   font-family: "Roboto", sans-serif;
@@ -630,15 +705,67 @@ footer p:nth-child(2) {
 }
 footer p:nth-child(2) a:nth-child(1),
 footer p:nth-child(2) a:nth-child(2) {
-  color: #FFD809;
+  color: #FFFFFF;
+  text-shadow: 0.5px 0.5px 0 #BF0505;
 }
 footer a {
   color: #BF0505;
 }
 
+@media (max-width: 1200px) {
+  aside .asideFlex {
+    margin-top: 3.2rem;
+  }
+  aside .asideFlex li {
+    font-size: 1.5rem;
+  }
+
+  .columnFlex .discoverFlexContainer .discoverImgContainer,
+.columnFlex .discoverFlexContainer .popularImageContainer,
+.columnFlex .discoverFlexContainer .genresImageContainer,
+.columnFlex .popularFlexContainer .discoverImgContainer,
+.columnFlex .popularFlexContainer .popularImageContainer,
+.columnFlex .popularFlexContainer .genresImageContainer,
+.columnFlex .genresFlexContainer .discoverImgContainer,
+.columnFlex .genresFlexContainer .popularImageContainer,
+.columnFlex .genresFlexContainer .genresImageContainer {
+    width: 25%;
+  }
+  .columnFlex .discoverFlexContainer .discoverTextContainer,
+.columnFlex .discoverFlexContainer .popularTextContainer,
+.columnFlex .discoverFlexContainer .genresTextContainer,
+.columnFlex .popularFlexContainer .discoverTextContainer,
+.columnFlex .popularFlexContainer .popularTextContainer,
+.columnFlex .popularFlexContainer .genresTextContainer,
+.columnFlex .genresFlexContainer .discoverTextContainer,
+.columnFlex .genresFlexContainer .popularTextContainer,
+.columnFlex .genresFlexContainer .genresTextContainer {
+    width: 75%;
+  }
+}
 @media (max-width: 940px) {
+  .desktopNav {
+    position: relative;
+  }
+  .desktopNav .fa-star {
+    position: absolute;
+    top: 2.5rem;
+    right: 7rem;
+  }
+
   .mainHeader {
     font-size: 3rem;
+  }
+
+  aside .asideFlex {
+    margin-top: 2.65rem;
+  }
+  aside .asideFlex li {
+    font-size: 1.3rem;
+  }
+
+  .genreDropDown select {
+    width: 30%;
   }
 
   .columnFlex {
@@ -806,5 +933,233 @@ footer a {
   .grow:hover {
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
+  }
+
+  footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media (max-width: 940px) and (max-width: 768px) {
+  aside {
+    display: none;
+  }
+
+  header .navFlex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  header .navFlex .fa-star {
+    position: absolute;
+    top: 2rem;
+    right: 7rem;
+  }
+  header .navFlex .languageToggle {
+    position: absolute;
+    top: 2.2rem;
+    right: 0;
+  }
+
+  .mobileNav {
+    display: contents;
+  }
+  .mobileNav ul.mobileMenu {
+    width: 30%;
+  }
+
+  .mainHeader {
+    text-align: center;
+  }
+
+  h2 {
+    margin: 35px 0 0 0;
+  }
+
+  .genreDropDown {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+
+  .movieFlex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .movieFlex .movieContainer {
+    margin: 25px 40px;
+    width: 90%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-radius: 15px;
+    background-color: #171717;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  }
+  .movieFlex .movieContainer .trendingImgContainer {
+    width: 100%;
+    height: 70%;
+  }
+  .movieFlex .movieContainer .trendingImgContainer img {
+    border-radius: 15px 15px 0 0px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 340px;
+    width: 100%;
+    -o-object-position: center;
+       object-position: center;
+  }
+  .movieFlex .movieContainer .trendingTextContainer {
+    width: 80%;
+    padding: 15px;
+    height: 30%;
+    position: relative;
+  }
+  .movieFlex .movieContainer .trendingTextContainer h3 {
+    margin-top: 0;
+  }
+  .movieFlex .movieContainer .trendingTextContainer h4 {
+    margin-bottom: 5px;
+  }
+  .movieFlex .movieContainer .trendingTextContainer p {
+    font-size: 0.8rem;
+    color: #808080;
+  }
+
+  .grow {
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .grow:hover {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+@media (max-width: 568px) {
+  header .desktopNav {
+    position: relative;
+  }
+  header .desktopNav .fa-star {
+    position: absolute;
+    right: 5.5rem;
+  }
+  header label[for=mobileToggle] {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .mobileNav ul.mobileMenu {
+    width: 40%;
+    left: -40%;
+  }
+
+  .genreDropDown select {
+    width: 35%;
+  }
+}
+@media (max-width: 480px) {
+  header .desktopNav {
+    position: relative;
+  }
+  header .desktopNav .navFlex .inputItem {
+    width: 60%;
+  }
+  header .desktopNav .navFlex .fa-star {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+  header .desktopNav .navFlex .languageToggle {
+    position: absolute;
+    top: 3.2rem;
+  }
+
+  .mobileNav ul.mobileMenu {
+    width: 45%;
+    left: -45%;
+  }
+
+  .genreDropDown select {
+    width: 40%;
+  }
+
+  footer p:nth-child(2) {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 320px) {
+  header .desktopNav {
+    position: relative;
+  }
+  header .desktopNav .navFlex h1 {
+    font-size: 2.5rem;
+  }
+  header .desktopNav .navFlex .inputItem {
+    width: 80%;
+    text-align: center;
+  }
+  header .desktopNav .navFlex .fa-star {
+    position: absolute;
+    top: 0.7rem;
+    right: 0;
+  }
+  header .desktopNav .navFlex .languageToggle {
+    position: absolute;
+    top: 2.5rem;
+    right: -0.5rem;
+    font-size: 0.8rem;
+  }
+  header label .fa-bars {
+    font-size: 1.5rem;
+  }
+
+  .mobileNav ul.mobileMenu {
+    width: 65%;
+    left: -65%;
+  }
+
+  .genreDropDown {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .genreDropDown select {
+    width: 75%;
+    margin-top: 1rem;
+  }
+
+  .movieFlex .movieContainer {
+    margin: 25px 20px;
+    width: 80%;
   }
 }

@@ -1,69 +1,128 @@
 header {
     background-color: $background;
-    .navFlex {
-        display: flex; 
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        li {
-            list-style: none;
-            h1 {
-                a {
-                text-decoration: none;
-                color: $title;
-              }
-            }
-            input {
-                width: 94%;
-                background-color: #f5f5f5;
-                border: none;
-                outline: none;
-                border-radius: 1rem;
-                height: 2rem;
-                padding: 0 2rem 0 1rem;
-            }
-            button {
-                color: $black;
-                background-color: transparent;
-                border: none;
-                margin-left: -2.4rem;
-            }
-            button:hover {
-            cursor: pointer;
-            }
-            button[type=submit] {
-                position: relative;
-                i {
+        .navFlex {
+            display: flex; 
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            li {
+                list-style: none;
+                h1 {
+                    a {
+                    text-decoration: none;
+                    color: $title;
+                }
+                }
+                input {
+                    width: 94%;
+                    background-color: #f5f5f5;
+                    border: none;
+                    outline: none;
+                    border-radius: 1rem;
+                    height: 2rem;
+                    padding: 0 2rem 0 1rem;
+                }
+                button {
                     color: $black;
+                    background-color: transparent;
+                    border: none;
+                    margin-left: -2.4rem;
+                }
+                button:hover {
+                cursor: pointer;
+                }
+                button[type=submit] {
+                    position: relative;
+                    i {
+                        color: $black;
+                    }
+                }
+                .fa-star {
+                    color: $gold;
+                    font-size: 1.2rem;
+                }
+                .fa-star:hover {
+                    cursor: pointer;
+                }
+                ul.watchlistSlide {
+                    background: $black;
+                    height: 80%;
+                    width: 25%;
+                    position: fixed;
+                    top: 5rem;
+                    right: -30%;
+                    z-index: 10;
+                    transition: all 0.5s;
+                    border-radius: 15px 0 0 15px;
+                }
+                input[type="checkbox"]:checked + ul.watchlistSlide {
+                    right: 0;
+                }
+                input[type="checkbox"] {
+                    display: none;
                 }
             }
-            .fa-star {
-                color: $gold;
-                font-size: 1.2rem;
+            .inputItem {
+                width: 50%;
             }
-            .fa-star:hover {
-                cursor: pointer;
-            }
-            ul.watchlistSlide {
-                background: $black;
-                height: 80%;
-                width: 25%;
-                position: fixed;
-                top: 5rem;
-                right: -30%;
-                z-index: 10;
-                transition: all 0.5s;
-                border-radius: 15px 0 0 15px;
-            }
-            input[type="checkbox"]:checked + ul.watchlistSlide {
-                right: 0;
-            }
-            input[type="checkbox"] {
-                display: none;
-            }
-        }
-        .inputItem {
-            width: 50%;
         }
     }
-}
+
+    .mobileNav {
+        display: none;
+    }
+
+    label[for="mobileToggle"] {
+        position: fixed;
+        top: 1.5rem;
+        left: 1.5rem;
+        color: $title;
+        font-size: 1rem;
+    }
+
+    .fa-bars {
+        font-size: 2rem;
+    }
+
+    input[type="checkbox"]:checked + ul.mobileMenu {
+        left: 0;
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    ul.mobileMenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: $black;
+        border-radius: 0 15px 15px 0;
+        overflow: hidden;
+        height: 80%;
+        width: 25%;
+        position: fixed;
+        top: 5rem;
+        left: -30%;
+        z-index: 10;
+        transition: all 0.5s;
+            li {
+                margin: 10px
+            }
+            a {
+                // border-bottom: 1px solid $title;
+                display: inline-block;
+                font-family: $headingFont;
+                font-size: 1.5rem;
+                width: 100%;
+                padding: 20px;
+                transition: all 0.5s;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: $title;
+                &:hover,
+                &:focus {
+                    background-color: $background;
+                }
+            }   
+    }  
