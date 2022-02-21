@@ -20,37 +20,30 @@
                         <form action="#">
                             <label sr-only for="movieSearch"></label>
                             <input type="search" id="movieSearch" name="movieSearch" aria-label="Search for movies" class="searchBar" placeholder="Search a movie...">
-                            <button type="submit">
+                            <button class="searchButton" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </form>
                     </li>
-                    <li>
-                        <label for="slideOut" class="slideIcon"><i class="fa-solid fa-star" class="starIcon"></i></label>
-                        <input type="checkbox" id="slideOut" name="slideOut"/>
 
-                        <ul class="watchlistSlide">
-                            
-                        </ul>
-                    </li>
-                    <li>
-                        <button class="languageToggle">
-                            ENG / FR
+                    <li class="infoPopUp">
+                        <button class="infoIcon">
+                            <i class="fa-solid fa-circle-info"></i>
                         </button>
                     </li>
                 </ul>
             </nav>
 
             <nav class="mobileNav">
-                <label for="mobileToggle"><i class="fa fa-bars"></i></label>
+                <label for="mobileToggle"><i tabindex="1" class="fa fa-bars"></i></label>
                 <input type="checkbox" id="mobileToggle" name="mobileToggle"/>
 
                 <ul class="mobileMenu">
-                    <li><a href="#">Discover</a></span></li>
-                    <li><a href="#">Popular</a></span></li>
-                    <li><a href="#">Upcoming</a></span></li>
-                    <li><a href="#">Genres</a></span></li>
-                    <li><a href="#">Top Rated</a></span></li>
+                    <li><span><a href="#">Discover</a></span></li>
+                    <li><span><a href="#">Popular</a></span></li>
+                    <li><span><a href="#">Upcoming</a></span></li>
+                    <li><span><a href="#">Genres</a></span></li>
+                    <li><span><a href="#">Top Rated</a></span></li>
                 </ul>
             </nav>
         </div>
@@ -60,11 +53,11 @@
         <div class="wrapper mainFlex">
             <aside>
                 <ul class="asideFlex">
-                    <li><a href="#">Discover</a></span></li>
-                    <li><a href="#">Popular</a></span></li>
-                    <li><a href="#">Upcoming</a></span></li>
-                    <li><a href="#">Genres</a></span></li>
-                    <li><a href="#">Top Rated</a></span></li>
+                    <li><span><a href="#">Discover</a></span></li>
+                    <li><span><a href="#">Popular</a></span></li>
+                    <li><span><a href="#">Upcoming</a></span></li>
+                    <li><span><a href="#">Genres</a></span></li>
+                    <li><span><a href="#">Top Rated</a></span></li>
                 </ul>
             </aside>
             <section class="mainSection">
@@ -123,9 +116,9 @@
         </div>
     </main>
     <footer>
-        <p>Powered by <a>MovieDB</a></p>
-        <p>Made by <a>Mackenzie McClemont</a> & <a>Ryan Fulford</a></p>
-        <p>Copyright <a>Juno College of Technology</a></p>
+        <p>Powered by <a href="https://www.themoviedb.org/">TMDB</a></p>
+        <p>Made by <a href="https://www.linkedin.com/in/mackenziemcclemont/">Mackenzie McClemont</a> & <a href="https://ryanfulford.tech/">Ryan Fulford</a></p>
+        <p>Copyright <a href="https://junocollege.com/">Juno College of Technology</a></p>
     </footer>
     <script src="app.js"></script>
 </body>

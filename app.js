@@ -134,7 +134,7 @@ app.displayTrending = (dataFromTrendingApi) => {
         //Create movie container 
         const movieContainer = document.createElement('div');
         //Set class to movie container
-        movieContainer.classList.add('movieContainer', 'grow');
+        movieContainer.classList.add('movieContainer');
 
         //Create text container 
         const trendingTextContainer = document.createElement('div');
@@ -171,7 +171,7 @@ app.displayTrending = (dataFromTrendingApi) => {
         summaryElement.textContent = `Summary`;
 
         //Add movie overview to p element
-        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
+        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}`;
                
         //Append Movie Poster and Title to their respective containers
         trendingTextContainer.appendChild(headerElement);
@@ -416,4 +416,23 @@ app.setUpEventListener = function() {
         app.getGenres(selectedGenre);
     })
 }
+
+const menu = document.querySelector('.mobileMenu');
+const menuItems = document.querySelectorAll('.menuItem');
+const mobileButton = document.querySelector('mobileButton');
+const openIcon = document.querySelector('openIcon');
+const closeIcon = document.querySelector('closeIcon');
+
+function toggleNav() {
+    if (mobileMenu.classList.contains('showMenu')) {
+        menu.classList.remove('showMenu');
+        closeIcon.style.display = 'none';
+        openIcon.style.display = 'block';
+    } else {
+        menu.classList.add('showMenu');
+        closeIcon.style.display = 'block';
+        openIcon.style.display = 'none';
+    }
+}
+
 app.init();
