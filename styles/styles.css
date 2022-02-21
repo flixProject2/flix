@@ -606,6 +606,89 @@ aside .asideFlex li span {
   margin-bottom: 10px;
 }
 
+.carouselWrapper {
+  position: relative;
+}
+
+.carouselCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  border-radius: 15px;
+  height: 600px;
+  display: none;
+}
+.carouselCard .carouselTextContainerOne,
+.carouselCard .carouselTextContainerTwo,
+.carouselCard .carouselTextContainerThree {
+  width: 45%;
+}
+.carouselCard .carouselImgContainerOne,
+.carouselCard .carouselImgContainerTwo,
+.carouselCard .carouselImgContainerThree {
+  width: 55%;
+}
+.carouselCard .carouselImgContainerOne img,
+.carouselCard .carouselImgContainerTwo img,
+.carouselCard .carouselImgContainerThree img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.linkButton {
+  display: inline-block;
+  background: #171717;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  border: 2px solid #BF0505;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 25px;
+  margin-top: 20px;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+}
+
+.linkButton:hover {
+  background: #BF0505;
+}
+
+.carouselCardSelected {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.carouselNav {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.carouselNav .carouselButton {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.carouselButtonSelected {
+  background-color: white;
+}
+
 footer {
   display: -webkit-box;
   display: -ms-flexbox;
