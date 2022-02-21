@@ -22,7 +22,7 @@ header {
                     height: 2rem;
                     padding: 0 2rem 0 1rem;
                 }
-                button {
+                .searchButton {
                     color: $black;
                     background-color: transparent;
                     border: none;
@@ -37,31 +37,22 @@ header {
                         color: $black;
                     }
                 }
-                .fa-star {
-                    color: $gold;
-                    font-size: 1.2rem;
+            }
+            .infoPopUp {
+                button {
+                    border: 2px solid $black;
+                    border-radius: 15px;
+                    padding: 9px 10px 5px;
+                    color: $title;
+                    background: none;
                 }
-                .fa-star:hover {
-                    cursor: pointer;
-                }
-                ul.watchlistSlide {
-                    background: $black;
-                    height: 80%;
-                    width: 25%;
-                    position: fixed;
-                    top: 5rem;
-                    right: -30%;
-                    z-index: 10;
-                    transition: all 0.5s;
-                    border-radius: 15px 0 0 15px;
-                }
-                input[type="checkbox"]:checked + ul.watchlistSlide {
-                    right: 0;
-                }
-                input[type="checkbox"] {
-                    display: none;
+                button:hover,
+                button:focus {
+                    background-color: $black;
+                    color: $title;
                 }
             }
+            
             .inputItem {
                 width: 50%;
             }
@@ -71,7 +62,7 @@ header {
     .mobileNav {
         display: none;
     }
-
+    
     label[for="mobileToggle"] {
         position: fixed;
         top: 1.5rem;

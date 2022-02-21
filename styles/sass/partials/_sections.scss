@@ -16,13 +16,16 @@ aside {
         display: flex; 
         flex-direction: column;
         margin-top: 3rem;
-        border-right: 1px solid black;
         li {
             list-style: none;
             margin-bottom: 60px;
             span {
-                font-size: 1.5rem;
+                font-size: 1.7rem;
                 cursor: pointer;
+                a:hover,
+                a:focus {
+                    text-shadow: 6px 6px 4px $black;
+                }
             }
         }
     }
@@ -73,7 +76,7 @@ aside {
         .trendingImgContainer {
             width: 100%;
             img {
-                border-radius: 15px 15px 0 0 ;
+                border-radius: 15px 15px 0 0;
             }
         }
         .trendingTextContainer {
@@ -96,7 +99,8 @@ aside {
     flex-direction: column;
     .discoverFlexContainer,
     .popularFlexContainer,
-    .genresFlexContainer {
+    .genresFlexContainer,
+    .searchMovieContainer {
         margin: 25px 40px;
         width: 90%;
         flex-wrap: wrap;
@@ -108,7 +112,8 @@ aside {
         background-color: $black;
         .discoverImgContainer,
         .popularImageContainer,
-        .genresImageContainer {
+        .genresImageContainer,
+        .searchImgContainer {
             width: 20%;
             img {
                 border-radius: 15px 0 0 15px;
@@ -116,38 +121,10 @@ aside {
         }
         .discoverTextContainer,
         .popularTextContainer,
-        .genresTextContainer {
-            width: 80%;
-            padding: 15px;
-        }
-    }
-}
-
-.searchFlex {
-    display: flex; 
-    flex-direction: column;
-    .searchMovieContainer {
-        margin: 25px 40px;
-        width: 90%;
-        flex-wrap: wrap;
-        display: flex;
-        flex-direction: row-reverse;
-        box-sizing: border-box;
-        justify-content: flex-start;
-        border-radius: 15px;
-        background-color: black;
-        .searchImgContainer {
-            width: 20%;
-        }
+        .genresTextContainer,
         .searchTextContainer {
             width: 80%;
             padding: 15px;
-            h3 {
-                font-size: 1rem;
-            }
-            h4 {
-                margin-bottom: 10px;
-            }
         }
     }
 }
@@ -194,7 +171,8 @@ aside {
     transition: 0.2s ease-in;
 }
 
-.linkButton:hover {
+.linkButton:hover,
+.linkButton:focus {
     background: $background
 }
 
@@ -220,3 +198,31 @@ aside {
 .carouselButtonSelected {
     background-color: rgba(255, 255, 255)
 }
+// .columnFlex {
+//     display: flex; 
+//     flex-direction: column;
+//     .searchMovieContainer {
+//         margin: 25px 40px;
+//         width: 90%;
+//         flex-wrap: wrap;
+//         display: flex;
+//         flex-direction: row-reverse;
+//         box-sizing: border-box;
+//         justify-content: flex-start;
+//         border-radius: 15px;
+//         background-color: black;
+//         .searchImgContainer {
+//             width: 20%;
+//         }
+//         .searchTextContainer {
+//             width: 80%;
+//             padding: 15px;
+//             h3 {
+//                 font-size: 1rem;
+//             }
+//             h4 {
+//                 margin-bottom: 10px;
+//             }
+//         }
+//     }
+// }

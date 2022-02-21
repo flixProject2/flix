@@ -338,7 +338,7 @@ header .navFlex li input {
   height: 2rem;
   padding: 0 2rem 0 1rem;
 }
-header .navFlex li button {
+header .navFlex li .searchButton {
   color: #171717;
   background-color: transparent;
   border: none;
@@ -353,30 +353,17 @@ header .navFlex li button[type=submit] {
 header .navFlex li button[type=submit] i {
   color: #171717;
 }
-header .navFlex li .fa-star {
-  color: #FFD809;
-  font-size: 1.2rem;
+header .navFlex .infoPopUp button {
+  border: 2px solid #171717;
+  border-radius: 15px;
+  padding: 9px 10px 5px;
+  color: #FFFFFF;
+  background: none;
 }
-header .navFlex li .fa-star:hover {
-  cursor: pointer;
-}
-header .navFlex li ul.watchlistSlide {
-  background: #171717;
-  height: 80%;
-  width: 25%;
-  position: fixed;
-  top: 5rem;
-  right: -30%;
-  z-index: 10;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  border-radius: 15px 0 0 15px;
-}
-header .navFlex li input[type=checkbox]:checked + ul.watchlistSlide {
-  right: 0;
-}
-header .navFlex li input[type=checkbox] {
-  display: none;
+header .navFlex .infoPopUp button:hover,
+header .navFlex .infoPopUp button:focus {
+  background-color: #171717;
+  color: #FFFFFF;
 }
 header .navFlex .inputItem {
   width: 50%;
@@ -477,15 +464,18 @@ aside .asideFlex {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 3rem;
-  border-right: 1px solid black;
 }
 aside .asideFlex li {
   list-style: none;
   margin-bottom: 60px;
 }
 aside .asideFlex li span {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   cursor: pointer;
+}
+aside .asideFlex li span a:hover,
+aside .asideFlex li span a:focus {
+  text-shadow: 6px 6px 4px #171717;
 }
 
 .genreDropDown {
@@ -583,7 +573,8 @@ aside .asideFlex li span {
 }
 .columnFlex .discoverFlexContainer,
 .columnFlex .popularFlexContainer,
-.columnFlex .genresFlexContainer {
+.columnFlex .genresFlexContainer,
+.columnFlex .searchMovieContainer {
   margin: 25px 40px;
   width: 90%;
   -ms-flex-wrap: wrap;
@@ -606,79 +597,57 @@ aside .asideFlex li span {
 .columnFlex .discoverFlexContainer .discoverImgContainer,
 .columnFlex .discoverFlexContainer .popularImageContainer,
 .columnFlex .discoverFlexContainer .genresImageContainer,
+.columnFlex .discoverFlexContainer .searchImgContainer,
 .columnFlex .popularFlexContainer .discoverImgContainer,
 .columnFlex .popularFlexContainer .popularImageContainer,
 .columnFlex .popularFlexContainer .genresImageContainer,
+.columnFlex .popularFlexContainer .searchImgContainer,
 .columnFlex .genresFlexContainer .discoverImgContainer,
 .columnFlex .genresFlexContainer .popularImageContainer,
-.columnFlex .genresFlexContainer .genresImageContainer {
+.columnFlex .genresFlexContainer .genresImageContainer,
+.columnFlex .genresFlexContainer .searchImgContainer,
+.columnFlex .searchMovieContainer .discoverImgContainer,
+.columnFlex .searchMovieContainer .popularImageContainer,
+.columnFlex .searchMovieContainer .genresImageContainer,
+.columnFlex .searchMovieContainer .searchImgContainer {
   width: 20%;
 }
 .columnFlex .discoverFlexContainer .discoverImgContainer img,
 .columnFlex .discoverFlexContainer .popularImageContainer img,
 .columnFlex .discoverFlexContainer .genresImageContainer img,
+.columnFlex .discoverFlexContainer .searchImgContainer img,
 .columnFlex .popularFlexContainer .discoverImgContainer img,
 .columnFlex .popularFlexContainer .popularImageContainer img,
 .columnFlex .popularFlexContainer .genresImageContainer img,
+.columnFlex .popularFlexContainer .searchImgContainer img,
 .columnFlex .genresFlexContainer .discoverImgContainer img,
 .columnFlex .genresFlexContainer .popularImageContainer img,
-.columnFlex .genresFlexContainer .genresImageContainer img {
+.columnFlex .genresFlexContainer .genresImageContainer img,
+.columnFlex .genresFlexContainer .searchImgContainer img,
+.columnFlex .searchMovieContainer .discoverImgContainer img,
+.columnFlex .searchMovieContainer .popularImageContainer img,
+.columnFlex .searchMovieContainer .genresImageContainer img,
+.columnFlex .searchMovieContainer .searchImgContainer img {
   border-radius: 15px 0 0 15px;
 }
 .columnFlex .discoverFlexContainer .discoverTextContainer,
 .columnFlex .discoverFlexContainer .popularTextContainer,
 .columnFlex .discoverFlexContainer .genresTextContainer,
+.columnFlex .discoverFlexContainer .searchTextContainer,
 .columnFlex .popularFlexContainer .discoverTextContainer,
 .columnFlex .popularFlexContainer .popularTextContainer,
 .columnFlex .popularFlexContainer .genresTextContainer,
+.columnFlex .popularFlexContainer .searchTextContainer,
 .columnFlex .genresFlexContainer .discoverTextContainer,
 .columnFlex .genresFlexContainer .popularTextContainer,
-.columnFlex .genresFlexContainer .genresTextContainer {
+.columnFlex .genresFlexContainer .genresTextContainer,
+.columnFlex .genresFlexContainer .searchTextContainer,
+.columnFlex .searchMovieContainer .discoverTextContainer,
+.columnFlex .searchMovieContainer .popularTextContainer,
+.columnFlex .searchMovieContainer .genresTextContainer,
+.columnFlex .searchMovieContainer .searchTextContainer {
   width: 80%;
   padding: 15px;
-}
-
-.searchFlex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.searchFlex .searchMovieContainer {
-  margin: 25px 40px;
-  width: 90%;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  border-radius: 15px;
-  background-color: black;
-}
-.searchFlex .searchMovieContainer .searchImgContainer {
-  width: 20%;
-}
-.searchFlex .searchMovieContainer .searchTextContainer {
-  width: 80%;
-  padding: 15px;
-}
-.searchFlex .searchMovieContainer .searchTextContainer h3 {
-  font-size: 1rem;
-}
-.searchFlex .searchMovieContainer .searchTextContainer h4 {
-  margin-bottom: 10px;
 }
 
 .carouselWrapper {
@@ -733,7 +702,8 @@ aside .asideFlex li span {
   transition: 0.2s ease-in;
 }
 
-.linkButton:hover {
+.linkButton:hover,
+.linkButton:focus {
   background: #BF0505;
 }
 
@@ -793,6 +763,10 @@ footer p:nth-child(2) a:nth-child(2) {
 }
 footer a {
   color: #BF0505;
+  text-decoration: none;
+}
+footer a:hover, footer a:focus {
+  border-bottom: 2px solid #E8E8E8;
 }
 
 @media (max-width: 1200px) {
@@ -827,15 +801,6 @@ footer a {
   }
 }
 @media (max-width: 940px) {
-  .desktopNav {
-    position: relative;
-  }
-  .desktopNav .fa-star {
-    position: absolute;
-    top: 2.5rem;
-    right: 7rem;
-  }
-
   .mainHeader {
     font-size: 3rem;
   }
@@ -1039,15 +1004,21 @@ footer a {
         -ms-flex-align: center;
             align-items: center;
   }
-  header .navFlex .fa-star {
-    position: absolute;
-    top: 2rem;
-    right: 7rem;
+  header .navFlex .inputItem > form:nth-child(1) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  header .navFlex .languageToggle {
+  header .navFlex .infoPopUp button {
+    padding: 8px 10px 4px;
+  }
+  header .navFlex .infoIcon {
     position: absolute;
-    top: 2.2rem;
-    right: 0;
+    top: 1.5rem;
+    right: 1.5rem;
   }
 
   .mobileNav {
@@ -1136,24 +1107,18 @@ footer a {
     font-size: 0.8rem;
     color: #808080;
   }
-
-  .grow {
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .grow:hover {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-  }
 }
 @media (max-width: 568px) {
   header .desktopNav {
     position: relative;
   }
-  header .desktopNav .fa-star {
+  header .desktopNav .infoPopUp button {
+    padding: 7px 10px 4px;
+  }
+  header .desktopNav .infoIcon {
     position: absolute;
-    right: 5.5rem;
+    top: 0.55rem;
+    right: -0.5rem;
   }
   header label[for=mobileToggle] {
     top: 0.5rem;
@@ -1176,14 +1141,9 @@ footer a {
   header .desktopNav .navFlex .inputItem {
     width: 60%;
   }
-  header .desktopNav .navFlex .fa-star {
+  header .desktopNav .navFlex .infoIcon {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-  }
-  header .desktopNav .navFlex .languageToggle {
-    position: absolute;
-    top: 3.2rem;
+    top: 0.55rem;
   }
 
   .mobileNav ul.mobileMenu {
@@ -1210,16 +1170,13 @@ footer a {
     width: 80%;
     text-align: center;
   }
-  header .desktopNav .navFlex .fa-star {
-    position: absolute;
-    top: 0.7rem;
-    right: 0;
+  header .desktopNav .navFlex .infoPopUp button {
+    border-radius: 10px;
   }
-  header .desktopNav .navFlex .languageToggle {
+  header .desktopNav .navFlex .infoIcon {
     position: absolute;
-    top: 2.5rem;
-    right: -0.5rem;
-    font-size: 0.8rem;
+    top: 0.53rem;
+    font-size: 0.6rem;
   }
   header label .fa-bars {
     font-size: 1.5rem;

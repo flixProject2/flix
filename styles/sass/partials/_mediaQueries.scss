@@ -30,14 +30,14 @@
 
 // ***** 940px *****
 @media (max-width: 940px) {
-    .desktopNav {
-        position: relative;
-        .fa-star {
-            position: absolute;
-            top: 2.5rem;
-            right: 7rem;
-        }
-    }
+    // .desktopNav {
+    //     position: relative;
+    //     .fa-star {
+    //         position: absolute;
+    //         top: 2.5rem;
+    //         right: 7rem;
+    //     }
+    // }
 
 
     .mainHeader {
@@ -131,15 +131,19 @@
             .navFlex {
                 flex-direction: column;
                 align-items: center;
-                .fa-star {
-                    position: absolute;
-                    top: 2rem;
-                    right: 7rem;
+                .inputItem > form:nth-child(1) {
+                    display: flex;
+                    justify-content: center;
                 }
-                .languageToggle {
+                .infoPopUp {
+                button {
+                    padding: 8px 10px 4px;
+                }
+            }
+                .infoIcon {
                     position: absolute;
-                    top: 2.2rem;
-                    right: 0;
+                    top: 1.5rem;
+                    right: 1.5rem;
                 }
             }
     }
@@ -209,12 +213,6 @@
             }
         }
     }
-    .grow { 
-        transition: all .2s ease-in-out; 
-    }
-    .grow:hover { 
-        transform: scale(1.1); 
-    }
   } 
 }
 
@@ -223,9 +221,15 @@
     header {
         .desktopNav {
             position: relative;
-            .fa-star {
+            .infoPopUp {
+                button {
+                    padding: 7px 10px 4px;
+                }
+            }
+            .infoIcon {
                 position: absolute;
-                right: 5.5rem;
+                top: 0.55rem;
+                right: -0.5rem;
             }
         }
         label[for="mobileToggle"] {
@@ -253,14 +257,9 @@
                 .inputItem {
                     width: 60%;
                 }
-                .fa-star {
+                .infoIcon {
                     position: absolute;
-                    top: 1.5rem;
-                    right: 1.5rem;
-                }
-                .languageToggle {
-                    position: absolute;
-                    top: 3.2rem;
+                    top: 0.55rem;
                 }
             }
         }
@@ -295,16 +294,15 @@
                     width: 80%;
                     text-align: center;
                 }
-                .fa-star {
-                    position: absolute;
-                    top: 0.7rem;
-                    right: 0;
+                .infoPopUp {
+                    button {
+                        border-radius: 10px;
+                    }
                 }
-                .languageToggle {
+                .infoIcon {
                     position: absolute;
-                    top: 2.5rem;
-                    right: -0.5rem;
-                    font-size: 0.8rem;
+                    top: 0.53rem;
+                    font-size: 0.6rem;
                 }
             }
         }
