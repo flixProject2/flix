@@ -1,6 +1,24 @@
 // ***** 1200px *****
 
 @media (max-width: 1200px) {
+    header {
+        .navFlex {
+            .infoPopUp {
+                .modal {
+                    .modalContent {
+                        margin: 2% auto;
+                        line-height: 1.5rem;
+                        bottom: 1rem;
+                        .closeModal {
+                            bottom: 0;
+                            left: 46rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     aside {
         .asideFlex {
             margin-top: 3.2rem;
@@ -30,16 +48,22 @@
 
 // ***** 940px *****
 @media (max-width: 940px) {
-    // .desktopNav {
-    //     position: relative;
-    //     .fa-star {
-    //         position: absolute;
-    //         top: 2.5rem;
-    //         right: 7rem;
-    //     }
-    // }
 
-
+    header {
+        .navFlex {
+            .infoPopUp {
+                .modal {
+                    .modalContent {
+                        .closeModal {
+                            bottom: 0;
+                            left: 35.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     .mainHeader {
         font-size: 3rem;
     }
@@ -136,16 +160,25 @@
                     justify-content: center;
                 }
                 .infoPopUp {
+                    position: relative;
+                    left: 16.5rem;
+                    bottom: 7rem;
                 button {
                     padding: 8px 10px 4px;
                 }
-            }
-                .infoIcon {
-                    position: absolute;
-                    top: 1.5rem;
-                    right: 1.5rem;
+                .modal {
+                    .modalContent {
+                        margin: 3% auto;
+                        line-height: 1.5rem;
+                        padding: 0.5rem;
+                        font-size: 0.9rem;
+                        .closeModal {
+                            left: 29rem;
+                        }
+                    }
                 }
             }
+        }
     }
 
     .mobileNav {
@@ -222,8 +255,22 @@
         .desktopNav {
             position: relative;
             .infoPopUp {
+                position: relative;
+                left: 12.5rem;
+                bottom: 8.1rem;
                 button {
                     padding: 7px 10px 4px;
+                }
+                .modal {
+                    left: 1.35rem;
+                    .modalContent {
+                        margin: 4% auto;
+                        line-height: 1.2rem;
+                        font-size: 0.8rem;
+                        .closeModal {
+                            left: 21rem;
+                        }
+                    }
                 }
             }
             .infoIcon {
@@ -257,9 +304,19 @@
                 .inputItem {
                     width: 60%;
                 }
-                .infoIcon {
-                    position: absolute;
-                    top: 0.55rem;
+                .infoPopUp {
+                    left: 10rem;
+                    bottom: 8rem;
+                    .modal {
+                        left: 1.1rem;
+                        .modalContent {
+                            margin: 5% auto;
+                            line-height: 1rem;
+                            .closeModal {
+                                left: 17.5rem;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -295,8 +352,25 @@
                     text-align: center;
                 }
                 .infoPopUp {
+                    left: 6.5rem;
+                    bottom: 6.4rem;
+                    font-size: 0.8rem;
                     button {
                         border-radius: 10px;
+                    }
+                    .modal {
+                        top: 4rem;
+                        left: 0.75rem;
+                        .modalContent {
+                            font-size: 0.7rem;
+                            margin: 7% auto;
+                            line-height: 0.83rem;
+                            .closeModal {
+                                top: 0.3rem;
+                                left: 11rem;
+                                font-size: 1.2rem;
+                            }
+                        }
                     }
                 }
                 .infoIcon {

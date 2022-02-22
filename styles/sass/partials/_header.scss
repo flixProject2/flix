@@ -51,8 +51,56 @@ header {
                     background-color: $black;
                     color: $title;
                 }
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 1;
+                    top: 6rem;
+                    left: 2rem;
+                    right: 2rem;
+                    bottom: 1rem;
+                    width: 91%;
+                    max-height: 100%;
+                    background-color: $text;
+                    border-radius: 20px;
+                    margin: auto;
+                    .modalContent {
+                        background-color: $text;
+                        margin: 6% auto;
+                        padding: 1rem;
+                        border-radius: 15px;
+                        width: 80%;
+                        line-height: 2rem;
+                        letter-spacing: 1px;
+                        position: relative;
+                        bottom: 3rem;
+                        .closeModal {
+                            color: $black;
+                            position: relative;
+                            bottom: 1.5rem;
+                            left: 56rem;
+                            font-family: $bodyFont;
+                            font-size: 1.5rem;
+                            font-weight: bold;
+                            &:hover,
+                            &:focus {
+                                color: $background;
+                                text-decoration: none;
+                                cursor: pointer;
+                            }
+                        }
+                        p {
+                            color: $black;
+                            font-weight: 400;
+                            text-shadow: 0.5px 0.5px 0.5px darkgray;
+                            span {
+                                text-transform: uppercase;
+                                color: $background;
+                            }
+                        }
+                    }
+                }
             }
-            
             .inputItem {
                 width: 50%;
             }

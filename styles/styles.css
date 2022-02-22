@@ -365,6 +365,54 @@ header .navFlex .infoPopUp button:focus {
   background-color: #171717;
   color: #FFFFFF;
 }
+header .navFlex .infoPopUp .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 6rem;
+  left: 2rem;
+  right: 2rem;
+  bottom: 1rem;
+  width: 91%;
+  max-height: 100%;
+  background-color: #E8E8E8;
+  border-radius: 20px;
+  margin: auto;
+}
+header .navFlex .infoPopUp .modal .modalContent {
+  background-color: #E8E8E8;
+  margin: 6% auto;
+  padding: 1rem;
+  border-radius: 15px;
+  width: 80%;
+  line-height: 2rem;
+  letter-spacing: 1px;
+  position: relative;
+  bottom: 3rem;
+}
+header .navFlex .infoPopUp .modal .modalContent .closeModal {
+  color: #171717;
+  position: relative;
+  bottom: 1.5rem;
+  left: 56rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+header .navFlex .infoPopUp .modal .modalContent .closeModal:hover, header .navFlex .infoPopUp .modal .modalContent .closeModal:focus {
+  color: #BF0505;
+  text-decoration: none;
+  cursor: pointer;
+}
+header .navFlex .infoPopUp .modal .modalContent p {
+  color: #171717;
+  font-weight: 400;
+  text-shadow: 0.5px 0.5px 0.5px darkgray;
+}
+header .navFlex .infoPopUp .modal .modalContent p span {
+  text-transform: uppercase;
+  color: #BF0505;
+}
 header .navFlex .inputItem {
   width: 50%;
 }
@@ -770,6 +818,16 @@ footer a:hover, footer a:focus {
 }
 
 @media (max-width: 1200px) {
+  header .navFlex .infoPopUp .modal .modalContent {
+    margin: 2% auto;
+    line-height: 1.5rem;
+    bottom: 1rem;
+  }
+  header .navFlex .infoPopUp .modal .modalContent .closeModal {
+    bottom: 0;
+    left: 46rem;
+  }
+
   aside .asideFlex {
     margin-top: 3.2rem;
   }
@@ -801,6 +859,11 @@ footer a:hover, footer a:focus {
   }
 }
 @media (max-width: 940px) {
+  header .navFlex .infoPopUp .modal .modalContent .closeModal {
+    bottom: 0;
+    left: 35.5rem;
+  }
+
   .mainHeader {
     font-size: 3rem;
   }
@@ -1012,13 +1075,22 @@ footer a:hover, footer a:focus {
         -ms-flex-pack: center;
             justify-content: center;
   }
+  header .navFlex .infoPopUp {
+    position: relative;
+    left: 16.5rem;
+    bottom: 7rem;
+  }
   header .navFlex .infoPopUp button {
     padding: 8px 10px 4px;
   }
-  header .navFlex .infoIcon {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+  header .navFlex .infoPopUp .modal .modalContent {
+    margin: 3% auto;
+    line-height: 1.5rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  header .navFlex .infoPopUp .modal .modalContent .closeModal {
+    left: 29rem;
   }
 
   .mobileNav {
@@ -1112,8 +1184,24 @@ footer a:hover, footer a:focus {
   header .desktopNav {
     position: relative;
   }
+  header .desktopNav .infoPopUp {
+    position: relative;
+    left: 12.5rem;
+    bottom: 8.1rem;
+  }
   header .desktopNav .infoPopUp button {
     padding: 7px 10px 4px;
+  }
+  header .desktopNav .infoPopUp .modal {
+    left: 1.35rem;
+  }
+  header .desktopNav .infoPopUp .modal .modalContent {
+    margin: 4% auto;
+    line-height: 1.2rem;
+    font-size: 0.8rem;
+  }
+  header .desktopNav .infoPopUp .modal .modalContent .closeModal {
+    left: 21rem;
   }
   header .desktopNav .infoIcon {
     position: absolute;
@@ -1141,9 +1229,19 @@ footer a:hover, footer a:focus {
   header .desktopNav .navFlex .inputItem {
     width: 60%;
   }
-  header .desktopNav .navFlex .infoIcon {
-    position: absolute;
-    top: 0.55rem;
+  header .desktopNav .navFlex .infoPopUp {
+    left: 10rem;
+    bottom: 8rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal {
+    left: 1.1rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent {
+    margin: 5% auto;
+    line-height: 1rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent .closeModal {
+    left: 17.5rem;
   }
 
   .mobileNav ul.mobileMenu {
@@ -1170,8 +1268,27 @@ footer a:hover, footer a:focus {
     width: 80%;
     text-align: center;
   }
+  header .desktopNav .navFlex .infoPopUp {
+    left: 6.5rem;
+    bottom: 6.4rem;
+    font-size: 0.8rem;
+  }
   header .desktopNav .navFlex .infoPopUp button {
     border-radius: 10px;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal {
+    top: 4rem;
+    left: 0.75rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent {
+    font-size: 0.7rem;
+    margin: 7% auto;
+    line-height: 0.83rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent .closeModal {
+    top: 0.3rem;
+    left: 11rem;
+    font-size: 1.2rem;
   }
   header .desktopNav .navFlex .infoIcon {
     position: absolute;

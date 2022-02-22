@@ -20,6 +20,7 @@ const columnFlex = document.querySelector('.columnFlex');
 
 // ***** INIT to kickoff application *****
 app.init = () => {
+    app.infoModal();
     app.getTrending();
     hideDropDown.style.display = "none";
     const asideNav = document.querySelector('.asideFlex')
@@ -134,7 +135,7 @@ app.displayTrending = (dataFromTrendingApi) => {
         //Create movie container 
         const movieContainer = document.createElement('div');
         //Set class to movie container
-        movieContainer.classList.add('movieContainer');
+        movieContainer.classList.add('movieContainer', 'grow');
 
         //Create text container 
         const trendingTextContainer = document.createElement('div');
@@ -171,7 +172,7 @@ app.displayTrending = (dataFromTrendingApi) => {
         summaryElement.textContent = `Summary`;
 
         //Add movie overview to p element
-        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}`;
+        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
                
         //Append Movie Poster and Title to their respective containers
         trendingTextContainer.appendChild(headerElement);
@@ -417,22 +418,21 @@ app.setUpEventListener = function() {
     })
 }
 
-const menu = document.querySelector('.mobileMenu');
-const menuItems = document.querySelectorAll('.menuItem');
-const mobileButton = document.querySelector('mobileButton');
-const openIcon = document.querySelector('openIcon');
-const closeIcon = document.querySelector('closeIcon');
 
-function toggleNav() {
-    if (mobileMenu.classList.contains('showMenu')) {
-        menu.classList.remove('showMenu');
-        closeIcon.style.display = 'none';
-        openIcon.style.display = 'block';
-    } else {
-        menu.classList.add('showMenu');
-        closeIcon.style.display = 'block';
-        openIcon.style.display = 'none';
-    }
+
+app.infoModal = function() {
+    const modal = document.getElementById('infoModal');
+    const modalButton = document.getElementById('infoIcon');
+    const closeModal = document.getElementsByClassName('closeModal')[0];
+
+    modalButton.addEventListener('click', function() {
+        modal.style.display = 'block';
+    })
+
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    })
 }
+
 
 app.init();
