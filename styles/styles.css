@@ -431,6 +431,7 @@ label[for=mobileToggle] {
 
 .fa-bars {
   font-size: 2rem;
+  cursor: pointer;
 }
 
 input[type=checkbox]:checked + ul.mobileMenu {
