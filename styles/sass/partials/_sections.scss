@@ -5,6 +5,10 @@ main {
     }
 }
 
+.mainHeader {
+    font-size: 3rem;
+}
+
 .mainSection {
     width: 100%;
 }
@@ -124,6 +128,13 @@ aside {
     }
 }
 
+.grow { 
+        transition: all .2s ease-in-out; 
+    }
+    .grow:hover { 
+        transform: scale(1.1); 
+    }
+
 .searchFlex {
     display: flex; 
     flex-direction: column;
@@ -206,14 +217,22 @@ aside {
     .carouselImgContainer {
         width: 50%; 
         img {
-            border-radius: 15px 0px 0px 15px
+            border-radius: 15px 0px 0px 15px;
+            border-bottom-left-radius: 15px;
         }
     }
     .carouselTextContainer {
         width: 50%;
         background-color: $black;
-        border-radius: 0px 15px 15px 0px
-
+        border-radius: 0px 15px 15px 0px;
+        padding: 20px;
+        font-family: $bodyFont;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p {
+            margin: 20px 0;
+        }
     }
 }
 

@@ -242,19 +242,27 @@ app.displayTrending = (dataFromTrendingApi) => {
         headerElement.textContent = movie.title
 
         //add content to p tag 
-        paragraphHeader.textContent = `${movie.release_date.substring(0, 4)} | Rating: ${movie.vote_average}`;
+        paragraphHeader.textContent = `${movie.release_date.substring(0, 4)} | ⭐️ ${movie.vote_average}`;
 
         //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
 
         //Add movie overview to p element
-        paragraphElement.textContent = `${movie.overview.split('.', 2).join('. ')}.`;
+        paragraphElement.textContent = `${movie.overview.split('.', 2).join('.')}`;
+
+        //Add anchor element and styling
+        const anchorElement = document.createElement('a');
+        const movieTitle = movie.title.replace(/\s/g, '-').replace(':', '');
+        anchorElement.href = `https://www.themoviedb.org/movie/${movie.id}-${movieTitle}`;
+        anchorElement.textContent = `Read More`;
+        anchorElement.classList.add('linkButton')
                
         //Append Movie Poster and Title to their respective containers
         trendingTextContainer.appendChild(headerElement);
         trendingTextContainer.appendChild(paragraphHeader);
         trendingTextContainer.appendChild(summaryElement);
         trendingTextContainer.appendChild(paragraphElement);
+        trendingTextContainer.appendChild(anchorElement);
         trendingImgContainer.appendChild(imgElement);
 
         //Append Movie Poster and Title Containers to their own container
@@ -397,8 +405,9 @@ app.getSearch = (userQuery) => {
         if(jsonResponse.results.length >= 1) {
             app.displayMovie(jsonResponse.results.slice(0, 5))
         } else {
-            const errorMessage = document.querySelector('.errorHandling')
-            errorMessage.textContent = `I'm sorry, it looks like your search has not returned any movies. Please search again!`
+            const mainSection = document.querySelector('.mainSection');
+            mainSection.style.height = '1000px'
+            alert(`Im sorry, it looks like your search did not yeild any results! Please try again!`)
         }
     })
 }
@@ -451,7 +460,7 @@ app.displayUpcoming = (dataFromUpcomingMovies) => {
         headerElement.textContent = movie.title
 
         //add content to p tag 
-        paragraphHeader.textContent = `${movie.release_date} | Rating: ${movie.vote_average}`;
+        paragraphHeader.textContent = `${movie.release_date} | ⭐️ ${movie.vote_average}`;
 
         //Add text content to the summary h4 element
         summaryElement.textContent = `Summary`;
@@ -459,11 +468,19 @@ app.displayUpcoming = (dataFromUpcomingMovies) => {
         //Add movie overview to p element
         paragraphElement.textContent = `${movie.overview}`;
 
+        //Add anchor element and styling
+        const anchorElement = document.createElement('a');
+        const movieTitle = movie.title.replace(/\s/g, '-').replace(':', '');
+        anchorElement.href = `https://www.themoviedb.org/movie/${movie.id}-${movieTitle}`;
+        anchorElement.textContent = `Read More`;
+        anchorElement.classList.add('linkButton')
+
         //Append Movie Poster and Title to their respective containers
         discoverTextContainer.appendChild(headerElement);
         discoverTextContainer.appendChild(paragraphHeader);
         discoverTextContainer.appendChild(summaryElement);
         discoverTextContainer.appendChild(paragraphElement);
+        discoverTextContainer.appendChild(anchorElement);
         discoverImgContainer.appendChild(imgElement);
 
         //Append Movie Poster and Title Containers to their own container
@@ -505,6 +522,8 @@ function navEventHandler(e) {
     const clearFlex = document.querySelector('.movieFlex')
     if (e.target.textContent == 'Popular') {
         carouselElement.style.display = "none"
+        const mainSection = document.querySelector('.mainSection');
+        mainSection.style.height = 'auto'
         clearFlex.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
         clearColumnFlex.innerHTML = '';
@@ -514,6 +533,8 @@ function navEventHandler(e) {
         app.getPopular();
     } else if (e.target.textContent == 'Discover') {
         carouselElement.style.display = "none"
+        const mainSection = document.querySelector('.mainSection');
+        mainSection.style.height = 'auto'
         clearFlex.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
         clearColumnFlex.innerHTML = '';
@@ -523,6 +544,8 @@ function navEventHandler(e) {
         app.getDiscover();
     } else if (e.target.textContent == 'Upcoming') {
         carouselElement.style.display = "none"
+        const mainSection = document.querySelector('.mainSection');
+        mainSection.style.height = 'auto'
         clearFlex.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
         clearColumnFlex.innerHTML = '';
@@ -532,6 +555,8 @@ function navEventHandler(e) {
         app.getUpcoming();
     } else if (e.target.textContent == 'Top Rated') {
         carouselElement.style.display = "none"
+        const mainSection = document.querySelector('.mainSection');
+        mainSection.style.height = 'auto'
         clearFlex.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
         clearColumnFlex.innerHTML = '';
@@ -541,6 +566,8 @@ function navEventHandler(e) {
         app.getTopRated();
     } else if (e.target.textContent == 'Genres') {
         carouselElement.style.display = "none"
+        const mainSection = document.querySelector('.mainSection');
+        mainSection.style.height = 'auto'
         clearFlex.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
         clearColumnFlex.innerHTML = '';

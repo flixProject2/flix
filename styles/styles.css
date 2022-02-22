@@ -491,6 +491,10 @@ main form {
   margin-left: 38px;
 }
 
+.mainHeader {
+  font-size: 3rem;
+}
+
 .mainSection {
   width: 100%;
 }
@@ -657,6 +661,16 @@ aside .asideFlex li span a:focus {
   padding: 15px;
 }
 
+.grow {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.grow:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 .searchFlex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -772,11 +786,27 @@ aside .asideFlex li span a:focus {
 }
 .carouselCard .carouselImgContainer img {
   border-radius: 15px 0px 0px 15px;
+  border-bottom-left-radius: 15px;
 }
 .carouselCard .carouselTextContainer {
   width: 50%;
   background-color: #171717;
   border-radius: 0px 15px 15px 0px;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.carouselCard .carouselTextContainer p {
+  margin: 20px 0;
 }
 
 .carouselButton {
@@ -903,15 +933,48 @@ footer a:hover, footer a:focus {
   }
 }
 @media (max-width: 940px) {
+  header .navFlex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  header .navFlex .inputItem > form:nth-child(1) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  header .navFlex .infoPopUp {
+    position: relative;
+    left: 16.5rem;
+    bottom: 7rem;
+  }
+  header .navFlex .infoPopUp button {
+    padding: 8px 10px 4px;
+  }
+  header .navFlex .infoPopUp .modal .modalContent {
+    margin: 3% auto;
+    line-height: 1.5rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
   header .navFlex .infoPopUp .modal .modalContent .closeModal {
-    bottom: 0;
-    left: 35.5rem;
+    left: 29rem;
   }
 
   .mainHeader {
     font-size: 3rem;
   }
 
+  aside {
+    display: none;
+  }
   aside .asideFlex {
     margin-top: 2.65rem;
   }
@@ -919,8 +982,79 @@ footer a:hover, footer a:focus {
     font-size: 1.3rem;
   }
 
+  .mobileNav {
+    display: contents;
+  }
+  .mobileNav ul.mobileMenu {
+    width: 30%;
+  }
+
   .genreDropDown select {
     width: 30%;
+  }
+
+  .movieFlex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .movieFlex .movieContainer {
+    margin: 25px 40px;
+    width: 90%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-radius: 15px;
+    background-color: #171717;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  }
+  .movieFlex .movieContainer .trendingImgContainer {
+    width: 100%;
+    height: 70%;
+  }
+  .movieFlex .movieContainer .trendingImgContainer img {
+    border-radius: 15px 15px 0 0px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 340px;
+    width: 100%;
+    -o-object-position: center;
+       object-position: center;
+  }
+  .movieFlex .movieContainer .trendingTextContainer {
+    width: 80%;
+    padding: 15px;
+    height: 30%;
+    position: relative;
+  }
+  .movieFlex .movieContainer .trendingTextContainer h3 {
+    margin-top: 0;
+  }
+  .movieFlex .movieContainer .trendingTextContainer h4 {
+    margin-bottom: 5px;
+  }
+  .movieFlex .movieContainer .trendingTextContainer p {
+    font-size: 0.8rem;
+    color: #808080;
   }
 
   .columnFlex {
@@ -1264,6 +1398,35 @@ footer a:hover, footer a:focus {
 
   .genreDropDown select {
     width: 35%;
+  }
+
+  .movieFlex .movieContainer .trendingTextContainer {
+    min-height: 0rem;
+  }
+
+  .carouselMain {
+    height: 970px;
+  }
+
+  .carouselCard {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .carouselCard .carouselImgContainer {
+    width: 90%;
+  }
+  .carouselCard .carouselImgContainer img {
+    border-radius: 15px 15px 0px 0px;
+  }
+  .carouselCard .carouselTextContainer {
+    width: 90%;
+    border-radius: 0px 0px 15px 15px;
+    padding: 0px 15px 15px 15px;
   }
 }
 @media (max-width: 480px) {
