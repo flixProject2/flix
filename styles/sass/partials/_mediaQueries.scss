@@ -1,6 +1,24 @@
 // ***** 1200px *****
 
 @media (max-width: 1200px) {
+    header {
+        .navFlex {
+            .infoPopUp {
+                .modal {
+                    .modalContent {
+                        margin: 2% auto;
+                        line-height: 1.5rem;
+                        bottom: 1rem;
+                        .closeModal {
+                            bottom: 0;
+                            left: 46rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     aside {
         .asideFlex {
             margin-top: 3.2rem;
@@ -30,16 +48,22 @@
 
 // ***** 940px *****
 @media (max-width: 940px) {
-    .desktopNav {
-        position: relative;
-        .fa-star {
-            position: absolute;
-            top: 2.5rem;
-            right: 7rem;
+
+    header {
+        .navFlex {
+            .infoPopUp {
+                .modal {
+                    .modalContent {
+                        .closeModal {
+                            bottom: 0;
+                            left: 35.5rem;
+                        }
+                    }
+                }
+            }
         }
     }
-
-
+    
     .mainHeader {
         font-size: 3rem;
     }
@@ -131,17 +155,30 @@
             .navFlex {
                 flex-direction: column;
                 align-items: center;
-                .fa-star {
-                    position: absolute;
-                    top: 2rem;
-                    right: 7rem;
+                .inputItem > form:nth-child(1) {
+                    display: flex;
+                    justify-content: center;
                 }
-                .languageToggle {
-                    position: absolute;
-                    top: 2.2rem;
-                    right: 0;
+                .infoPopUp {
+                    position: relative;
+                    left: 16.5rem;
+                    bottom: 7rem;
+                button {
+                    padding: 8px 10px 4px;
+                }
+                .modal {
+                    .modalContent {
+                        margin: 3% auto;
+                        line-height: 1.5rem;
+                        padding: 0.5rem;
+                        font-size: 0.9rem;
+                        .closeModal {
+                            left: 29rem;
+                        }
+                    }
                 }
             }
+        }
     }
 
     .mobileNav {
@@ -209,12 +246,6 @@
             }
         }
     }
-    .grow { 
-        transition: all .2s ease-in-out; 
-    }
-    .grow:hover { 
-        transform: scale(1.1); 
-    }
   } 
 }
 
@@ -223,9 +254,29 @@
     header {
         .desktopNav {
             position: relative;
-            .fa-star {
+            .infoPopUp {
+                position: relative;
+                left: 12.5rem;
+                bottom: 8.1rem;
+                button {
+                    padding: 7px 10px 4px;
+                }
+                .modal {
+                    left: 1.35rem;
+                    .modalContent {
+                        margin: 4% auto;
+                        line-height: 1.2rem;
+                        font-size: 0.8rem;
+                        .closeModal {
+                            left: 21rem;
+                        }
+                    }
+                }
+            }
+            .infoIcon {
                 position: absolute;
-                right: 5.5rem;
+                top: 0.55rem;
+                right: -0.5rem;
             }
         }
         label[for="mobileToggle"] {
@@ -253,14 +304,19 @@
                 .inputItem {
                     width: 60%;
                 }
-                .fa-star {
-                    position: absolute;
-                    top: 1.5rem;
-                    right: 1.5rem;
-                }
-                .languageToggle {
-                    position: absolute;
-                    top: 3.2rem;
+                .infoPopUp {
+                    left: 10rem;
+                    bottom: 8rem;
+                    .modal {
+                        left: 1.1rem;
+                        .modalContent {
+                            margin: 5% auto;
+                            line-height: 1rem;
+                            .closeModal {
+                                left: 17.5rem;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -295,16 +351,32 @@
                     width: 80%;
                     text-align: center;
                 }
-                .fa-star {
-                    position: absolute;
-                    top: 0.7rem;
-                    right: 0;
-                }
-                .languageToggle {
-                    position: absolute;
-                    top: 2.5rem;
-                    right: -0.5rem;
+                .infoPopUp {
+                    left: 6.5rem;
+                    bottom: 6.4rem;
                     font-size: 0.8rem;
+                    button {
+                        border-radius: 10px;
+                    }
+                    .modal {
+                        top: 4rem;
+                        left: 0.75rem;
+                        .modalContent {
+                            font-size: 0.7rem;
+                            margin: 7% auto;
+                            line-height: 0.83rem;
+                            .closeModal {
+                                top: 0.3rem;
+                                left: 11rem;
+                                font-size: 1.2rem;
+                            }
+                        }
+                    }
+                }
+                .infoIcon {
+                    position: absolute;
+                    top: 0.53rem;
+                    font-size: 0.6rem;
                 }
             }
         }

@@ -20,6 +20,7 @@ const carouselElement = document.querySelector('.carouselMain')
 
 // ***** INIT to kickoff application *****
 app.init = () => {
+    app.infoModal();
     app.getTrending();
     hideDropDown.style.display = "none";
     const asideNav = document.querySelector('.asideFlex')
@@ -550,6 +551,22 @@ function navEventHandler(e) {
         app.setUpEventListener();
         app.getGenres();
     }
+}
+
+
+
+app.infoModal = function() {
+    const modal = document.getElementById('infoModal');
+    const modalButton = document.getElementById('infoIcon');
+    const closeModal = document.getElementsByClassName('closeModal')[0];
+
+    modalButton.addEventListener('click', function() {
+        modal.style.display = 'block';
+    })
+
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    })
 }
 
 

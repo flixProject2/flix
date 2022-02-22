@@ -338,7 +338,7 @@ header .navFlex li input {
   height: 2rem;
   padding: 0 2rem 0 1rem;
 }
-header .navFlex li button {
+header .navFlex li .searchButton {
   color: #171717;
   background-color: transparent;
   border: none;
@@ -353,30 +353,65 @@ header .navFlex li button[type=submit] {
 header .navFlex li button[type=submit] i {
   color: #171717;
 }
-header .navFlex li .fa-star {
-  color: #FFD809;
-  font-size: 1.2rem;
+header .navFlex .infoPopUp button {
+  border: 2px solid #171717;
+  border-radius: 15px;
+  padding: 9px 10px 5px;
+  color: #FFFFFF;
+  background: none;
 }
-header .navFlex li .fa-star:hover {
+header .navFlex .infoPopUp button:hover,
+header .navFlex .infoPopUp button:focus {
+  background-color: #171717;
+  color: #FFFFFF;
+}
+header .navFlex .infoPopUp .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 6rem;
+  left: 2rem;
+  right: 2rem;
+  bottom: 1rem;
+  width: 91%;
+  max-height: 100%;
+  background-color: #E8E8E8;
+  border-radius: 20px;
+  margin: auto;
+}
+header .navFlex .infoPopUp .modal .modalContent {
+  background-color: #E8E8E8;
+  margin: 6% auto;
+  padding: 1rem;
+  border-radius: 15px;
+  width: 80%;
+  line-height: 2rem;
+  letter-spacing: 1px;
+  position: relative;
+  bottom: 3rem;
+}
+header .navFlex .infoPopUp .modal .modalContent .closeModal {
+  color: #171717;
+  position: relative;
+  bottom: 1.5rem;
+  left: 56rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+header .navFlex .infoPopUp .modal .modalContent .closeModal:hover, header .navFlex .infoPopUp .modal .modalContent .closeModal:focus {
+  color: #BF0505;
+  text-decoration: none;
   cursor: pointer;
 }
-header .navFlex li ul.watchlistSlide {
-  background: #171717;
-  height: 80%;
-  width: 25%;
-  position: fixed;
-  top: 5rem;
-  right: -30%;
-  z-index: 10;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  border-radius: 15px 0 0 15px;
+header .navFlex .infoPopUp .modal .modalContent p {
+  color: #171717;
+  font-weight: 400;
+  text-shadow: 0.5px 0.5px 0.5px darkgray;
 }
-header .navFlex li input[type=checkbox]:checked + ul.watchlistSlide {
-  right: 0;
-}
-header .navFlex li input[type=checkbox] {
-  display: none;
+header .navFlex .infoPopUp .modal .modalContent p span {
+  text-transform: uppercase;
+  color: #BF0505;
 }
 header .navFlex .inputItem {
   width: 50%;
@@ -396,6 +431,7 @@ label[for=mobileToggle] {
 
 .fa-bars {
   font-size: 2rem;
+  cursor: pointer;
 }
 
 input[type=checkbox]:checked + ul.mobileMenu {
@@ -481,15 +517,18 @@ aside .asideFlex {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 3rem;
-  border-right: 1px solid black;
 }
 aside .asideFlex li {
   list-style: none;
   margin-bottom: 60px;
 }
 aside .asideFlex li span {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   cursor: pointer;
+}
+aside .asideFlex li span a:hover,
+aside .asideFlex li span a:focus {
+  text-shadow: 6px 6px 4px #171717;
 }
 
 .genreDropDown {
@@ -654,12 +693,6 @@ aside .asideFlex li span {
   width: 80%;
   padding: 15px;
 }
-.searchFlex .searchMovieContainer .searchTextContainer h3 {
-  font-size: 1rem;
-}
-.searchFlex .searchMovieContainer .searchTextContainer h4 {
-  margin-bottom: 10px;
-}
 
 .linkButton {
   display: inline-block;
@@ -678,7 +711,8 @@ aside .asideFlex li span {
   transition: 0.2s ease-in;
 }
 
-.linkButton:hover {
+.linkButton:hover,
+.linkButton:focus {
   background: #BF0505;
 }
 
@@ -821,9 +855,23 @@ footer p:nth-child(2) a:nth-child(2) {
 }
 footer a {
   color: #BF0505;
+  text-decoration: none;
+}
+footer a:hover, footer a:focus {
+  border-bottom: 2px solid #E8E8E8;
 }
 
 @media (max-width: 1200px) {
+  header .navFlex .infoPopUp .modal .modalContent {
+    margin: 2% auto;
+    line-height: 1.5rem;
+    bottom: 1rem;
+  }
+  header .navFlex .infoPopUp .modal .modalContent .closeModal {
+    bottom: 0;
+    left: 46rem;
+  }
+
   aside .asideFlex {
     margin-top: 3.2rem;
   }
@@ -855,13 +903,9 @@ footer a {
   }
 }
 @media (max-width: 940px) {
-  .desktopNav {
-    position: relative;
-  }
-  .desktopNav .fa-star {
-    position: absolute;
-    top: 2.5rem;
-    right: 7rem;
+  header .navFlex .infoPopUp .modal .modalContent .closeModal {
+    bottom: 0;
+    left: 35.5rem;
   }
 
   .mainHeader {
@@ -1067,15 +1111,30 @@ footer a {
         -ms-flex-align: center;
             align-items: center;
   }
-  header .navFlex .fa-star {
-    position: absolute;
-    top: 2rem;
-    right: 7rem;
+  header .navFlex .inputItem > form:nth-child(1) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  header .navFlex .languageToggle {
-    position: absolute;
-    top: 2.2rem;
-    right: 0;
+  header .navFlex .infoPopUp {
+    position: relative;
+    left: 16.5rem;
+    bottom: 7rem;
+  }
+  header .navFlex .infoPopUp button {
+    padding: 8px 10px 4px;
+  }
+  header .navFlex .infoPopUp .modal .modalContent {
+    margin: 3% auto;
+    line-height: 1.5rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  header .navFlex .infoPopUp .modal .modalContent .closeModal {
+    left: 29rem;
   }
 
   .mobileNav {
@@ -1164,24 +1223,34 @@ footer a {
     font-size: 0.8rem;
     color: #808080;
   }
-
-  .grow {
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .grow:hover {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-  }
 }
 @media (max-width: 568px) {
   header .desktopNav {
     position: relative;
   }
-  header .desktopNav .fa-star {
+  header .desktopNav .infoPopUp {
+    position: relative;
+    left: 12.5rem;
+    bottom: 8.1rem;
+  }
+  header .desktopNav .infoPopUp button {
+    padding: 7px 10px 4px;
+  }
+  header .desktopNav .infoPopUp .modal {
+    left: 1.35rem;
+  }
+  header .desktopNav .infoPopUp .modal .modalContent {
+    margin: 4% auto;
+    line-height: 1.2rem;
+    font-size: 0.8rem;
+  }
+  header .desktopNav .infoPopUp .modal .modalContent .closeModal {
+    left: 21rem;
+  }
+  header .desktopNav .infoIcon {
     position: absolute;
-    right: 5.5rem;
+    top: 0.55rem;
+    right: -0.5rem;
   }
   header label[for=mobileToggle] {
     top: 0.5rem;
@@ -1204,14 +1273,19 @@ footer a {
   header .desktopNav .navFlex .inputItem {
     width: 60%;
   }
-  header .desktopNav .navFlex .fa-star {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+  header .desktopNav .navFlex .infoPopUp {
+    left: 10rem;
+    bottom: 8rem;
   }
-  header .desktopNav .navFlex .languageToggle {
-    position: absolute;
-    top: 3.2rem;
+  header .desktopNav .navFlex .infoPopUp .modal {
+    left: 1.1rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent {
+    margin: 5% auto;
+    line-height: 1rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent .closeModal {
+    left: 17.5rem;
   }
 
   .mobileNav ul.mobileMenu {
@@ -1238,16 +1312,32 @@ footer a {
     width: 80%;
     text-align: center;
   }
-  header .desktopNav .navFlex .fa-star {
-    position: absolute;
-    top: 0.7rem;
-    right: 0;
-  }
-  header .desktopNav .navFlex .languageToggle {
-    position: absolute;
-    top: 2.5rem;
-    right: -0.5rem;
+  header .desktopNav .navFlex .infoPopUp {
+    left: 6.5rem;
+    bottom: 6.4rem;
     font-size: 0.8rem;
+  }
+  header .desktopNav .navFlex .infoPopUp button {
+    border-radius: 10px;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal {
+    top: 4rem;
+    left: 0.75rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent {
+    font-size: 0.7rem;
+    margin: 7% auto;
+    line-height: 0.83rem;
+  }
+  header .desktopNav .navFlex .infoPopUp .modal .modalContent .closeModal {
+    top: 0.3rem;
+    left: 11rem;
+    font-size: 1.2rem;
+  }
+  header .desktopNav .navFlex .infoIcon {
+    position: absolute;
+    top: 0.53rem;
+    font-size: 0.6rem;
   }
   header label .fa-bars {
     font-size: 1.5rem;

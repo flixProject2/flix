@@ -22,5 +22,11 @@ footer {
         }
         a {
             color: $background;
+            text-decoration: none;
+            &:hover,
+            &:focus {
+            border-bottom: 2px solid $text;
+          }
         }
+        
 }
