@@ -5,6 +5,10 @@ main {
     }
 }
 
+.mainSection {
+    width: 100%;
+}
+
 .mainFlex {
     display: flex;
     flex-direction: row;
@@ -97,9 +101,32 @@ aside {
 .columnFlex {
     display: flex; 
     flex-direction: column;
-    .discoverFlexContainer,
-    .popularFlexContainer,
-    .genresFlexContainer,
+    .discoverFlexContainer {
+        margin: 25px 40px;
+        width: 90%;
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: row-reverse;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        border-radius: 15px;
+        background-color: $black;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px;
+        .discoverImgContainer{
+            width: 20%;
+            img {
+                border-radius: 15px 0 0 15px;
+            }
+        }
+        .discoverTextContainer {
+            width: 80%;
+            padding: 15px;
+        }
+    }
+}
+
+.searchFlex {
+    display: flex; 
+    flex-direction: column;
     .searchMovieContainer {
         margin: 25px 40px;
         width: 90%;
@@ -109,48 +136,13 @@ aside {
         box-sizing: border-box;
         justify-content: flex-start;
         border-radius: 15px;
-        background-color: $black;
-        .discoverImgContainer,
-        .popularImageContainer,
-        .genresImageContainer,
+        background-color: black;
         .searchImgContainer {
             width: 20%;
-            img {
-                border-radius: 15px 0 0 15px;
-            }
         }
-        .discoverTextContainer,
-        .popularTextContainer,
-        .genresTextContainer,
         .searchTextContainer {
             width: 80%;
             padding: 15px;
-        }
-    }
-}
-
-.carouselWrapper {
-    position: relative;
-}
-.carouselCard {
-    display: flex; 
-    flex-direction: row;
-    width: 100%; 
-    border-radius: 15px;
-    height: 600px;
-    display: none;
-    .carouselTextContainerOne,
-    .carouselTextContainerTwo,
-    .carouselTextContainerThree {
-        width: 45%
-    }
-    .carouselImgContainerOne,
-    .carouselImgContainerTwo, 
-    .carouselImgContainerThree {
-        width: 55%;
-        img {
-            width: 100%;
-            object-fit: cover;
         }
     }
 }
@@ -176,53 +168,92 @@ aside {
     background: $background
 }
 
-.carouselCardSelected {
+.carouselMain {
+    position: relative;
+    height: 600px;
+    width: 90%;
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.carouselNav {
-    text-align: center;
+
+.carouselImages {
     width: 100%;
-    padding: 20px 0; 
+    object-fit: cover;
+}
+
+.carouselTrackContainer {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.carouselTrack {
+    padding: 0;
+    margin: 0; 
+    //position: relative;
+    height: 100%;
+    transition: transform 250ms ease-in;
+}
+
+.carouselCard {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    .carouselButton {
-        width: 10px;
-        height: 10px; 
-        display: inline-block; 
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        margin: 0 5px; 
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 15px;
+    .carouselImgContainer {
+        width: 50%; 
+        img {
+            border-radius: 15px 0px 0px 15px
+        }
+    }
+    .carouselTextContainer {
+        width: 50%;
+        background-color: $black;
+        border-radius: 0px 15px 15px 0px
+
     }
 }
-.carouselButtonSelected {
-    background-color: rgba(255, 255, 255)
+
+.carouselButton {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    i {
+        width: 15px;
+    }
 }
-// .columnFlex {
-//     display: flex; 
-//     flex-direction: column;
-//     .searchMovieContainer {
-//         margin: 25px 40px;
-//         width: 90%;
-//         flex-wrap: wrap;
-//         display: flex;
-//         flex-direction: row-reverse;
-//         box-sizing: border-box;
-//         justify-content: flex-start;
-//         border-radius: 15px;
-//         background-color: black;
-//         .searchImgContainer {
-//             width: 20%;
-//         }
-//         .searchTextContainer {
-//             width: 80%;
-//             padding: 15px;
-//             h3 {
-//                 font-size: 1rem;
-//             }
-//             h4 {
-//                 margin-bottom: 10px;
-//             }
-//         }
-//     }
-// }
+
+.carouselButtonRight {
+    right: -30px; 
+}
+
+.carouselButtonLeft {
+    left: -30px
+}
+
+.carouselNav {
+    display: flex; 
+    justify-content: center;
+    .carouselIndicator {
+        border: 0;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px; 
+        background: $title;
+        margin: 0 15px;
+        cursor: pointer;
+    }
+}
+.carouselIndicator.currentSlide {
+    background: $black;
+}
+
+.isHidden {
+    display: none;
+}

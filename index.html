@@ -82,26 +82,45 @@
                 </ul>
             </aside>
             <section class="mainSection">
-                <div class="carousel">
-                    <div class="carouselCard">
-                        <div class="carouselTextContainerOne"></div>
-                        <div class="carouselImgContainerOne"><img class="imgOne" src="" alt=""></div>
+                <div class="carouselMain">
+                    <button class="carouselButton carouselButtonLeft isHidden"><i class="fa-solid fa-angle-left"></i></button>
+                    <div class="carouselTrackContainer">
+                        <div class="carouselTrack">
+                            <div class="carouselCard currentSlide">
+                                <div class="carouselTextContainerOne carouselTextContainer">
+                                    <h3 class="movieTitleOne"></h3>
+                                    <p class="movieOverviewOne"></p>
+                                    <a class="learnMoreOne"  href="">Read More</a>
+                                </div>
+                                <div class="carouselImgContainerOne carouselImgContainer"><img class="carouselImages imgOne" src="" alt=""></div>
+                            </div>
+                            <div class="carouselCard">
+                                <div class="carouselTextContainerTwo carouselTextContainer">
+                                    <h3 class='movieTitleTwo'></h3>
+                                    <p class="movieOverviewTwo"></p>
+                                    <a class="learnMoreTwo" href="">Read More</a>
+                                </div>
+                                <div class="carouselImgContainerTwo carouselImgContainer"><img class="carouselImages imgTwo" src="" alt=""></div>
+                            </div>
+                            <div class="carouselCard">
+                                <div class="carouselTextContainerThree carouselTextContainer">
+                                    <h3 class="movieTitleThree"></h3>
+                                    <p class="movieOverviewThree"></p>
+                                    <a  class="learnMoreThree" href="">Read More</a>
+                                </div>
+                                <div class="carouselImgContainerThree carouselImgContainer"><img class="carouselImages imgThree" src="" alt=""></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="carouselCard carouselCardSelected">
-                        <div class="carouselTextContainerTwo"></div>
-                        <div class="carouselImgContainerTwo"><img class="imgTwo" src="" alt=""></div>
-                    </div>
-                    <div class="carouselCard">
-                        <div class="carouselTextContainerThree"></div>
-                        <div class="carouselImgContainerThree"><img class="imgThree" src="" alt=""></div>
-                    </div>
+                    <button class="carouselButton carouselButtonRight"><i class="fa-solid fa-angle-right"></i></button>
                     <div class="carouselNav">
-                        <span class="carouselButton"></span>
-                        <span class="carouselButton"></span>
-                        <span class="carouselButton"></span>
+                        <button class="carouselIndicator currentSlide"></button>
+                        <button class="carouselIndicator"></button>
+                        <button class="carouselIndicator"></button>
                     </div>
                 </div>
                 <h2 class="mainHeader" id="mainHeader">Trending</h2>
+                <h4 class="errorHandling"></h4>
                 <form action="" class="genreDropDown">
                     <label for="movieGenre">Select a movie genre</label>
                 
@@ -117,20 +136,6 @@
                         <option value=37>Western</option>
                     </select>
                 </form>
-                <!-- <div class="container">
-                    <button class="btn leftBtn"><i class="fa-solid fa-angle-left"></i></button>
-                    <div class="carouselContainer">
-                        <div class="caro">
-                            <div class="caroTextContainerOne"></div>
-                            <div class="caroImgContainerOne"><img class="caroOne" src="" alt=""></div>
-                            <div class="caroTextContainerTwo"></div>
-                            <div class="caroImgContainerTwo"><img class="caroTwo" src="" alt=""></div>
-                            <div class="caroTextContainerThree"></div>
-                            <div class="caroImgContainerThree"><img class="caroThree" src="" alt=""></div>
-                        </div>
-                    </div>
-                    <button class="btn rightBtn"><i class="fa-solid fa-angle-right"></i></button>
-                </div> -->
                 <div class="movieFlex"></div>
                 <div class="columnFlex"></div>
             </section>

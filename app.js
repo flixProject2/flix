@@ -16,7 +16,7 @@ const hideDropDown = document.querySelector('.genreDropDown')
 
 const formElement = document.querySelector('form');
 const columnFlex = document.querySelector('.columnFlex');
-
+const carouselElement = document.querySelector('.carouselMain')
 
 // ***** INIT to kickoff application *****
 app.init = () => {
@@ -24,52 +24,8 @@ app.init = () => {
     app.getTrending();
     hideDropDown.style.display = "none";
     const asideNav = document.querySelector('.asideFlex')
-
     asideNav.addEventListener('click', (e) => {
-        const clearFlex = document.querySelector('.movieFlex')
-        if (e.target.textContent == 'Popular') {
-            clearFlex.innerHTML = '';
-            const clearColumnFlex = document.querySelector('.columnFlex')
-            clearColumnFlex.innerHTML = '';
-            const popularHeading = document.getElementById('mainHeader')
-            popularHeading.textContent = 'Popular';
-            hideDropDown.style.display = "none";
-            app.getPopular();
-        } else if (e.target.textContent == 'Discover') {
-            clearFlex.innerHTML = '';
-            const clearColumnFlex = document.querySelector('.columnFlex')
-            clearColumnFlex.innerHTML = '';
-            const discoverHeading = document.getElementById('mainHeader');
-            discoverHeading.textContent = 'Discover';
-            hideDropDown.style.display = "none";
-            app.getDiscover();
-        } else if (e.target.textContent == 'Upcoming') {
-            clearFlex.innerHTML = '';
-            const clearColumnFlex = document.querySelector('.columnFlex')
-            clearColumnFlex.innerHTML = '';
-            const discoverHeading = document.getElementById('mainHeader');
-            discoverHeading.textContent = 'Upcoming';
-            hideDropDown.style.display = "none";
-            app.getUpcoming();
-        } else if (e.target.textContent == 'Top Rated') {
-            clearFlex.innerHTML = '';
-            const clearColumnFlex = document.querySelector('.columnFlex')
-            clearColumnFlex.innerHTML = '';
-            const discoverHeading = document.getElementById('mainHeader');
-            discoverHeading.textContent = 'Top Rated';
-            hideDropDown.style.display = "none";
-            app.getTopRated();
-        } else if (e.target.textContent == 'Genres') {
-            clearFlex.innerHTML = '';
-            const clearColumnFlex = document.querySelector('.columnFlex')
-            clearColumnFlex.innerHTML = '';
-            const genresHeading = document.getElementById('mainHeader')
-            genresHeading.textContent = 'Genres';
-            document.getElementById('movieGenre').selectedIndex = [0];
-            hideDropDown.style.display = "flex";
-            app.setUpEventListener();
-            app.getGenres();
-        }
+        navEventHandler(e);
     })
 
     formElement.addEventListener('submit', (e) => {
@@ -78,6 +34,7 @@ app.init = () => {
         const searchElement = document.querySelector('#movieSearch');
         const searchValue = searchElement.value;
         //Clear section
+        carouselElement.style.display = "none"
         sectionElement = document.querySelector('.movieFlex');
         sectionElement.innerHTML = '';
         const clearColumnFlex = document.querySelector('.columnFlex')
@@ -86,7 +43,11 @@ app.init = () => {
         searchHeading.textContent = `Results for "${searchValue}"`;
         hideDropDown.style.display = "none";
         app.getSearch(searchValue);
-    });   
+    });  
+    const mobileNav = document.querySelector('.mobileMenu')
+    mobileNav.addEventListener('click', (e) => {
+        navEventHandler(e);
+    })
 };
 // ***** Trending Section *****
 // Get data from API for Trending Section
@@ -105,32 +66,148 @@ app.getTrending = () => {
 // Create function to display Trending data 
 app.displayTrending = (dataFromTrendingApi) => {
     //Target where we want to append each movie
-    const movieFlex = document.querySelector('.movieFlex');
-
-    const carouselTrack = document.querySelector('.carousel')
-    console.log(carouselTrack);
-
+    const movieFlex = document.querySelector('.movieFlex');   
     //Creating the carousel structure
     const imgOne = document.querySelector('.imgOne')
     const imgTwo = document.querySelector('.imgTwo')
     const imgThree = document.querySelector('.imgThree')
-
-    const carousel = document.createElement('div')
-    carousel.classList.add('carousel')
     
     const firstCaro = dataFromTrendingApi.results[0];
     imgOne.src = `https://image.tmdb.org/t/p/original/${firstCaro.poster_path}`;
-
+    
     const secondCaro = dataFromTrendingApi.results[1];
     imgTwo.src = `https://image.tmdb.org/t/p/original/${secondCaro.poster_path}`;
     
     const thirdCaro = dataFromTrendingApi.results[2];
     imgThree.src = `https://image.tmdb.org/t/p/original/${thirdCaro.poster_path}`;
 
+    const carouselTextContainerOne = document.querySelector('.carouselTextContainerOne');
+    const carouselTextContainerTwo = document.querySelector('.carouselTextContainerTwo');
+    const carouselTextContainerThree = document.querySelector('.carouselTextContainerThree');
+
+    //Select individual text container and append info
+    const movieTitleOne = document.querySelector('.movieTitleOne');
+    movieTitleOne.textContent = firstCaro.title;
+
+    const movieTitleTwo = document.querySelector('.movieTitleTwo');
+    movieTitleTwo.textContent = secondCaro.title;
+
+    const movieTitleThree = document.querySelector('.movieTitleThree');
+    movieTitleThree.textContent = thirdCaro.title;
+
+    const movieOverviewOne = document.querySelector('.movieOverviewOne');
+    movieOverviewOne.textContent = firstCaro.overview;
+
+    const movieOverviewTwo = document.querySelector('.movieOverviewTwo');
+    movieOverviewTwo.textContent = secondCaro.overview;
+
+    const movieOverviewThree = document.querySelector('.movieOverviewThree');
+    movieOverviewThree.textContent = thirdCaro.overview;
+
+    //modify string to match href provided by MovieDB
+    firstCaro.title.replace(/\s/g, '-').replace(':', '');
+    secondCaro.title.replace(/\s/g, '-').replace(':', '');
+    thirdCaro.title.replace(/\s/g, '-').replace(':', '');
+
+    const anchorElementOne = document.querySelector('.learnMoreOne')
+    anchorElementOne.href = `https://www.themoviedb.org/movie/${firstCaro.id}-${firstCaro}`;
+    anchorElementOne.classList.add('linkButton')
+
+    const anchorElementTwo = document.querySelector('.learnMoreTwo')
+    anchorElementTwo.href = `https://www.themoviedb.org/movie/${secondCaro.id}-${secondCaro}`;
+    anchorElementTwo.classList.add('linkButton');
+
+    const anchorElementThree = document.querySelector('.learnMoreThree')
+    anchorElementThree.href = `https://www.themoviedb.org/movie/${thirdCaro.id}-${thirdCaro}`
+    anchorElementThree.classList.add('linkButton')
+
+    anchorElementOne
+
+    const carouselTrack = document.querySelector('.carouselTrack')
+
+    const slides = Array.from(carouselTrack.children);
+    
+    const rightButton = document.querySelector('.carouselButtonRight');
+    const leftButton = document.querySelector('.carouselButtonLeft');
+
+    const cNav = document.querySelector('.carouselNav')
+    const navRectangle = Array.from(cNav.children);
+
+    const slideWidth = slides[0].getBoundingClientRect().width;
+
+    const setSlidePosition = (slide, index) => {
+        slide.style.left = slideWidth * index + 'px';
+    }
+    slides.forEach(setSlidePosition)
+
+    const moveToSlide = (carouselTrack, currentSlide, nextSlide) => {
+        carouselTrack.style.transform = 'translateX(-' + nextSlide.style.left + ')';
+        currentSlide.classList.remove('currentSlide');
+        nextSlide.classList.add('currentSlide');
+    }
+
+    const updateDots = (currentDot, targetDot) => {
+        currentDot.classList.remove('currentSlide');
+        targetDot.classList.add('currentSlide');
+    }
+
+    const hideShowArrows = (slides, leftButton, rightButton, targetIndex) => {
+        if (targetIndex === 0) {
+            leftButton.classList.add('isHidden');
+            rightButton.classList.remove('isHidden');
+
+        } else if (targetIndex === slides.length - 1) {
+            leftButton.classList.remove('isHidden');
+            rightButton.classList.add('isHidden');
+        } else {
+            leftButton.classList.remove('isHidden');
+            rightButton.classList.remove('isHidden');
+        }
+    }
+
+    leftButton.addEventListener('click', (e) => {
+        const currentSlide = carouselTrack.querySelector('.currentSlide');
+        const prevSlide = currentSlide.previousElementSibling;
+        const currentDot = cNav.querySelector('.currentSlide');
+        const prevDot = currentDot.previousElementSibling;
+        const prevIndex = slides.findIndex(slide => slide === prevSlide);
+
+        moveToSlide(carouselTrack, currentSlide, prevSlide)
+        updateDots(currentDot, prevDot);
+        hideShowArrows(slides, leftButton, rightButton, prevIndex)
+    })
+    rightButton.addEventListener('click', (e) => {
+        const currentSlide = carouselTrack.querySelector('.currentSlide');
+        const nextSlide = currentSlide.nextElementSibling;
+        const currentDot = cNav.querySelector('.currentSlide');
+        const nextDot = currentDot.nextElementSibling;
+        const nextIndex = slides.findIndex(slide => slide === nextSlide);
+
+        moveToSlide(carouselTrack, currentSlide, nextSlide)
+        updateDots(currentDot, nextDot);
+        hideShowArrows(slides, leftButton, rightButton, nextIndex)    
+    })
+
+    cNav.addEventListener('click', (e) => {
+        const targetDot = e.target.closest('button');
+        if(!targetDot) return;
+
+        const currentSlide = carouselTrack.querySelector('.currentSlide');
+        const currentDot = cNav.querySelector('.currentSlide');
+        const targetIndex = navRectangle.findIndex(rec => rec === targetDot)
+        const targetSlide = slides[targetIndex];
+
+        moveToSlide(carouselTrack, currentSlide, targetSlide);
+        updateDots(currentDot, targetDot);
+        hideShowArrows(slides, leftButton, rightButton, targetIndex)
+    })
+
+
+
     //Get first three movies in the array
-    const trendingFirstThree = dataFromTrendingApi.results.slice(0, 3);
+    const trendingNextThree = dataFromTrendingApi.results.slice(3, 6);
     //Loop through each movie and append info to the DOM
-    trendingFirstThree.forEach((movie) => {
+    trendingNextThree.forEach((movie) => {
 
         //Create movie container 
         const movieContainer = document.createElement('div');
@@ -144,8 +221,7 @@ app.displayTrending = (dataFromTrendingApi) => {
 
         //Create img container 
         const trendingImgContainer = document.createElement('div');
-        trendingImgContainer.classList.add('trendingImgContainer')
-     
+        trendingImgContainer.classList.add('trendingImgContainer')  
         trendingImgContainer.classList.add('trendingImgContainer');
 
         //Create img element
@@ -236,6 +312,9 @@ app.displayMovie = (dataFromDiscoverApi) => {
         //add src to img element
         imgElement.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 
+        //Set altText to img element
+        imgElement.alt = `A movie poster for the movie ${movie.title}`
+
         //add movie title to Header Element
         headerElement.textContent = movie.title
 
@@ -315,7 +394,12 @@ app.getSearch = (userQuery) => {
         return response.json();
     })
     .then((jsonResponse) => {
-        app.displayMovie(jsonResponse.results.slice(0, 5))
+        if(jsonResponse.results.length >= 1) {
+            app.displayMovie(jsonResponse.results.slice(0, 5))
+        } else {
+            const errorMessage = document.querySelector('.errorHandling')
+            errorMessage.textContent = `I'm sorry, it looks like your search has not returned any movies. Please search again!`
+        }
     })
 }
 
@@ -357,7 +441,6 @@ app.displayUpcoming = (dataFromUpcomingMovies) => {
         const summaryElement = document.createElement('h4');
         //Create p tag to store in textContainer under header
         const paragraphHeader = document.createElement('p');
-        paragraphElement.classList.add('textdoc')
         //Create p tag to store in textContainer 
         const paragraphElement = document.createElement('p');
 
@@ -416,6 +499,58 @@ app.setUpEventListener = function() {
         const selectedGenre = this.value;
         app.getGenres(selectedGenre);
     })
+}
+//Event handler function for nav (mobile and aside)
+function navEventHandler(e) {
+    const clearFlex = document.querySelector('.movieFlex')
+    if (e.target.textContent == 'Popular') {
+        carouselElement.style.display = "none"
+        clearFlex.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
+        const popularHeading = document.getElementById('mainHeader')
+        popularHeading.textContent = 'Popular';
+        hideDropDown.style.display = "none";
+        app.getPopular();
+    } else if (e.target.textContent == 'Discover') {
+        carouselElement.style.display = "none"
+        clearFlex.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
+        const discoverHeading = document.getElementById('mainHeader');
+        discoverHeading.textContent = 'Discover';
+        hideDropDown.style.display = "none";
+        app.getDiscover();
+    } else if (e.target.textContent == 'Upcoming') {
+        carouselElement.style.display = "none"
+        clearFlex.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
+        const discoverHeading = document.getElementById('mainHeader');
+        discoverHeading.textContent = 'Upcoming';
+        hideDropDown.style.display = "none";
+        app.getUpcoming();
+    } else if (e.target.textContent == 'Top Rated') {
+        carouselElement.style.display = "none"
+        clearFlex.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
+        const discoverHeading = document.getElementById('mainHeader');
+        discoverHeading.textContent = 'Top Rated';
+        hideDropDown.style.display = "none";
+        app.getTopRated();
+    } else if (e.target.textContent == 'Genres') {
+        carouselElement.style.display = "none"
+        clearFlex.innerHTML = '';
+        const clearColumnFlex = document.querySelector('.columnFlex')
+        clearColumnFlex.innerHTML = '';
+        const genresHeading = document.getElementById('mainHeader')
+        genresHeading.textContent = 'Genres';
+        document.getElementById('movieGenre').selectedIndex = [0];
+        hideDropDown.style.display = "flex";
+        app.setUpEventListener();
+        app.getGenres();
+    }
 }
 
 
