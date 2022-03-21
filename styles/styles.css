@@ -582,7 +582,7 @@ aside .asideFlex li span a:focus {
 }
 .movieFlex .movieContainer {
   margin: 25px 40px 40px;
-  width: calc((100% / 3) - 80px);
+  width: calc(33.3333333333% - 80px);
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   display: -webkit-box;
@@ -608,9 +608,19 @@ aside .asideFlex li span a:focus {
 }
 .movieFlex .movieContainer .trendingTextContainer {
   width: 100%;
-  min-height: 20rem;
   margin-top: -7px;
   padding: 15px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .movieFlex .movieContainer .trendingTextContainer h3, .movieFlex .movieContainer .trendingTextContainer h4 {
   font-size: 1rem;
@@ -780,6 +790,7 @@ aside .asideFlex li span a:focus {
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
   border-radius: 15px;
+  height: 100%;
 }
 .carouselCard .carouselImgContainer {
   width: 50%;
@@ -837,6 +848,7 @@ aside .asideFlex li span a:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-top: 20px;
 }
 .carouselNav .carouselIndicator {
   border: 0;
@@ -941,6 +953,9 @@ footer a:hover, footer a:focus {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  header .navFlex .inputItem {
+    width: 100%;
   }
   header .navFlex .inputItem > form:nth-child(1) {
     display: -webkit-box;
@@ -1342,7 +1357,7 @@ footer a:hover, footer a:focus {
        object-position: center;
   }
   .movieFlex .movieContainer .trendingTextContainer {
-    width: 80%;
+    width: 100%;
     padding: 15px;
     height: 30%;
     position: relative;
@@ -1434,7 +1449,7 @@ footer a:hover, footer a:focus {
     position: relative;
   }
   header .desktopNav .navFlex .inputItem {
-    width: 60%;
+    width: 100%;
   }
   header .desktopNav .navFlex .infoPopUp {
     left: 10rem;

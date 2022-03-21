@@ -43,6 +43,7 @@ app.init = () => {
         searchHeading.textContent = `Results for "${searchValue}"`;
         hideDropDown.style.display = "none";
         app.getSearch(searchValue);
+        searchElement.value = ``;
     });  
     const mobileNav = document.querySelector('.mobileMenu')
     mobileNav.addEventListener('click', (e) => {
@@ -260,8 +261,8 @@ app.displayTrending = (dataFromTrendingApi) => {
         //Append Movie Poster and Title to their respective containers
         trendingTextContainer.appendChild(headerElement);
         trendingTextContainer.appendChild(paragraphHeader);
-        trendingTextContainer.appendChild(summaryElement);
-        trendingTextContainer.appendChild(paragraphElement);
+        // trendingTextContainer.appendChild(summaryElement);
+        // trendingTextContainer.appendChild(paragraphElement);
         trendingTextContainer.appendChild(anchorElement);
         trendingImgContainer.appendChild(imgElement);
 
@@ -386,7 +387,7 @@ app.getGenres = (genreId) => {
             return apiResponse.json();
         })
         .then((jsonResponse) => {
-            app.displayMovie(jsonResponse.results.slice(12, 17));
+            app.displayMovie(jsonResponse.results.slice(15, 20));
         })
 };
 
