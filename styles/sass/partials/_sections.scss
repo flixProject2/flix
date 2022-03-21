@@ -89,9 +89,12 @@ aside {
         }
         .trendingTextContainer {
             width: 100%;
-            min-height: 20rem;
             margin-top: -7px;
             padding: 15px;
+            text-align: center;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
             h3, h4 {
                 font-size: 1rem;
             }
@@ -214,6 +217,7 @@ aside {
     display: flex;
     flex-direction: row-reverse;
     border-radius: 15px;
+    height: 100%;
     .carouselImgContainer {
         width: 50%; 
         img {
@@ -259,6 +263,7 @@ aside {
 .carouselNav {
     display: flex; 
     justify-content: center;
+    margin-top: 20px;
     .carouselIndicator {
         border: 0;
         border-radius: 50%;
